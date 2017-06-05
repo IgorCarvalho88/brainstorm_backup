@@ -1,0 +1,202 @@
+﻿@using SelectListItem = System.Web.WebPages.Html.SelectListItem
+@model Brainstorm.ViewModel.BrainstormViewModel
+@{
+    ViewBag.Title = "Brainstorm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Brainstorm</h2>
+<h3>@Model.ReuniaoBrainstorm.Data</h3>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form">
+        <div class="panel-group" id="filtros" style="">
+            <div class="panel panel-info">
+                <div class="panel-heading ">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#collapse1" class="minMax" style="text-align: left">Filtros</a>
+                        <a data-toggle="collapse" href="#collapse1" class="minMax" style="text-align: right">
+                            <img @*onmouseover="this.src = '../images/min_.gif'" onmouseout="this.src = '/images/Min.gif'"*@ id="min" src="/Images/Min.gif" title="Esconder" class="pull-right img-responsive" />
+                        </a>
+                        <img id="separador3" src="/Images/separador1.gif" class="pull-right img-responsive" />
+                        <img onmouseover="this.src = '../images/gravar_.gif'" onmouseout="this.src = '/images/gravar.gif'" id="gravar" src="/Images/gravar.gif" title="Gravar" class="pull-right img-responsive" />
+                        <img id="separador1" src="/Images/separador1.gif" class="pull-right img-responsive" />
+                        <img onmouseover="this.src = '../images/limpar_.gif'" onmouseout="this.src = '/images/limpar.gif'" id="limpar" src="/Images/limpar.gif" title="Limpar" class="pull-right img-responsive" />
+                        <img id="separador2" src="/Images/separador1.gif" class="pull-right img-responsive" />
+                        <img onmouseover="this.src = '../images/ToolFechar_.gif'" onmouseout="this.src = '/images/ToolFechar.gif'" id="voltar" src="/Images/ToolFechar.gif" title="Voltar" class="pull-right img-responsive" />
+                    </h4>
+                </div>
+                <div id="collapse1" class="panel-collapse collapse in">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="form-group">
+                                <label class="control-label col-md-2">Data</label>
+                                <div class="col-md-2">
+                                    @*@Html.TextBoxFor(x=>x.ReuniaoBrainstorm.Data)*@
+                                    <input class="form-control col-md-2" type="text" id="Data"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <label class="control-label col-md-2">Duração (Min)</label>
+                                <div class="col-md-1">
+                                    <input class="form-control col-md-1" type="text" id="DuracaoPrevista" />
+                                </div>
+                                @*<label class="control-label col-md-2">Duração Real(Min)</label>
+                                    <div class="col-md-1">
+                                        <input class="form-control col-md-1" type="text" id="DuracaoReal"/>
+                                    </div>*@
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <label class="control-label col-md-2">Interveniente 1</label>
+                                <div class="col-md-3">
+                                    @*@Html.ListBoxFor(model => model.Intervenientes[0].Name /*model => model.Intervenientes.ElementAt(0).Name*/, /*(SelectList)ViewBag.users*/ new SelectList(Model.Intervenientes, "Name", "Name"), htmlAttributes: new { @class = "form-control select2", @style = "width: 100%;!important" })*@
+                                    @Html.DropDownListFor(model => model.Intervenientes, new SelectList(Model.Intervenientes, "NomeAndCodigo", "NomeAndCodigo"), "Selecionar interveniente", htmlAttributes: new { @class = "form-control select2", @style = "width: 100%;!important", id = "Interveniente1" })
+                                    @*<input class="form-control col-md-3" type="text" id="Interveniente1"/>*@
+                                </div>
+                                <div class="col-md-6">
+                                    <input class="form-control col-md-6" type="text" id="campoleitura1" readonly />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group">
+                                <label class="control-label col-md-2">Interveniente 2</label>
+                                <div class="col-md-3">
+                                    @Html.DropDownListFor(model => model.Intervenientes, new SelectList(Model.Intervenientes, "NomeAndCodigo", "NomeAndCodigo"), "Selecionar interveniente", htmlAttributes: new { @class = "form-control select2", @style = "width: 100%;!important", id = "Interveniente2" })
+                                </div>
+                                <div class="col-md-6">
+                                    <input class="form-control col-md-6" type="text" id="campoleitura2" readonly />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group">
+                                <label class="control-label col-md-2">Interveniente 3</label>
+                                <div class="col-md-3">
+                                    @Html.DropDownListFor(model => model.Intervenientes, new SelectList(Model.Intervenientes, "NomeAndCodigo", "NomeAndCodigo"), "Selecionar interveniente", htmlAttributes: new { @class = "form-control select2", @style = "width: 100%;!important", id = "Interveniente3" })
+                                </div>
+                                <div class="col-md-6">
+                                    <input class="form-control col-md-6" type="text" id="campoleitura3" readonly />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group">
+                                <label class="control-label col-md-2">Interveniente 4</label>
+                                <div class="col-md-3">
+                                    @Html.DropDownListFor(model => model.Intervenientes, new SelectList(Model.Intervenientes, "NomeAndCodigo", "NomeAndCodigo"), "Selecionar interveniente", htmlAttributes: new { @class = "form-control select2", @style = "width: 100%;!important", id = "Interveniente4" })
+                                </div>
+                                <div class="col-md-6">
+                                    <input class="form-control col-md-6" type="text" id="campoleitura4" readonly />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group">
+                                <label class="control-label col-md-2">Interveniente 5</label>
+                                <div class="col-md-3">
+                                    @Html.DropDownListFor(model => model.Intervenientes, new SelectList(Model.Intervenientes, "NomeAndCodigo", "NomeAndCodigo"), "Selecionar interveniente", htmlAttributes: new { @class = "form-control select2", @style = "width: 100%;!important", id = "Interveniente5" })
+                                </div>
+                                <div class="col-md-6">
+                                    <input class="form-control col-md-6" type="text" id="campoleitura5" readonly />
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="panel-group" id="detalhes" style="">
+            <div class="panel panel-info">
+                <div class="panel-heading ">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#collapse2" class="minMax2" style="text-align: left">Temas</a>
+                        <a data-toggle="collapse" href="#collapse2" class="minMax2" style="text-align: right">
+                            <img @*onmouseover="this.src = '../images/min_.gif'" onmouseout="this.src = '/images/Min.gif'"*@ id="min2" src="/Images/Min.gif" title="Esconder" class="pull-right img-responsive" />
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapse2" class="panel-collapse collapse in">
+                    <div class="panel-body">
+                        <div class="form-group">
+                            @*@using (Html.BeginForm("Reuniao", "Brainstorm", FormMethod.Post, new {@class = "form-horizontal", role = "form"}))
+                                {*@
+                            <table class = "table table-bordered table-hover">
+                                <thead style="color: white; background: #6699FF;">
+                                <tr>
+                                    <td>Descrição</td>
+                                    <td>Importância</td>
+                                    <td>Comentários</td>
+                                    <td>Decisão</td>
+                                    <td>Título</td>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @for (var i = 0; i < Model.Temas.Count; i++)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.TextBoxFor(m => m.Temas[i].Descricao, new { @class = "form-control" })
+                                        </td>
+                                        <td>
+                                            @Html.TextBoxFor(m => m.Temas[i].Importancia, new { @class = "form-control" })
+                                        </td>
+                                        <td>
+                                            @Html.TextBoxFor(m => m.Temas[i].Comentarios, new { @class = "form-control" })
+                                        </td>
+                                        <td>
+                                            @Html.TextBoxFor(m => m.Temas[i].Decisao, new { @class = "form-control" })
+                                        </td>
+                                        <td>
+                                            @Html.TextBoxFor(m => m.Temas[i].Titulo, new { @class = "form-control" })
+                                        </td>
+                                    </tr>
+                                }
+                                </tbody>
+                            </table>
+                            <div class="row">
+                                <div class="form-group">
+                                    <label class="control-label col-md-2">Título</label>
+                                    <div class="col-md-3">
+                                        <input class="form-control col-md-3" type="text" id="Interveniente2" />
+                                    </div>
+                                    <div class="checkbox">
+                                        <label><input type="checkbox" value="">Gestão de inovação</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="submit" value="Guardar" class="btn btn-default" />
+                            @*}*@
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @*@for(var i = 0; i < Model.Intervenientes.Count; i++)
+        {
+            <span>
+        @Html.HiddenFor(x => x.Intervenientes[0].Abrev)
+                @Html.HiddenFor(x => x.Intervenientes.ElementAt((i)).Name)
+
+            </span>
+        }
+            @Html.HiddenFor(x => x.ReuniaoBrainstorm.Data)*@
+       
+    </div>
+}
+
