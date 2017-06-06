@@ -49,7 +49,7 @@ namespace Brainstorm.Repository.Database
                         Interveniente interveniente = new Interveniente();                      
                         interveniente.Nome = row["ut_descritivo"].ToString();
                         interveniente.Codigo = row["ut_codigo"].ToString();
-                        interveniente.NomeAndCodigo = "(" + row["ut_codigo"].ToString() + ")" + "    " + row["ut_descritivo"].ToString();
+                        interveniente.NomeAndCodigo = "(" + row["ut_codigo"].ToString() + ")" + "   " + row["ut_descritivo"].ToString();
                         intervenientes.Add(interveniente);
                     }
                     return intervenientes;

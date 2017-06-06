@@ -22,19 +22,7 @@ namespace Brainstorm.Controllers
 
             var reuniaoBrainstorm = new ReuniaoBrainstorm() {Data = "21-05-2017", Duracao = 30};
             var intervenientes = new List<Interveniente>();
-            intervenientes = repo.getUT();
-            /*var intervenientes = new List<Interveniente>
-            {
-                new Interveniente {Name = "Igor", Codigo = "IGC"},
-                new Interveniente {Name = "Teste", Codigo = "T"},
-                new Interveniente {Name = "Teste2", Codigo = "T2"}
-            };*/
-
-            //Informaçao que vem da base de dados   
-            /* var options = new Dictionary<string, string>();        
-             options.Add("codigo_utilizador", "igor");
-             options.Add("descricao", "igor2");
-             ViewBag.users = new SelectList(options, "Key", "Value"); ;*/
+            intervenientes = repo.getUT();           
 
             var temas = new List<Tema>
             {
@@ -58,23 +46,19 @@ namespace Brainstorm.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Reuniao(BrainstormViewModel model)
         {
-
+            for (int i = 0; i < model.Intervenientes.Count; i++)
+            {
+                string s = model.Intervenientes[i].NomeAndCodigo;               
+                if (!(String.IsNullOrWhiteSpace(s)))
+                {
+                    var split = s.Split(new[] {"  "}, StringSplitOptions.None);                    
+                    split[0] = split[0].Substring(1, split[0].Length - 2);
+                    model.Intervenientes[i].Nome = split[1];
+                    model.Intervenientes[i].Codigo = split[0];
+                }
+            }
             // guardar dados recebidos pelo utilizador aquando da criação da reuniao com os dados preenchidos na form////////////
-
-
-            //var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-            //var result = await UserManager.CreateAsync(user, model.Password);
-
-
             
-
-            //var viewModel = new BrainstormViewModel
-            //{
-            //    ReuniaoBrainstorm = "",
-            //    Intervenientes = "",
-            //    Temas = temas
-
-            //};
 
             return View();
         }
