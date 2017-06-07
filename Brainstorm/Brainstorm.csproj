@@ -209,6 +209,8 @@
     <Compile Include="Models\Interveniente.cs" />
     <Compile Include="Models\Tema.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\BrainstormRepository.cs" />
+    <Compile Include="Repository\Database\BrainstormDB.cs" />
     <Compile Include="Repository\Database\IntervenientesDB.cs" />
     <Compile Include="Repository\IIntervenientes.cs" />
     <Compile Include="Startup.cs" />

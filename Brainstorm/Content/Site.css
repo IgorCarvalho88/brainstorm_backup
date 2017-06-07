@@ -27,3 +27,21 @@ select,
 textarea {
     max-width: 280px;
 }*/
+
+/*create new col system to add images before texboxes without width distance*/
+.col-sm-0half {
+    position: relative;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+@media (min-width: 768px) {
+    .col-sm-0half {
+        float: left;
+    }
+    .col-sm-0half {
+        width: 0%;
+    }
+    
+}

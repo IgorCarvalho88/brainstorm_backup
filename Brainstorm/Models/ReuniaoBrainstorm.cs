@@ -9,5 +9,7 @@ namespace Brainstorm.Models
     {
         public string Data { get; set; }
         public int Duracao { get; set; }
+        public int DuracaoReal { get; set; }
+        public string Estado { get; set; }
     }
 }

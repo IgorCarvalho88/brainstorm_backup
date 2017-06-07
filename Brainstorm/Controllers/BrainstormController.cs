@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -20,14 +21,14 @@ namespace Brainstorm.Controllers
         public ActionResult Reuniao()
         {
 
-            var reuniaoBrainstorm = new ReuniaoBrainstorm() {Data = "21-05-2017", Duracao = 30};
+            var reuniaoBrainstorm = new ReuniaoBrainstorm() {Duracao = 30};
             var intervenientes = new List<Interveniente>();
             intervenientes = repo.getUT();           
 
             var temas = new List<Tema>
             {
-                new Tema {Descricao = "Inovacao", Importancia = "Alta", Comentarios = "teste", Decisao = "teste", Titulo = "titulo1" },
-                new Tema {Descricao = "Inovacao2", Importancia = "Alta", Comentarios = "teste2", Decisao = "teste2", Titulo = "titulo2" }
+                new Tema {Descricao = "Inovacao", Importancia = "Alta", Comentarios = "teste", Decisao = "teste", Titulo = "titulo1", Estado = "P", GestaoInov = false},
+                new Tema {Descricao = "Inovacao2", Importancia = "Alta", Comentarios = "teste2", Decisao = "teste2", Titulo = "titulo2", Estado = "P", GestaoInov = false }
             };
 
             var viewModel = new BrainstormViewModel
@@ -46,6 +47,8 @@ namespace Brainstorm.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Reuniao(BrainstormViewModel model)
         {
+            BrainstormRepository brainRepo = new BrainstormDB();
+
             for (int i = 0; i < model.Intervenientes.Count; i++)
             {
                 string s = model.Intervenientes[i].NomeAndCodigo;               
@@ -57,10 +60,23 @@ namespace Brainstorm.Controllers
                     model.Intervenientes[i].Codigo = split[0];
                 }
             }
+
+            model.ReuniaoBrainstorm.Estado = "";
+
+            DataRow id = brainRepo.GuardarReuniao(model);
+            int idBrainstorm = int.Parse(id[0].ToString());
+
+            // guardar temas consoante o numero de temas presentes no model
+            for (int i = 0; i < model.Temas.Count; i++)
+            {
+                DataRow teste = brainRepo.GuardarTema(model.Temas[i], idBrainstorm);
+            }
+           
             // guardar dados recebidos pelo utilizador aquando da criação da reuniao com os dados preenchidos na form////////////
             
 
-            return View();
+           // return View();
+            return RedirectToAction("Reuniao");
         }
     }
 }

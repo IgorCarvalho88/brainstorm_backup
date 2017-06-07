@@ -15,5 +15,9 @@ namespace Brainstorm.Models
         public string Decisao { get; set; }
 
         public string Importancia { get; set; }
+        public string Estado { get; set; }
+        public Boolean GestaoInov { get; set; }
+
+        
     }
 }
