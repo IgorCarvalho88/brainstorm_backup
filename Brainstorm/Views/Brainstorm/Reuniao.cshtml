@@ -38,6 +38,7 @@
                                 <label class="control-label col-md-2">Data</label>
                                 <div class="col-md-2">
                                     @Html.TextBoxFor(model => model.ReuniaoBrainstorm.Data, htmlAttributes: new {id = "Data"})
+                                    @Html.ValidationMessageFor(model => model.ReuniaoBrainstorm.Data)
                                 </div>
                             </div>
                         </div>
@@ -49,10 +50,12 @@
                                 <label class="control-label col-md-2">Duração (Min)</label>
                                 <div class="col-md-2">
                                     @Html.TextBoxFor(model => model.ReuniaoBrainstorm.Duracao, htmlAttributes: new {id = "Duracao"})
+                                    @Html.ValidationMessageFor(model => model.ReuniaoBrainstorm.Duracao)
                                 </div>
                                 <label class="control-label col-md-2">Duração Real(Min)</label>
                                 <div class="col-md-2">
                                     @Html.TextBoxFor(model => model.ReuniaoBrainstorm.DuracaoReal, htmlAttributes: new {id = "DuracaoReal"})
+                                    @Html.ValidationMessageFor(model => model.ReuniaoBrainstorm.DuracaoReal)
                                 </div>
                             </div>
                         </div>

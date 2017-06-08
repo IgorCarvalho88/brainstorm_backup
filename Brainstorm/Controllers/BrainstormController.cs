@@ -9,6 +9,7 @@ using Brainstorm.Models;
 using Brainstorm.Repository;
 using Brainstorm.Repository.Database;
 using Brainstorm.ViewModel;
+using Microsoft.Owin.Security.Provider;
 using Brainstorm = Brainstorm.Models.ReuniaoBrainstorm;
 
 namespace Brainstorm.Controllers
@@ -21,7 +22,7 @@ namespace Brainstorm.Controllers
         public ActionResult Reuniao()
         {
 
-            var reuniaoBrainstorm = new ReuniaoBrainstorm() {Duracao = 30};
+            var reuniaoBrainstorm = new ReuniaoBrainstorm();
             var intervenientes = new List<Interveniente>();
             intervenientes = repo.getUT();           
 
@@ -47,8 +48,22 @@ namespace Brainstorm.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Reuniao(BrainstormViewModel model)
         {
+          
+            // valida campos
+            if (!ModelState.IsValid)
+            {
+                IIntervenientes repo = new IntervenientesDB();
+                var intervenientes = new List<Interveniente>();
+                intervenientes = repo.getUT();
+                model.Intervenientes = intervenientes;
+                return View("Reuniao", model);
+            }
+
             BrainstormRepository brainRepo = new BrainstormDB();
 
+            // inicializa estado para pendente
+            model.ReuniaoBrainstorm.Estado = "P";
+            // split do codigo e nome
             for (int i = 0; i < model.Intervenientes.Count; i++)
             {
                 string s = model.Intervenientes[i].NomeAndCodigo;               
@@ -77,6 +92,11 @@ namespace Brainstorm.Controllers
 
            // return View();
             return RedirectToAction("Reuniao");
+        }
+
+        public ActionResult ReuniaoGravada(BrainstormViewModel model)
+        {
+            return View();
         }
     }
 }

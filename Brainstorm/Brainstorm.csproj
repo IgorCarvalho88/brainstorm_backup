@@ -241,6 +241,8 @@
     <Content Include="Images\separador1.gif" />
     <Content Include="Images\ToolFechar.gif" />
     <Content Include="Images\ToolFechar_.gif" />
+    <Content Include="Images\Tool_nor.gif" />
+    <Content Include="Images\Tool_Obr.gif" />
     <Content Include="Scripts\ai.0.22.9-build00167.js" />
     <Content Include="Scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.js" />
