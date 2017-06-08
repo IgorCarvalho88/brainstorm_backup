@@ -1,4 +1,5 @@
-﻿@using SelectListItem = System.Web.WebPages.Html.SelectListItem
+﻿@using Brainstorm.Controllers
+@using SelectListItem = System.Web.WebPages.Html.SelectListItem
 @model Brainstorm.ViewModel.BrainstormViewModel
 @{
     ViewBag.Title = "Brainstorm";
@@ -7,7 +8,7 @@
 
 <h2>Brainstorm</h2>
 <h3>@Model.ReuniaoBrainstorm.Data</h3>
-@using (Html.BeginForm())
+@using (Html.BeginForm("Reuniao", "Brainstorm"))
 {
     @Html.AntiForgeryToken()
 

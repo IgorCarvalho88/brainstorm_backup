@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
@@ -155,6 +156,133 @@ namespace Brainstorm.Repository.Database
                 {
 
                     return dt.Rows[0];
+                }
+
+            }
+            catch (SqlException ex)
+            {
+                System.Console.WriteLine("EXCEPÇÃO  get periodos ultimas 8 horas: " + ex.Message);
+                return null;
+            }
+            finally
+            {
+                if (con.State == ConnectionState.Open)
+                    con.Close();
+            }
+
+            return null;
+
+        }
+        public ReuniaoBrainstorm GetReuniaoBrainstorm(int id)
+        {
+            
+            SqlConnection con = null;         
+            try
+            {
+                string strConnString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+
+                con = new SqlConnection(strConnString);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Impossível de momento ligar a base de dados, tente mais tarde", ex.InnerException);
+            }
+            try
+            {
+              
+                SqlCommand sqlComm = new SqlCommand("[dbo].[getReuniaoBrainstorm]", con);
+
+                sqlComm.Parameters.AddWithValue("@brainstorm_id", id);
+               
+
+                sqlComm.CommandType = CommandType.StoredProcedure;
+                SqlDataAdapter da = new SqlDataAdapter();
+                da.SelectCommand = sqlComm;
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+
+
+                if (dt.Rows.Count == 0)
+                {
+                    return null;
+                }
+                else
+                {
+                    ReuniaoBrainstorm reuniaoBrainstorm = new ReuniaoBrainstorm();
+
+                    reuniaoBrainstorm.Data = dt.Rows[0]["brainstorm_data"].ToString();
+                    reuniaoBrainstorm.Estado = dt.Rows[0]["brainstorm_est_codigo"].ToString();
+                    reuniaoBrainstorm.Duracao = Convert.ToInt32(dt.Rows[0]["brainstorm_duracaoPrev"].ToString());
+                    reuniaoBrainstorm.DuracaoReal = Convert.ToInt32(dt.Rows[0]["brainstorm_duracaoReal"].ToString());
+
+                   
+                    return reuniaoBrainstorm;
+                }
+
+            }
+            catch (SqlException ex)
+            {
+                System.Console.WriteLine("EXCEPÇÃO  get periodos ultimas 8 horas: " + ex.Message);
+                return null;
+            }
+            finally
+            {
+                if (con.State == ConnectionState.Open)
+                    con.Close();
+            }
+
+            return null;
+
+        }
+
+        public List<Tema> GetBrainstormTemas(int id)
+        {
+            SqlConnection con = null;
+            try
+            {
+                string strConnString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+
+                con = new SqlConnection(strConnString);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Impossível de momento ligar a base de dados, tente mais tarde", ex.InnerException);
+            }
+            try
+            {
+
+                SqlCommand sqlComm = new SqlCommand("[dbo].[getBrainstormTemas]", con);
+
+                sqlComm.Parameters.AddWithValue("@brainstorm_tema_brainstorm_id", id);
+
+
+                sqlComm.CommandType = CommandType.StoredProcedure;
+                SqlDataAdapter da = new SqlDataAdapter();
+                da.SelectCommand = sqlComm;
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+               // var intervenientes = new List<Interveniente>();
+                var temas = new List<Tema>();
+                if (dt.Rows.Count == 0)
+                {
+                    return null;
+                }
+                else
+                {
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        Tema tema = new Tema();
+                        tema.Titulo = row["brainstorm_tema_titulo"].ToString();
+                        tema.Descricao = row["brainstorm_tema_descricao"].ToString();
+                        tema.Importancia = row["brainstorm_tema_importancia"].ToString();
+                        tema.Comentarios = row["brainstorm_tema_comentarios"].ToString();
+                        tema.Estado = row["brainstorm_tema_estado"].ToString();
+                        tema.GestaoInov = Convert.ToBoolean(row["brainstorm_tarefa_gestInov"].ToString());                       
+                        temas.Add(tema);
+                    }
+
+
+                    return temas;
                 }
 
             }

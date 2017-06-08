@@ -13,5 +13,8 @@ namespace Brainstorm.Repository
     {
         DataRow GuardarReuniao(BrainstormViewModel model);
         DataRow GuardarTema(Tema tema, int id);
+
+        ReuniaoBrainstorm GetReuniaoBrainstorm(int id);
+        List<Tema> GetBrainstormTemas(int id);
     }
 }

@@ -76,7 +76,7 @@ namespace Brainstorm.Controllers
                 }
             }
 
-            model.ReuniaoBrainstorm.Estado = "";
+            // guardar dados recebidos pelo utilizador aquando da criação da reuniao com os dados preenchidos na form////////////
 
             DataRow id = brainRepo.GuardarReuniao(model);
             int idBrainstorm = int.Parse(id[0].ToString());
@@ -86,17 +86,46 @@ namespace Brainstorm.Controllers
             {
                 DataRow teste = brainRepo.GuardarTema(model.Temas[i], idBrainstorm);
             }
-           
-            // guardar dados recebidos pelo utilizador aquando da criação da reuniao com os dados preenchidos na form////////////
-            
 
-           // return View();
-            return RedirectToAction("Reuniao");
+           
+
+
+            // return View();
+            TempData["additionalData"] = "Reunião criada com sucesso";
+            //return RedirectToAction("Reuniao");
+            return RedirectToAction("EditarReuniao", new {id = idBrainstorm});
         }
 
-        public ActionResult ReuniaoGravada(BrainstormViewModel model)
+        public ActionResult EditarReuniao(int id)
         {
-            return View();
+            BrainstormRepository brainRepo = new BrainstormDB();
+            IIntervenientes repo = new IntervenientesDB();
+
+            var reuniaoBrainstorm = new ReuniaoBrainstorm();
+            var intervenientes = new List<Interveniente>();
+            var temas = new List<Tema>();
+            //var viewModel = new BrainstormViewModel();
+
+            reuniaoBrainstorm = brainRepo.GetReuniaoBrainstorm(id);
+            temas = brainRepo.GetBrainstormTemas(id);
+            intervenientes = repo.getIntervenientesReuniao(id);
+            //getTemasbyID
+            //getReuniaobyID
+            //getIntervenientesID
+
+            // carregar da base de dados a reuniao criada ?
+            //if model.
+            //getReuniaobyID
+
+            var viewModel = new BrainstormViewModel
+            {
+                ReuniaoBrainstorm = reuniaoBrainstorm,
+                Intervenientes = intervenientes,
+                Temas = temas
+
+            };
+
+            return View("Reuniao", viewModel);
         }
     }
 }

@@ -70,5 +70,10 @@ namespace Brainstorm.Repository.Database
             return null;
 
         }
+
+        public List<Interveniente> getIntervenientesReuniao(int id)
+        {
+            return null;
+        }
     }
 }
