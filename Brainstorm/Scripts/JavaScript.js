@@ -26,6 +26,20 @@
 
         });
 
+    // collapse button change when hide panel3
+    $('#collapse3').on('hide.bs.collapse',
+        function () {
+            $('#min3').attr('src', '/Images/Maximiza.gif');
+            $('#min3').attr('title', 'Mostrar');
+
+        });
+    $('#collapse3').on('show.bs.collapse',
+        function () {
+            $('#min3').attr('src', '/Images/Min.gif');
+            $('#min3').attr('title', 'Esconder');
+
+        });
+
     $(function() {
         $('#Data').datetimepicker({        
             format: 'DD/MM/YYYY'
@@ -38,6 +52,8 @@
         //placeholder: "Selecionar interveniente",
         //allowClear: true
     });
+
+
 
     //$('#Interveniente1').change(function () {
     //    //console.log($(this).text().split(/\s+/));

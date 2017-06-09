@@ -13,7 +13,7 @@ namespace Brainstorm.Repository.Database
 {
     public class BrainstormDB : BrainstormRepository
     {
-        public DataRow GuardarReuniao(BrainstormViewModel model)
+        public DataRow guardarReuniao(BrainstormViewModel model)
         {
             // tratar model
             
@@ -45,6 +45,7 @@ namespace Brainstorm.Repository.Database
                 sqlComm.Parameters.AddWithValue("@brainstorm_est_codigo", model.ReuniaoBrainstorm.Estado);
                 sqlComm.Parameters.AddWithValue("@brainstorm_duracaoPrev", model.ReuniaoBrainstorm.Duracao);
                 sqlComm.Parameters.AddWithValue("@brainstorm_duracaoReal", model.ReuniaoBrainstorm.DuracaoReal);
+                sqlComm.Parameters.AddWithValue("@brainstorm_comentarios", ((object)model.ReuniaoBrainstorm.Comentarios) ?? DBNull.Value);
                 sqlComm.Parameters.AddWithValue("@brainstorm_interv1_codigo", model.Intervenientes[0].Codigo);
                 sqlComm.Parameters.AddWithValue("@brainstorm_interv2_codigo",((object)model.Intervenientes[1].Codigo) ?? DBNull.Value);
                 sqlComm.Parameters.AddWithValue("@brainstorm_interv3_codigo", ((object)model.Intervenientes[2].Codigo) ?? DBNull.Value);
@@ -101,7 +102,7 @@ namespace Brainstorm.Repository.Database
 
 
 
-        public DataRow GuardarTema(Tema tema, int id)
+        public DataRow guardarTema(Tema tema, int id)
         {
             // tratar model
 
@@ -173,7 +174,7 @@ namespace Brainstorm.Repository.Database
             return null;
 
         }
-        public ReuniaoBrainstorm GetReuniaoBrainstorm(int id)
+        public ReuniaoBrainstorm getReuniaoBrainstorm(int id)
         {
             
             SqlConnection con = null;         
@@ -214,8 +215,9 @@ namespace Brainstorm.Repository.Database
                     reuniaoBrainstorm.Estado = dt.Rows[0]["brainstorm_est_codigo"].ToString();
                     reuniaoBrainstorm.Duracao = Convert.ToInt32(dt.Rows[0]["brainstorm_duracaoPrev"].ToString());
                     reuniaoBrainstorm.DuracaoReal = Convert.ToInt32(dt.Rows[0]["brainstorm_duracaoReal"].ToString());
+                    reuniaoBrainstorm.Comentarios = dt.Rows[0]["brainstorm_comentarios"].ToString();
 
-                   
+
                     return reuniaoBrainstorm;
                 }
 
@@ -235,7 +237,7 @@ namespace Brainstorm.Repository.Database
 
         }
 
-        public List<Tema> GetBrainstormTemas(int id)
+        public List<Tema> getBrainstormTemas(int id)
         {
             SqlConnection con = null;
             try
@@ -277,7 +279,7 @@ namespace Brainstorm.Repository.Database
                         tema.Importancia = row["brainstorm_tema_importancia"].ToString();
                         tema.Comentarios = row["brainstorm_tema_comentarios"].ToString();
                         tema.Estado = row["brainstorm_tema_estado"].ToString();
-                        tema.GestaoInov = Convert.ToBoolean(row["brainstorm_tarefa_gestInov"].ToString());                       
+                        tema.GestaoInov = Convert.ToInt32(dt.Rows[0]["brainstorm_tarefa_gestInov"].ToString());
                         temas.Add(tema);
                     }
 

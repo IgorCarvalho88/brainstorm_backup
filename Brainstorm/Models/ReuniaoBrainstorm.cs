@@ -17,5 +17,6 @@ namespace Brainstorm.Models
         [Required(ErrorMessage = "Duração real é obrigatório")]
         public int? DuracaoReal { get; set; }
         public string Estado { get; set; }
+        public string Comentarios { get; set; }
     }
 }

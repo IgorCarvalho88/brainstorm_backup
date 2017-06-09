@@ -12,5 +12,6 @@ namespace Brainstorm.ViewModel
         public Models.ReuniaoBrainstorm ReuniaoBrainstorm { get; set; }
         public List<Interveniente> Intervenientes { get; set; }
         public List<Tema> Temas { get; set; }
+        public List<Interveniente> IntervenientesSelecionados { get; set; }
     }
 }

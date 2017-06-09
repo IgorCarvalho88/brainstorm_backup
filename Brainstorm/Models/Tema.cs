@@ -12,11 +12,11 @@ namespace Brainstorm.Models
 
         public string Comentarios { get; set; }
 
-        public string Decisao { get; set; }
+        //public string Decisao { get; set; }
 
         public string Importancia { get; set; }
         public string Estado { get; set; }
-        public Boolean GestaoInov { get; set; }
+        public int GestaoInov { get; set; }
 
         
     }

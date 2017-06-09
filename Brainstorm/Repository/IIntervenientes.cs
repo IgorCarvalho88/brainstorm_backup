@@ -13,6 +13,6 @@ namespace Brainstorm.Repository
         //DataTable GetUt();
 
         List<Interveniente> getUT();
-        List<Interveniente> getIntervenientesReuniao(int id);
+        List<Interveniente> getBrainstormIntervenientes(int id);
     }
 }

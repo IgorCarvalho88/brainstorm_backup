@@ -11,10 +11,10 @@ namespace Brainstorm.Repository
 {
     interface BrainstormRepository
     {
-        DataRow GuardarReuniao(BrainstormViewModel model);
-        DataRow GuardarTema(Tema tema, int id);
+        DataRow guardarReuniao(BrainstormViewModel model);
+        DataRow guardarTema(Tema tema, int id);
 
-        ReuniaoBrainstorm GetReuniaoBrainstorm(int id);
-        List<Tema> GetBrainstormTemas(int id);
+        ReuniaoBrainstorm getReuniaoBrainstorm(int id);
+        List<Tema> getBrainstormTemas(int id);
     }
 }

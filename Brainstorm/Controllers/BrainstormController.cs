@@ -28,8 +28,8 @@ namespace Brainstorm.Controllers
 
             var temas = new List<Tema>
             {
-                new Tema {Descricao = "Inovacao", Importancia = "Alta", Comentarios = "teste", Decisao = "teste", Titulo = "titulo1", Estado = "P", GestaoInov = false},
-                new Tema {Descricao = "Inovacao2", Importancia = "Alta", Comentarios = "teste2", Decisao = "teste2", Titulo = "titulo2", Estado = "P", GestaoInov = false }
+                new Tema {Descricao = "Inovacao", Importancia = "Alta", Comentarios = "teste",  Titulo = "titulo1", Estado = "P", GestaoInov = 0},
+                new Tema {Descricao = "Inovacao2", Importancia = "Alta", Comentarios = "teste2",  Titulo = "titulo2", Estado = "P", GestaoInov = 0 }
             };
 
             var viewModel = new BrainstormViewModel
@@ -78,13 +78,13 @@ namespace Brainstorm.Controllers
 
             // guardar dados recebidos pelo utilizador aquando da criação da reuniao com os dados preenchidos na form////////////
 
-            DataRow id = brainRepo.GuardarReuniao(model);
+            DataRow id = brainRepo.guardarReuniao(model);
             int idBrainstorm = int.Parse(id[0].ToString());
 
             // guardar temas consoante o numero de temas presentes no model
             for (int i = 0; i < model.Temas.Count; i++)
             {
-                DataRow teste = brainRepo.GuardarTema(model.Temas[i], idBrainstorm);
+                DataRow teste = brainRepo.guardarTema(model.Temas[i], idBrainstorm);
             }
 
            
@@ -102,13 +102,15 @@ namespace Brainstorm.Controllers
             IIntervenientes repo = new IntervenientesDB();
 
             var reuniaoBrainstorm = new ReuniaoBrainstorm();
+            var intervenientesSelecionados = new List<Interveniente>();
             var intervenientes = new List<Interveniente>();
             var temas = new List<Tema>();
             //var viewModel = new BrainstormViewModel();
 
-            reuniaoBrainstorm = brainRepo.GetReuniaoBrainstorm(id);
-            temas = brainRepo.GetBrainstormTemas(id);
-            intervenientes = repo.getIntervenientesReuniao(id);
+            reuniaoBrainstorm = brainRepo.getReuniaoBrainstorm(id);
+            temas = brainRepo.getBrainstormTemas(id);
+            intervenientesSelecionados = repo.getBrainstormIntervenientes(id);
+            intervenientes = repo.getUT();
             //getTemasbyID
             //getReuniaobyID
             //getIntervenientesID
@@ -121,7 +123,8 @@ namespace Brainstorm.Controllers
             {
                 ReuniaoBrainstorm = reuniaoBrainstorm,
                 Intervenientes = intervenientes,
-                Temas = temas
+                Temas = temas,
+                IntervenientesSelecionados = intervenientesSelecionados
 
             };
 

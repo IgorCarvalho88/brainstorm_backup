@@ -38,7 +38,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-2">Data</label>
                                 <div class="col-md-2">
-                                    @Html.TextBoxFor(model => model.ReuniaoBrainstorm.Data, htmlAttributes: new {id = "Data"})
+                                    @Html.TextBoxFor(model => model.ReuniaoBrainstorm.Data, htmlAttributes: new { id = "Data" })
                                     @Html.ValidationMessageFor(model => model.ReuniaoBrainstorm.Data)
                                 </div>
                             </div>
@@ -50,12 +50,12 @@
                             <div class="form-group">
                                 <label class="control-label col-md-2">Duração (Min)</label>
                                 <div class="col-md-2">
-                                    @Html.TextBoxFor(model => model.ReuniaoBrainstorm.Duracao, htmlAttributes: new {id = "Duracao"})
+                                    @Html.TextBoxFor(model => model.ReuniaoBrainstorm.Duracao, htmlAttributes: new { id = "Duracao" })
                                     @Html.ValidationMessageFor(model => model.ReuniaoBrainstorm.Duracao)
                                 </div>
                                 <label class="control-label col-md-2">Duração Real(Min)</label>
                                 <div class="col-md-2">
-                                    @Html.TextBoxFor(model => model.ReuniaoBrainstorm.DuracaoReal, htmlAttributes: new {id = "DuracaoReal"})
+                                    @Html.TextBoxFor(model => model.ReuniaoBrainstorm.DuracaoReal, htmlAttributes: new { id = "DuracaoReal" })
                                     @Html.ValidationMessageFor(model => model.ReuniaoBrainstorm.DuracaoReal)
                                 </div>
                             </div>
@@ -67,7 +67,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-2">Interveniente 1</label>
                                 <div class="col-md-6">
-                                    @Html.DropDownListFor(model => model.Intervenientes[0].NomeAndCodigo, new SelectList(Model.Intervenientes, "NomeAndCodigo", "NomeAndCodigo"), "Selecionar interveniente", htmlAttributes: new {@class = "form-control select2", @style = "width: 100%;!important", id = "Interveniente1"})
+                                    @Html.DropDownListFor(model => model.Intervenientes[0].NomeAndCodigo, new SelectList(Model.Intervenientes, "NomeAndCodigo", "NomeAndCodigo"), "Selecionar interveniente", htmlAttributes: new { @class = "form-control select2", @style = "width: 100%;!important", id = "Interveniente1" })
                                 </div>
                             </div>
                         </div>
@@ -79,7 +79,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-2">Interveniente 2</label>
                                 <div class="col-md-6">
-                                    @Html.DropDownListFor(model => model.Intervenientes[1].NomeAndCodigo, new SelectList(Model.Intervenientes, "NomeAndCodigo", "NomeAndCodigo"), "Selecionar interveniente", htmlAttributes: new {@class = "form-control select2", @style = "width: 100%;!important", id = "Interveniente2"})
+                                    @Html.DropDownListFor(model => model.Intervenientes[1].NomeAndCodigo, new SelectList(Model.Intervenientes, "NomeAndCodigo", "NomeAndCodigo"), "Selecionar interveniente", htmlAttributes: new { @class = "form-control select2", @style = "width: 100%;!important", id = "Interveniente2" })
                                 </div>
                             </div>
                         </div>
@@ -91,7 +91,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-2">Interveniente 3</label>
                                 <div class="col-md-6">
-                                    @Html.DropDownListFor(model => model.Intervenientes[2].NomeAndCodigo, new SelectList(Model.Intervenientes, "NomeAndCodigo", "NomeAndCodigo"), "Selecionar interveniente", htmlAttributes: new {@class = "form-control select2", @style = "width: 100%;!important", id = "Interveniente3"})
+                                    @Html.DropDownListFor(model => model.Intervenientes[2].NomeAndCodigo, new SelectList(Model.Intervenientes, "NomeAndCodigo", "NomeAndCodigo"), "Selecionar interveniente", htmlAttributes: new { @class = "form-control select2", @style = "width: 100%;!important", id = "Interveniente3" })
                                 </div>
                             </div>
                         </div>
@@ -103,7 +103,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-2">Interveniente 4</label>
                                 <div class="col-md-6">
-                                    @Html.DropDownListFor(model => model.Intervenientes[3].NomeAndCodigo, new SelectList(Model.Intervenientes, "NomeAndCodigo", "NomeAndCodigo"), "Selecionar interveniente", htmlAttributes: new {@class = "form-control select2", @style = "width: 100%;!important", id = "Interveniente4"})
+                                    @Html.DropDownListFor(model => model.Intervenientes[3].NomeAndCodigo, new SelectList(Model.Intervenientes, "NomeAndCodigo", "NomeAndCodigo"), "Selecionar interveniente", htmlAttributes: new { @class = "form-control select2", @style = "width: 100%;!important", id = "Interveniente4" })
                                 </div>
                             </div>
                         </div>
@@ -115,7 +115,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-2">Interveniente 5</label>
                                 <div class="col-md-6">
-                                    @Html.DropDownListFor(model => model.Intervenientes[4].NomeAndCodigo, new SelectList(Model.Intervenientes, "NomeAndCodigo", "NomeAndCodigo"), "Selecionar interveniente", htmlAttributes: new {@class = "form-control select2", @style = "width: 100%;!important", id = "Interveniente5"})
+                                    @Html.DropDownListFor(model => model.Intervenientes[4].NomeAndCodigo, new SelectList(Model.Intervenientes, "NomeAndCodigo", "NomeAndCodigo"), "Selecionar interveniente", htmlAttributes: new { @class = "form-control select2", @style = "width: 100%;!important", id = "Interveniente5" })
                                 </div>
                             </div>
                         </div>
@@ -143,48 +143,89 @@
                         <div class="form-group">
                             @*@using (Html.BeginForm("Reuniao", "Brainstorm", FormMethod.Post, new {@class = "form-horizontal", role = "form"}))
                                 {*@
-                            <table class = "table table-bordered table-hover">
+                            <table class="table table-bordered table-hover">
                                 <thead style="color: white; background: #6699FF;">
-                                <tr>
-                                    <td>Descrição</td>
-                                    <td>Importância</td>
-                                    <td>Comentários</td>
-                                    <td>Decisão</td>
-                                    <td>Título</td>
-                                </tr>
+                                    <tr>
+                                        <td>Descrição</td>
+                                        <td>Importância</td>
+                                        <td>Comentários</td>
+                                        @*<td>Decisão</td>*@
+                                        <td>Título</td>
+                                    </tr>
                                 </thead>
                                 <tbody>
-                                @for (var i = 0; i < Model.Temas.Count; i++)
-                                {
-                                    <tr>
-                                        <td>
-                                            @Html.TextBoxFor(m => m.Temas[i].Descricao, new { @class = "form-control" })
-                                        </td>
-                                        <td>
-                                            @Html.TextBoxFor(m => m.Temas[i].Importancia, new { @class = "form-control" })
-                                        </td>
-                                        <td>
-                                            @Html.TextBoxFor(m => m.Temas[i].Comentarios, new { @class = "form-control" })
-                                        </td>
-                                        <td>
-                                            @Html.TextBoxFor(m => m.Temas[i].Decisao, new { @class = "form-control" })
-                                        </td>
-                                        <td>
-                                            @Html.TextBoxFor(m => m.Temas[i].Titulo, new { @class = "form-control" })
-                                        </td>
-                                    </tr>
-                                    @Html.HiddenFor(m => m.Temas[i].Estado)
-                                }
+                                    @for (var i = 0; i < Model.Temas.Count; i++)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @Html.TextBoxFor(m => m.Temas[i].Descricao, new { @class = "form-control" })
+                                            </td>
+                                            <td>
+                                                @Html.TextBoxFor(m => m.Temas[i].Importancia, new { @class = "form-control" })
+                                            </td>
+                                            <td>
+                                                @Html.TextBoxFor(m => m.Temas[i].Comentarios, new { @class = "form-control" })
+                                            </td>
+                                            @*<td>
+                                                    @Html.TextBoxFor(m => m.Temas[i].Decisao, new { @class = "form-control" })
+                                                </td>*@
+                                            <td>
+                                                @Html.TextBoxFor(m => m.Temas[i].Titulo, new { @class = "form-control" })
+                                            </td>
+                                        </tr>
+                                        @Html.HiddenFor(m => m.Temas[i].Estado)
+                                    }
                                 </tbody>
                             </table>
                             <div class="row">
                                 <div class="form-group">
                                     <label class="control-label col-md-2">Título</label>
                                     <div class="col-md-3">
-                                        <input class="form-control col-md-3" type="text" id="Interveniente2" />
+                                        <input class="form-control col-md-3" type="text" id="TituloGestaoInov" />
                                     </div>
                                     <div class="checkbox">
                                         <label><input type="checkbox" value="">Gestão de inovação</label>
+                                    </div>
+                                </div>
+                            </div>
+                            @*<input type="submit" value="Guardar" class="btn btn-default" />*@
+                            @*}*@
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @*@for(var i = 0; i < Model.Intervenientes.Count; i++)
+            {
+                <span>
+            @Html.HiddenFor(x => x.Intervenientes[0].Abrev)
+                    @Html.HiddenFor(x => x.Intervenientes.ElementAt((i)).Name)
+
+                </span>
+            }*@
+        @*@Html.HiddenFor(m => m.Temas[0])*@
+
+        <div class="panel-group" id="detalhes" style="">
+            <div class="panel panel-info">
+                <div class="panel-heading ">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#collapse3" class="minMax3" style="text-align: left">Outros</a>
+                        <a data-toggle="collapse" href="#collapse3" class="minMax3" style="text-align: right">
+                            <img @*onmouseover="this.src = '../images/min_.gif'" onmouseout="this.src = '/images/Min.gif'"*@ id="min3" src="/Images/Min.gif" title="Esconder" class="pull-right img-responsive" />
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapse3" class="panel-collapse collapse in">
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-sm-0half">
+                                    <img id="separador3" src="/Images/Tool_nor.gif" title="Campo Opcional" />
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-2">Comentarios</label>
+                                    <div class="col-md-3">
+                                        @Html.TextBoxFor(model => model.ReuniaoBrainstorm.Comentarios, htmlAttributes: new { id = "ComentariosReuniao" })
                                     </div>
                                 </div>
                             </div>
@@ -195,16 +236,22 @@
                 </div>
             </div>
         </div>
-        @*@for(var i = 0; i < Model.Intervenientes.Count; i++)
-        {
-            <span>
-        @Html.HiddenFor(x => x.Intervenientes[0].Abrev)
-                @Html.HiddenFor(x => x.Intervenientes.ElementAt((i)).Name)
 
-            </span>
-        }*@
-            @*@Html.HiddenFor(m => m.Temas[0])*@
-       
+
+
+
     </div>
 }
 
+<script>
+    @{
+        /*selecionados*/
+        var j = 1;
+        foreach (var interv in Model.IntervenientesSelecionados)
+        {
+            var id = "Interveniente"+j.ToString();
+        @:$("@id").val("@interv.Codigo").trigger("change");
+            j++;
+        }
+    }
+</script>
