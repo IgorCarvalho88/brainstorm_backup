@@ -69,7 +69,7 @@ namespace Brainstorm.Controllers
                 string s = model.Intervenientes[i].NomeAndCodigo;               
                 if (!(String.IsNullOrWhiteSpace(s)))
                 {
-                    var split = s.Split(new[] {"  "}, StringSplitOptions.None);                    
+                    var split = s.Split(new[] {"   "}, StringSplitOptions.None);                    
                     split[0] = split[0].Substring(1, split[0].Length - 2);
                     model.Intervenientes[i].Nome = split[1];
                     model.Intervenientes[i].Codigo = split[0];

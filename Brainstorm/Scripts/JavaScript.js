@@ -46,13 +46,17 @@
         });
     });
 
-    
-    $(".select2").select2({
+    //alert("js");
+    //$(".select2").select2({
         //width: 'resolve'
         //placeholder: "Selecionar interveniente",
         //allowClear: true
-    });
+    // });
 
+    $('select').each(function(index) {
+        var teste = ".selectInterveniente" + (index+1);       
+        $(teste).select2();
+    });
 
 
     //$('#Interveniente1').change(function () {
