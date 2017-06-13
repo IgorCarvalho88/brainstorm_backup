@@ -10,6 +10,13 @@ namespace Brainstorm.Models
     public class ReuniaoBrainstorm
     {
         //[Display(Name = "Data")]
+        public int Id { get; set; }
+
+        public ReuniaoBrainstorm()
+        {
+            Id = 0;
+        }
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         [Required(ErrorMessage = "Data é obrigatório")]
         public string Data { get; set; }
         [Required(ErrorMessage = "Duração é obrigatório")]

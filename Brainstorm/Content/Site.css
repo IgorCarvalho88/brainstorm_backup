@@ -53,3 +53,7 @@ textarea {
 .input-validation-error {
     border: 2px solid red;
 }
+
+.estado {
+    border: 0 none;
+}

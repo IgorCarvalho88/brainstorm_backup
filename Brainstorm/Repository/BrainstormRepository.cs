@@ -16,5 +16,8 @@ namespace Brainstorm.Repository
 
         ReuniaoBrainstorm getReuniaoBrainstorm(int id);
         List<Tema> getBrainstormTemas(int id);
+
+        DataRow alterarReuniao(BrainstormViewModel mode, int id);
+        DataRow alterarTema(Tema tema, int id);
     }
 }

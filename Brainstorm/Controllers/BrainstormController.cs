@@ -59,41 +59,93 @@ namespace Brainstorm.Controllers
                 return View("Reuniao", model);
             }
 
-            BrainstormRepository brainRepo = new BrainstormDB();
-
-            // inicializa estado para pendente
-            model.ReuniaoBrainstorm.Estado = "P";
-            // split do codigo e nome
-            for (int i = 0; i < model.Intervenientes.Count; i++)
+            // nova reuniao
+            if (model.ReuniaoBrainstorm.Id == 0)
             {
-                string s = model.Intervenientes[i].NomeAndCodigo;               
-                if (!(String.IsNullOrWhiteSpace(s)))
+                BrainstormRepository brainRepo = new BrainstormDB();
+
+                // inicializa estado para pendente
+                model.ReuniaoBrainstorm.Estado = "P";
+                // split do codigo e nome
+                for (int i = 0; i < model.Intervenientes.Count; i++)
                 {
-                    var split = s.Split(new[] {"   "}, StringSplitOptions.None);                    
-                    split[0] = split[0].Substring(1, split[0].Length - 2);
-                    model.Intervenientes[i].Nome = split[1];
-                    model.Intervenientes[i].Codigo = split[0];
+                    string s = model.Intervenientes[i].NomeAndCodigo;
+                    if (!(String.IsNullOrWhiteSpace(s)))
+                    {
+                        var split = s.Split(new[] {"   "}, StringSplitOptions.None);
+                        split[0] = split[0].Substring(1, split[0].Length - 2);
+                        model.Intervenientes[i].Nome = split[1];
+                        model.Intervenientes[i].Codigo = split[0];
+                    }
                 }
+
+                // guardar dados recebidos pelo utilizador aquando da criação da reuniao com os dados preenchidos na form////////////
+
+                DataRow id = brainRepo.guardarReuniao(model);
+                int idBrainstorm = int.Parse(id[0].ToString());
+
+                // guardar temas consoante o numero de temas presentes no model
+                for (int i = 0; i < model.Temas.Count; i++)
+                {
+                    DataRow idTemaAux = brainRepo.guardarTema(model.Temas[i], idBrainstorm);
+                    int idTema = int.Parse(idTemaAux[0].ToString());
+                    model.Temas[i].Id = idTema;
+                }
+              
+                TempData["additionalData"] = "Reunião criada com sucesso";
+                //return RedirectToAction("Reuniao");
+                return RedirectToAction("EditarReuniao", new {id = idBrainstorm});
             }
-
-            // guardar dados recebidos pelo utilizador aquando da criação da reuniao com os dados preenchidos na form////////////
-
-            DataRow id = brainRepo.guardarReuniao(model);
-            int idBrainstorm = int.Parse(id[0].ToString());
-
-            // guardar temas consoante o numero de temas presentes no model
-            for (int i = 0; i < model.Temas.Count; i++)
+            else
             {
-                DataRow teste = brainRepo.guardarTema(model.Temas[i], idBrainstorm);
+                // update reuniao
+                // adicionar estado
+                // adicionar funcao de split intervenientes
+                BrainstormRepository brainRepo = new BrainstormDB();
+                if (model.ReuniaoBrainstorm.Estado == "Pendente")
+                {
+                    model.ReuniaoBrainstorm.Estado = "P";
+                }
+                else if (model.ReuniaoBrainstorm.Estado == "Aprovado")
+                {
+                    model.ReuniaoBrainstorm.Estado = "A";
+                }
+                else if (model.ReuniaoBrainstorm.Estado == "Encerrado")
+                {
+                    model.ReuniaoBrainstorm.Estado = "E";
+                }
+
+                else if (model.ReuniaoBrainstorm.Estado == "Anulada")
+                {
+                    model.ReuniaoBrainstorm.Estado = "X";
+                }
+
+
+                for (int i = 0; i < model.Intervenientes.Count; i++)
+                {
+                    string s = model.Intervenientes[i].NomeAndCodigo;
+                    if (!(String.IsNullOrWhiteSpace(s)))
+                    {
+                        var split = s.Split(new[] { "   " }, StringSplitOptions.None);
+                        split[0] = split[0].Substring(1, split[0].Length - 2);
+                        model.Intervenientes[i].Nome = split[1];
+                        model.Intervenientes[i].Codigo = split[0];
+                    }
+                }
+
+                DataRow teste = brainRepo.alterarReuniao(model, model.ReuniaoBrainstorm.Id);
+
+               
+
+                for (int i = 0; i < model.Temas.Count; i++)
+                {
+                    DataRow teste2 = brainRepo.alterarTema(model.Temas[i], model.ReuniaoBrainstorm.Id);
+                }
+
+                return RedirectToAction("EditarReuniao", new { model.ReuniaoBrainstorm.Id });
             }
 
-           
-
-
-            // return View();
-            TempData["additionalData"] = "Reunião criada com sucesso";
-            //return RedirectToAction("Reuniao");
-            return RedirectToAction("EditarReuniao", new {id = idBrainstorm});
+            return View();
         }
 
         public ActionResult EditarReuniao(int id)
@@ -108,16 +160,10 @@ namespace Brainstorm.Controllers
             //var viewModel = new BrainstormViewModel();
 
             reuniaoBrainstorm = brainRepo.getReuniaoBrainstorm(id);
+            reuniaoBrainstorm.Id = id;
             temas = brainRepo.getBrainstormTemas(id);
             intervenientesSelecionados = repo.getBrainstormIntervenientes(id);
-            intervenientes = repo.getUT();
-            //getTemasbyID
-            //getReuniaobyID
-            //getIntervenientesID
-
-            // carregar da base de dados a reuniao criada ?
-            //if model.
-            //getReuniaobyID
+            intervenientes = repo.getUT();           
 
             var viewModel = new BrainstormViewModel
             {
