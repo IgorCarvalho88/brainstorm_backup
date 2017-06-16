@@ -15,12 +15,9 @@ namespace Brainstorm.Repository.Database
     {
         public DataRow guardarReuniao(BrainstormViewModel model)
         {
-            // tratar model
-            
-
-
+         
             SqlConnection con = null;
-            //day = new DateTime(2017, 3, 6);
+         
             try
             {
                 string strConnString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
@@ -399,6 +396,64 @@ namespace Brainstorm.Repository.Database
                 sqlComm.Parameters.AddWithValue("@brainstorm_tema_estado", tema.Estado);
                 sqlComm.Parameters.AddWithValue("@brainstorm_tarefa_gestInov", tema.GestaoInov);
 
+                sqlComm.CommandType = CommandType.StoredProcedure;
+                SqlDataAdapter da = new SqlDataAdapter();
+                da.SelectCommand = sqlComm;
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+
+
+
+
+                if (dt.Rows.Count == 0)
+                {
+                    return null;
+                }
+                else
+                {
+
+                    return dt.Rows[0];
+                }
+
+            }
+            catch (SqlException ex)
+            {
+                System.Console.WriteLine("EXCEPÇÃO  get periodos ultimas 8 horas: " + ex.Message);
+                return null;
+            }
+            finally
+            {
+                if (con.State == ConnectionState.Open)
+                    con.Close();
+            }
+
+            return null;
+
+        }
+
+        public DataRow guardarEstado(string estado, int id)
+        {
+
+            SqlConnection con = null;
+
+            try
+            {
+                string strConnString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+
+                con = new SqlConnection(strConnString);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Impossível de momento ligar a base de dados, tente mais tarde", ex.InnerException);
+            }
+            try
+            {
+                SqlCommand sqlComm = new SqlCommand("[dbo].[guardarBrainstormEstado]", con);
+             
+                sqlComm.Parameters.AddWithValue("@brainstorm_wf_estado_brainstorm_id", id);
+                sqlComm.Parameters.AddWithValue("@brainstorm_estado_ut_codigo", "hardcoded");
+                sqlComm.Parameters.AddWithValue("@brainstorm_estado_data", DateTime.Now);
+                sqlComm.Parameters.AddWithValue("@brainstorm_estado_est_codigo", estado);              
                 sqlComm.CommandType = CommandType.StoredProcedure;
                 SqlDataAdapter da = new SqlDataAdapter();
                 da.SelectCommand = sqlComm;

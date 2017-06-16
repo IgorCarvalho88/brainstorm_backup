@@ -7,10 +7,109 @@
 }
 
 <h2>Brainstorm</h2>
-<h3>@Model.ReuniaoBrainstorm.Data</h3>
-@using (Html.BeginForm("Reuniao", "Brainstorm"))
+@*<h3>@Model.ReuniaoBrainstorm.Data</h3>*@
+@using (Html.BeginForm("Reuniao", "Brainstorm", FormMethod.Post,new { id = "myForm" }))
 {
     @Html.AntiForgeryToken()
+
+    @*<!-- Modal -->
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Alterar Estado</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="quiz" id="quiz" data-toggle="buttons">
+                        <label class="element-animation1 btn btn-lg btn-primary btn-block"><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span> <input type="radio" name="q_answer" value="1">1 One</label>
+                        <label class="element-animation2 btn btn-lg btn-primary btn-block"><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span> <input type="radio" name="q_answer" value="2">2 Two</label>
+                        <label class="element-animation3 btn btn-lg btn-primary btn-block"><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span> <input type="radio" name="q_answer" value="3">3 Three</label>
+                        <label class="element-animation4 btn btn-lg btn-primary btn-block"><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span> <input type="radio" name="q_answer" value="4">4 Four</label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>*@
+
+    <!--table-->
+    <table onmouseover="document.all('TBLEstadoReg').style.display=''" onmouseout="document.all('TBLEstadoReg').style.display='none'" name="TBLEstadoReg" id="TBLEstadoReg" style="width: 280px; display: none; top: 140px; right: 15px;" class="TAB_SER2">
+        <tr class="cabecalhoTooltip">
+            <td style="width: 5%">
+                <img src="/Images/wf5.gif" /></td>
+            <td id="alterarEstado" runat="server" colspan="2">Alterar estado</td>
+        </tr>
+        <tr style="valign: middle;">
+            <td colspan="3" class="linhaHorizontal"></td>
+        </tr>
+
+        @*<tr title="Alterar Estado" id="estadoPendente" style="cursor: hand;" class="TR_SER2">
+            <td></td>
+            <td id="pendente" runat="server">&nbsp;&nbsp;P - Pendente</td>
+            <td align="center" style="cursor: hand;">
+                <p valign="middle">
+                    <img language="javascript" name="gravar15" id="gravar15" border="0" src="/Images/gravar.gif" alt="Alterar Estado da Reunião" title="Alterar Estado da Reunião" onmouseover="this.src='/Images/gravar_.gif'" onmouseout="this.src='/Images/gravar.gif'"  />
+                </p>
+            </td>
+        </tr>*@
+        <tr id="trMot1" name="trMot1" style="display: none;">
+            <td colspan="3">
+                <textarea style="font-family: Verdana, Arial, Helvetica; font-size: 100%; width: 100%;" id="dfMot1" name="dfMot1" rows="4"></textarea>
+            </td>
+        </tr>
+        @{
+            string mostraSePendente = Model.ReuniaoBrainstorm.Estado == "P" ? "visible" : "hidden";
+        }
+        <tr title="Alterar Estado" id="estadoAprovada" style="cursor: hand;" class="TR_SER2 @mostraSePendente">
+            <td></td>
+            <td id="aprovada" runat="server">&nbsp;&nbsp;A - Aprovada</td>
+            <td align="center" style="cursor: hand;">
+                <p valign="middle">
+                    <img language="javascript" name="gravar15" id="gravar1" border="0" src="/Images/gravar.gif" alt="Alterar Estado da Reunião" title="Alterar Estado da Reunião" onmouseover="this.src='/Images/gravar_.gif'" onmouseout="this.src='/Images/gravar.gif'" onclick="AlteraEstValida();" />
+                </p>
+            </td>
+        </tr>
+        <tr id="trMot2" name="trMot2" style="display: none;">
+            <td colspan="3">
+                <textarea style="font-family: Verdana, Arial, Helvetica; font-size: 100%; width: 100%;" id="dfMot2" name="dfMot2" rows="4"></textarea>
+            </td>
+        </tr>
+        @{
+            string mostraSeAprovada = Model.ReuniaoBrainstorm.Estado == "A" ? "visible" : "hidden";
+        }
+        <tr title="Alterar Estado" id="estadoEncerrada" style="cursor: hand;" class="TR_SER2 @mostraSeAprovada">
+            <td></td>
+            <td id="encerrada" runat="server">&nbsp;&nbsp;E - Encerrada &nbsp;&nbsp;</td>
+            <td align="center" style="cursor: hand;">
+                <p valign="middle">
+                    <img language="javascript" name="gravar15" id="gravar2" border="0" src="/Images/gravar.gif" alt="Alterar Estado da Reunião" title="Alterar Estado da Reunião" onmouseover="this.src='/Images/gravar_.gif'" onmouseout="this.src='/Images/gravar.gif'" onclick="AlteraEstValida()" />
+                </p>
+            </td>
+        </tr>
+        <tr id="trMot3" name="trMot3" style="display: none;">
+            <td colspan="3">
+                <textarea style="font-family: Verdana, Arial, Helvetica; font-size: 100%; width: 100%;" id="dfMot3" name="dfMot3" rows="4"></textarea>
+            </td>
+        </tr>
+        <tr title="Alterar Estado" id="estadoAnulada" style="cursor: hand;" class="TR_SER2">
+            <td></td>
+            <td id="anulada" runat="server" style="color: red">&nbsp;&nbsp;X - Anulada &nbsp;&nbsp;</td>
+            <td align="center" style="cursor: hand;">
+                <p valign="middle">
+                    <img language="javascript" name="gravar3" id="gravar3" border="0" src="/Images/gravar.gif" alt="Alterar Estado da Reunião" title="Alterar Estado da Reunião" onmouseover="this.src='/Images/gravar_.gif'" onmouseout="this.src='/Images/gravar.gif'" onclick="AlteraEstValida()" />
+                </p>
+            </td>
+        </tr>
+        <tr id="trMot4" name="trMot4" style="display: none;">
+            <td colspan="3">
+                <textarea style="font-family: Verdana, Arial, Helvetica; font-size: 100%; width: 100%;" id="dfMot4" name="dfMot4" rows="4"></textarea>
+            </td>
+        </tr>
+    </table>
 
     <div class="form">
         <div class="panel-group" id="filtros" style="">
@@ -21,12 +120,36 @@
                         <a data-toggle="collapse" href="#collapse1" class="minMax" style="text-align: right">
                             <img @*onmouseover="this.src = '../images/min_.gif'" onmouseout="this.src = '/images/Min.gif'"*@ id="min" src="/Images/Min.gif" title="Esconder" class="pull-right img-responsive" />
                         </a>
-                        <img id="separador3" src="/Images/separador1.gif" class="pull-right img-responsive" />
+                        <img id="separador8" src="/Images/separador1.gif" class="pull-right img-responsive" />
+                        <img onmouseover="this.src = '/images/history_.gif'" onmouseout=" this.src='/images/history.gif' " id="ReunioesIns" src="/Images/history.gif" title="Últimas reuniões inseridas" class="pull-right img-responsive" />
+                        <img id="separador7" src="/Images/separador1.gif" class="pull-right img-responsive" />
+                        
+                        @*esconde e mostra edit and attach consoante o estado*@
+                        @{
+                            string escondeEditAndAttach = Model.ReuniaoBrainstorm.Estado == null ? "hidden" : "visible";
+                        }
+                        <img onmouseover="this.src = '/images/EditT_.gif'" onmouseout=" this.src='/images/EditT.gif' " id="VizualizarD" src="/Images/EditT.gif" title="Visualizar Documentação associada" class="pull-right img-responsive @escondeEditAndAttach" />
+                        <img id="separador6" src="/Images/separador1.gif" class="pull-right img-responsive  @escondeEditAndAttach" />
+                        <img onmouseover="this.src = '/images/attach_.gif'" onmouseout="this.src = '/images/attach.gif'" id="AnexarD" src="/Images/attach.gif" title="Anexar documentos" class="pull-right img-responsive  @escondeEditAndAttach" />
+                        <img id="separador5" src="/Images/separador1.gif" class="pull-right img-responsive  @escondeEditAndAttach" />
+                        <img onmouseover="this.src = '/images/colar_.gif'" onmouseout="this.src = '/images/colar.gif'" id="ColarR" src="/Images/colar.gif" title="Colar requesitos" class="pull-right img-responsive" />
+                        <img id="separador4" src="/Images/separador1.gif" class="pull-right img-responsive" />
+                        
+                        @*esconde e mostra edit and attach consoante o estado*@
+                        @{
+                            string escondeEstadoAndWf = Model.ReuniaoBrainstorm.Estado == null ? "hidden" : "visible";
+                        }
+                        @*<img onmouseover="this.src = '/images/wf5_.gif'" onmouseout="this.src = '/images/wf5.gif'" id="AterarR" src="/Images/wf5.gif" title="Alterar estado da reunião" class="pull-right img-responsive" />*@
+                        <img name="wf5" id="wf5" border="0" src="/Images/wf5.gif" alt="Alterar estado da reunião" title="Alterar estado da reunião" onmouseout="altEstadoReg(2)" onmouseover="altEstadoReg(1)" @*style="display: none "*@ class="pull-right img-responsive @escondeEstadoAndWf" />
+                        <img id="separador4" src="/Images/separador1.gif" class="pull-right img-responsive @escondeEstadoAndWf" />
+                        <img onmouseover="this.src = '/images/wf_.gif'" onmouseout="this.src = '/images/wf.gif'" id="Workflow" src="/Images/wf.gif" title="Workflow" class="pull-right img-responsive @escondeEstadoAndWf" />
+                        <img id="separador3" src="/Images/separador1.gif" class="pull-right img-responsive @escondeEstadoAndWf" />
                         <img onmouseover="this.src = '/images/gravar_.gif'" onmouseout="this.src = '/images/gravar.gif'" id="gravar" src="/Images/gravar.gif" title="Gravar" class="pull-right img-responsive" />
                         <img id="separador1" src="/Images/separador1.gif" class="pull-right img-responsive" />
                         <img onmouseover="this.src = '/images/limpar_.gif'" onmouseout="this.src = '/images/limpar.gif'" id="limpar" src="/Images/limpar.gif" title="Limpar" class="pull-right img-responsive" />
                         <img id="separador2" src="/Images/separador1.gif" class="pull-right img-responsive" />
                         <img onmouseover="this.src = '/images/ToolFechar_.gif'" onmouseout="this.src = '/images/ToolFechar.gif'" id="voltar" src="/Images/ToolFechar.gif" title="Voltar" class="pull-right img-responsive" />
+                        
                     </h4>
                 </div>
                 <div id="collapse1" class="panel-collapse collapse in">
@@ -56,19 +179,19 @@
                                     @{
                                         if (Model.ReuniaoBrainstorm.Estado == "P")
                                         {
-                                            @Html.TextBoxFor(model => model.ReuniaoBrainstorm.Estado, htmlAttributes: new { @class = "estado", @id = "Estado", @readonly = "readonly", @Value = "Pendente" })
+                                            @Html.TextBoxFor(model => model.ReuniaoBrainstorm.Estado, htmlAttributes: new { @class = "estado", @id = "Estado1", @readonly = "readonly", @Value = "Pendente" })
                                         }
                                         else if (Model.ReuniaoBrainstorm.Estado == "A")
                                         {
-                                            @Html.TextBoxFor(model => model.ReuniaoBrainstorm.Estado, htmlAttributes: new { @class = "estado", @id = "Estado", @readonly = "readonly", @Value = "Aprovado" })
+                                            @Html.TextBoxFor(model => model.ReuniaoBrainstorm.Estado, htmlAttributes: new { @class = "estado", @id = "Estado2", @readonly = "readonly", @Value = "Aprovado" })
                                         }
                                         else if (Model.ReuniaoBrainstorm.Estado == "E")
                                         {
-                                            @Html.TextBoxFor(model => model.ReuniaoBrainstorm.Estado, htmlAttributes: new { @class = "estado", @id = "Estado", @readonly = "readonly", @Value = "Encerrado" })
+                                            @Html.TextBoxFor(model => model.ReuniaoBrainstorm.Estado, htmlAttributes: new { @class = "estado", @id = "Estado3", @readonly = "readonly", @Value = "Encerrado" })
                                         }
                                         else if (Model.ReuniaoBrainstorm.Estado == "X")
                                         {
-                                            @Html.TextBoxFor(model => model.ReuniaoBrainstorm.Estado, htmlAttributes: new { @class = "estado", @id = "Estado", @readonly = "readonly", @Value = "Anulada" })
+                                            @Html.TextBoxFor(model => model.ReuniaoBrainstorm.Estado, htmlAttributes: new { @class = "estado", @id = "Estado4", @readonly = "readonly", @Value = "Anulada" })
                                         }
                                     }
                                 </div>
@@ -151,6 +274,7 @@
                             </div>
                         </div>
                         @Html.HiddenFor(m => m.ReuniaoBrainstorm.Id)
+                        @Html.HiddenFor(m => m.ReuniaoBrainstorm.EstadoFlag, new { @class = "estadoFlag" })
                     </div>
 
                 </div>
@@ -203,6 +327,11 @@
                                             <td>
                                                 @Html.TextBoxFor(m => m.Temas[i].Titulo, new { @class = "form-control" })
                                             </td>
+                                        </tr>
+                                        <tr class="noBorder">
+                                            <td><label class="control-label col-md-2">Titulo do registo</label></td>
+                                            <td> @Html.TextBoxFor(m => m.Temas[i].Titulo, new { @class = "form-control" }) </td>
+                                            <td> <label><input type="checkbox" value="">Gestão de inovação</label> </td>
                                         </tr>
                                         @Html.HiddenFor(m => m.Temas[i].Estado)
                                         @Html.HiddenFor(m => m.Temas[i].Id)
@@ -261,7 +390,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <input type="submit" value="Guardar" class="btn btn-default" />
+                            <input type="submit" value="Guardar" class="btn btn-default" id="Enviar"/>
                             @*}*@
                         </div>
                     </div>
@@ -305,13 +434,28 @@
 
                     var intervenienteAux = ".selectInterveniente" + j;
                     
-                            @:$("@intervenienteAux").val(htmlDecode("@interv.NomeAndCodigo")).trigger('change.select2');
-
+                    @:$("@intervenienteAux").val(htmlDecode("@interv.NomeAndCodigo")).trigger('change.select2');
+        
                     j++;
                 }
             }
 
         }
+
     });
 
+</script>
+
+<script type="text/javascript">
+
+    function altEstadoReg(tipo) {
+
+        if (tipo == 1) {
+            document.all("TBLEstadoReg").style.left = window.event.x - 250;
+            document.all("TBLEstadoReg").style.display = "inline";
+        }
+        else {
+            document.all("TBLEstadoReg").style.display = "none";
+        }
+    }
 </script>

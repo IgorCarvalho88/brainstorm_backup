@@ -53,37 +53,82 @@
         //allowClear: true
     // });
 
+    // for each select option(interveniente) add the select2 plugin
     $('select').each(function(index) {
         var teste = ".selectInterveniente" + (index+1);       
         $(teste).select2();
     });
+    // submit the form when click on button
+    $('#gravar1').on('click', function (event) {
+        event.preventDefault();
+        $('.estado').val('A');
+        $('.estadoFlag').val(true);
+        $('#myForm').submit();
+    });
+
+    $('#gravar2').on('click', function (event) {
+        event.preventDefault();
+        $('.estado').val('E');
+        $('.estadoFlag').val(true);
+        $('#myForm').submit();
+    });
+
+    $('#gravar3').on('click', function (event) {
+        event.preventDefault();
+        $('.estado').val('X');
+        $('.estadoFlag').val(true);
+        $('#myForm').submit();
+    });
 
 
-    //$('#Interveniente1').change(function () {
-    //    //console.log($(this).text().split(/\s+/));
-    //    //var thisvalue = $(this).find("option:selected").text();
-    //    //var splitted = thisvalue.split(/\s+/);
-    //    //var result = splitted[0].substring(1, splitted[0].length - 1);
-    //    //$(this).find("option:selected").attr("selected", null);
-    //    //$(this).find("option:selected").val(result);
-    //    $('#campoleitura1').val($(this).val());
-    //});
+    //function AltEstadoReg(tipo) {
 
-    //$('#Interveniente2').change(function () {
-    //    $('#campoleitura2').val($(this).val());
-    //});
+    //    if (tipo == 1) {
+    //        document.all("TBLEstadoReg").style.left = window.event.x - 250;
+    //        document.all("TBLEstadoReg").style.display = "inline";
+    //    }
+    //    else {
+    //        document.all("TBLEstadoReg").style.display = "none";
+    //    }
+    //}
 
-    //$('#Interveniente3').change(function () {
-    //    $('#campoleitura3').val($(this).val());
-    //});
 
-    //$('#Interveniente4').change(function () {
-    //    $('#campoleitura4').val($(this).val());
-    //});
+    /*MODAL */
 
-    //$('#Interveniente5').change(function () {
-    //    $('#campoleitura5').val($(this).val());
-    //});
+    //$("#AterarR").click(function() {
+    //    $("#myModal").modal('show');
+    //})
+
+    $(function () {
+        //var loading = $('#loadbar').hide();
+        //$(document)
+        //    .ajaxStart(function () {
+        //        loading.show();
+        //    }).ajaxStop(function () {
+        //        loading.hide();
+        //    });
+
+        $("label.btn").on('click', function () {
+            var choice = $(this).find('input:radio').val();
+            $('#loadbar').show();
+            $('#quiz').fadeOut();
+            setTimeout(function () {
+                $("#answer").html($(this).checking(choice));
+                $('#quiz').show();
+                $('#loadbar').fadeOut();
+                /* something else */
+            }, 1500);
+        });
+
+        $ans = 3;
+
+        //$.fn.checking = function (ck) {
+        //    if (ck != $ans)
+        //        return 'INCORRECT';
+        //    else
+        //        return 'CORRECT';
+        //};
+    });
 
 });
 

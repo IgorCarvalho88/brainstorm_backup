@@ -230,8 +230,16 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\attach.gif" />
+    <Content Include="Images\attach_.gif" />
+    <Content Include="Images\colar.gif" />
+    <Content Include="Images\colar_.gif" />
+    <Content Include="Images\EditT.gif" />
+    <Content Include="Images\EditT_.gif" />
     <Content Include="Images\gravar.gif" />
     <Content Include="Images\gravar_.gif" />
+    <Content Include="Images\history.gif" />
+    <Content Include="Images\history_.gif" />
     <Content Include="Images\limpar.gif" />
     <Content Include="Images\limpar_.gif" />
     <Content Include="Images\Maximiza.gif" />
@@ -243,6 +251,10 @@
     <Content Include="Images\ToolFechar_.gif" />
     <Content Include="Images\Tool_nor.gif" />
     <Content Include="Images\Tool_Obr.gif" />
+    <Content Include="Images\wf.gif" />
+    <Content Include="Images\wf5.GIF" />
+    <Content Include="Images\wf5_.gif" />
+    <Content Include="Images\wf_.gif" />
     <Content Include="Scripts\ai.0.22.9-build00167.js" />
     <Content Include="Scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.js" />
@@ -436,6 +448,7 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Brainstorm\Reuniao.cshtml" />
+    <Content Include="Views\Brainstorm\ReuniaoAnulada.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
