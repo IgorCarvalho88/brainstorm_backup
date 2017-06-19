@@ -7,7 +7,7 @@ namespace Brainstorm.Models
 {
     public class Tema
     {
-        public int Id { get; set; }
+        public int? Id { get; set; }
         public string Titulo { get; set; }
         public string Descricao { get; set; }
 
@@ -17,7 +17,7 @@ namespace Brainstorm.Models
 
         public string Importancia { get; set; }
         public string Estado { get; set; }
-        public int GestaoInov { get; set; }
+        public int? GestaoInov { get; set; }
 
         
     }

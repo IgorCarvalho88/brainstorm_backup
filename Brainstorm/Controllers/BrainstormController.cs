@@ -27,11 +27,13 @@ namespace Brainstorm.Controllers
             //var temas = new List<Tema>();
             intervenientes = repo.getUT();
 
-            var temas = new List<Tema>
-            {
-                new Tema {Descricao = "Inovacao", Importancia = "Alta", Comentarios = "teste",  Titulo = "titulo1", Estado = "P", GestaoInov = 0},
-                new Tema {Descricao = "Inovacao2", Importancia = "Alta", Comentarios = "teste2",  Titulo = "titulo2", Estado = "P", GestaoInov = 0 }
-            };
+            //var temas = new List<Tema>
+            //{
+            //    new Tema {Descricao = "Inovacao", Importancia = "Alta", Comentarios = "teste",  Titulo = "titulo1", Estado = "P", GestaoInov = 0},
+            //    new Tema {Descricao = "Inovacao2", Importancia = "Alta", Comentarios = "teste2",  Titulo = "titulo2", Estado = "P", GestaoInov = 0 }
+            //};
+
+             List<Tema> temas = new List<Tema>(new Tema[2]);
 
             var viewModel = new BrainstormViewModel
             {
@@ -49,7 +51,21 @@ namespace Brainstorm.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Reuniao(BrainstormViewModel model)
         {
-          
+
+            //for (var i = 0; i < model.Temas.Count; i++)
+            //{
+            //    if(model.Temas[i].Id==0)
+            //    model.Temas[i].Id = 999999;
+            //}
+
+            //foreach (var tema in model.Temas)
+            //{
+            //    ModelState.Remove(nameof(tema.Id));
+            //}
+
+           
+
+            // ModelState.Remove(nameof(model.Temas.Id));
             // valida campos
             if (!ModelState.IsValid)
             {
@@ -75,6 +91,12 @@ namespace Brainstorm.Controllers
                 {
                     model.ReuniaoBrainstorm.Estado = "X";
                 }
+
+                //for (var i = 0; i < model.Temas.Count; i++)
+                //{
+                //    if (model.Temas[i].Id == 999999)
+                //        model.Temas[i].Id = 0;
+                //}
 
                 return View("Reuniao", model);
             }

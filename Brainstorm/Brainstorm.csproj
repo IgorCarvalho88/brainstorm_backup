@@ -242,8 +242,10 @@
     <Content Include="Images\history_.gif" />
     <Content Include="Images\limpar.gif" />
     <Content Include="Images\limpar_.gif" />
+    <Content Include="Images\mais.gif" />
     <Content Include="Images\Maximiza.gif" />
     <Content Include="Images\maximiza_.gif" />
+    <Content Include="Images\menos.gif" />
     <Content Include="Images\Min.gif" />
     <Content Include="Images\min_.gif" />
     <Content Include="Images\separador1.gif" />

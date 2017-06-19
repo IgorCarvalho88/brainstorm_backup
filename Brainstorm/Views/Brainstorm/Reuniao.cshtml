@@ -306,39 +306,53 @@
                                         <td>Comentários</td>
                                         @*<td>Decisão</td>*@
                                         <td>Título</td>
+                                        <td>Ok</td>
+                                        <td>Teste</td>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @for (var i = 0; i < Model.Temas.Count; i++)
+                                @{
+                                    //int tamanho = 10;
+                                    for (var i = 0; i < Model.Temas.Count; i++)
                                     {
-                                        <tr>
-                                            <td>
-                                                @Html.TextBoxFor(m => m.Temas[i].Descricao, new { @class = "form-control" })
-                                            </td>
-                                            <td>
-                                                @Html.TextBoxFor(m => m.Temas[i].Importancia, new { @class = "form-control" })
-                                            </td>
-                                            <td>
-                                                @Html.TextBoxFor(m => m.Temas[i].Comentarios, new { @class = "form-control" })
-                                            </td>
-                                            @*<td>
+                                       <tr>
+                                           <td>
+                                               @Html.TextAreaFor(m => m.Temas[i].Descricao, new {@class = "form-control" @*, @style = "font-size: 10px!important"*@})
+                                           </td>
+                                           <td>
+                                               @Html.TextAreaFor(m => m.Temas[i].Importancia, new {@class = "form-control"})
+                                           </td>
+                                           <td>
+                                               @Html.TextAreaFor(m => m.Temas[i].Comentarios, new {@class = "form-control"})
+                                           </td>
+                                           @*<td>
                                                     @Html.TextBoxFor(m => m.Temas[i].Decisao, new { @class = "form-control" })
                                                 </td>*@
-                                            <td>
-                                                @Html.TextBoxFor(m => m.Temas[i].Titulo, new { @class = "form-control" })
-                                            </td>
+                                           <td>
+                                               @Html.TextAreaFor(m => m.Temas[i].Titulo, new {@class = "form-control"})
+                                           </td>
+                                           <td>
+                                               <button href="#Bar" class="btn btn-default" data-toggle="collapse">Toggle Bar</button>
+                                           </td>
+                                           <td>
+                                               <button id="botao" href="#Foo0" class="btn btn-default" data-toggle="collapse">
+                                                   <img id="imagem" src="/Images/mais.gif" width="10"/>
+                                               </button>
+                                           </td>
+                                       </tr>
+                                        <tr class="noBorder collapse" id="@("Foo" + i)">
+                                @*<tr class="noBorder collapse" id="@("Foo"+i)">*@
+                                            <td colspan="1"><label class="control-label">Titulo do registo</label></td>
+                                            <td colspan="3"> @Html.TextBoxFor(m => m.Temas[i].Titulo, new {@class = "form-control"}) </td>
+                                            <td colspan="2"> <label><input type="checkbox" value="">Gestão de inovação</label> </td>
                                         </tr>
-                                        <tr class="noBorder">
-                                            <td><label class="control-label col-md-2">Titulo do registo</label></td>
-                                            <td> @Html.TextBoxFor(m => m.Temas[i].Titulo, new { @class = "form-control" }) </td>
-                                            <td> <label><input type="checkbox" value="">Gestão de inovação</label> </td>
-                                        </tr>
-                                        @Html.HiddenFor(m => m.Temas[i].Estado)
-                                        @Html.HiddenFor(m => m.Temas[i].Id)
-                                    }
+                                       @Html.HiddenFor(m => m.Temas[i].Estado)
+                                       @Html.HiddenFor(m => m.Temas[i].Id)
+                                   }
+                               }
                                 </tbody>
                             </table>
-                            <div class="row">
+                            @*<div class="row">
                                 <div class="form-group">
                                     <label class="control-label col-md-2">Título</label>
                                     <div class="col-md-3">
@@ -348,7 +362,15 @@
                                         <label><input type="checkbox" value="">Gestão de inovação</label>
                                     </div>
                                 </div>
+                            </div>*@
+                            @*<a href="#Foo" class="btn btn-default" data-toggle="collapse">Toggle Foo</a>
+                            <button href="#Bar" class="btn btn-default" data-toggle="collapse">Toggle Bar</button>
+                            <div id="Foo" class="collapse">
+                                This div (Foo) is hidden by default
                             </div>
+                            <div id="Bar" class="collapse in">
+                                This div (Bar) is shown by default and can toggle
+                            </div>*@
                             @*<input type="submit" value="Guardar" class="btn btn-default" />*@
                             @*}*@
                         </div>

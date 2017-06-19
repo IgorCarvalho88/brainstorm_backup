@@ -115,12 +115,13 @@ namespace Brainstorm.Repository.Database
                 SqlCommand sqlComm = new SqlCommand("[dbo].[guardarBrainstormTema]", con);
                 
                 sqlComm.Parameters.AddWithValue("@brainstorm_tema_brainstorm_id", id);
-                sqlComm.Parameters.AddWithValue("@brainstorm_tema_titulo", tema.Titulo);
-                sqlComm.Parameters.AddWithValue("@brainstorm_tema_descricao", tema.Descricao);
-                sqlComm.Parameters.AddWithValue("@brainstorm_tema_importancia", tema.Importancia);
-                sqlComm.Parameters.AddWithValue("@brainstorm_tema_comentarios", tema.Comentarios);
-                sqlComm.Parameters.AddWithValue("@brainstorm_tema_estado", tema.Estado);
-                sqlComm.Parameters.AddWithValue("@brainstorm_tarefa_gestInov", tema.GestaoInov);
+                sqlComm.Parameters.AddWithValue("@brainstorm_tema_titulo", ((object)tema.Titulo)?? DBNull.Value);
+                sqlComm.Parameters.AddWithValue("@brainstorm_tema_descricao", ((object)tema.Descricao) ?? DBNull.Value);
+                sqlComm.Parameters.AddWithValue("@brainstorm_tema_importancia", ((object)tema.Importancia) ?? DBNull.Value);
+                sqlComm.Parameters.AddWithValue("@brainstorm_tema_comentarios", ((object)tema.Comentarios) ?? DBNull.Value);
+                sqlComm.Parameters.AddWithValue("@brainstorm_tema_estado", ((object)tema.Estado) ?? DBNull.Value);
+                //sqlComm.Parameters.AddWithValue("@brainstorm_tema_estado", tema.Estado);
+                sqlComm.Parameters.AddWithValue("@brainstorm_tarefa_gestInov", ((object)tema.GestaoInov) ?? DBNull.Value);
 
                 sqlComm.CommandType = CommandType.StoredProcedure;
                 SqlDataAdapter da = new SqlDataAdapter();

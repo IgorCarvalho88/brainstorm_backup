@@ -14,9 +14,12 @@
         });
     // collapse button change when hide panel2
     $('#collapse2').on('hide.bs.collapse',
-        function () {
-            $('#min2').attr('src', '/Images/Maximiza.gif');
-            $('#min2').attr('title', 'Mostrar');
+        function (e) {
+            // if adicionado, uma vez que esta funcao era activada quando era feito o toggle de outros eventos
+            if ($(this).is(e.target)) {
+                $('#min2').attr('src', '/Images/Maximiza.gif');
+                $('#min2').attr('title', 'Mostrar');
+            }       
 
         });
     $('#collapse2').on('show.bs.collapse',
@@ -79,6 +82,26 @@
         $('.estadoFlag').val(true);
         $('#myForm').submit();
     });
+
+    //$('#botao').on('click', function (event) {
+    //    event.preventDefault();
+    //    $('#imagem').attr('src', '/Images/menos.gif');
+        
+    //});
+
+    $('#Foo').on('show.bs.collapse',
+        function () {
+            $('#imagem').attr('src', '/Images/menos.gif');
+            //$('#min3').attr('title', 'Esconder');
+
+        });
+
+    $('#Foo').on('hide.bs.collapse',
+        function () {
+            $('#imagem').attr('src', '/Images/mais.gif');
+            //$('#min3').attr('title', 'Esconder');
+
+        });
 
 
     //function AltEstadoReg(tipo) {
