@@ -12,7 +12,7 @@
 {
     @Html.AntiForgeryToken()
 
-    @*<!-- Modal -->
+    <!-- Modal -->
     <div id="myModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
             <!-- Modal content-->
@@ -23,10 +23,15 @@
                 </div>
                 <div class="modal-body">
                     <div class="quiz" id="quiz" data-toggle="buttons">
-                        <label class="element-animation1 btn btn-lg btn-primary btn-block"><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span> <input type="radio" name="q_answer" value="1">1 One</label>
-                        <label class="element-animation2 btn btn-lg btn-primary btn-block"><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span> <input type="radio" name="q_answer" value="2">2 Two</label>
-                        <label class="element-animation3 btn btn-lg btn-primary btn-block"><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span> <input type="radio" name="q_answer" value="3">3 Three</label>
-                        <label class="element-animation4 btn btn-lg btn-primary btn-block"><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span> <input type="radio" name="q_answer" value="4">4 Four</label>
+                        @{
+                            string mostraSePendente = Model.ReuniaoBrainstorm.Estado == "P" ? "visible" : "hidden";
+                        }
+                        <label id="gravar1" class="element-animation1 btn btn-lg btn-primary btn-block @mostraSePendente"><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span> <input type="radio" name="q_answer" value="A">Aprovada</label>
+                        @{
+                            string mostraSeAprovada = Model.ReuniaoBrainstorm.Estado == "A" ? "visible" : "hidden";
+                        }
+                        <label id="gravar2" class="element-animation2 btn btn-lg btn-primary btn-block @mostraSeAprovada"><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span> <input type="radio" name="q_answer" value="E">Encerrada</label>
+                        <label id ="gravar3" class="element-animation3 btn btn-lg btn-primary btn-block"><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span> <input type="radio" name="q_answer" value="X">Anulada</label>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -34,10 +39,12 @@
                 </div>
             </div>
         </div>
-    </div>*@
+    </div>
+
+
 
     <!--table-->
-    <table onmouseover="document.all('TBLEstadoReg').style.display=''" onmouseout="document.all('TBLEstadoReg').style.display='none'" name="TBLEstadoReg" id="TBLEstadoReg" style="width: 280px; display: none; top: 140px; right: 15px;" class="TAB_SER2">
+    @*<table onmouseover="document.all('TBLEstadoReg').style.display=''" onmouseout="document.all('TBLEstadoReg').style.display='none'" name="TBLEstadoReg" id="TBLEstadoReg" style="width: 280px; display: none; top: 140px; right: 15px;" class="TAB_SER2">
         <tr class="cabecalhoTooltip">
             <td style="width: 5%">
                 <img src="/Images/wf5.gif" /></td>
@@ -45,7 +52,7 @@
         </tr>
         <tr style="valign: middle;">
             <td colspan="3" class="linhaHorizontal"></td>
-        </tr>
+        </tr>*@
 
         @*<tr title="Alterar Estado" id="estadoPendente" style="cursor: hand;" class="TR_SER2">
             <td></td>
@@ -56,7 +63,7 @@
                 </p>
             </td>
         </tr>*@
-        <tr id="trMot1" name="trMot1" style="display: none;">
+        @*<tr id="trMot1" name="trMot1" style="display: none;">
             <td colspan="3">
                 <textarea style="font-family: Verdana, Arial, Helvetica; font-size: 100%; width: 100%;" id="dfMot1" name="dfMot1" rows="4"></textarea>
             </td>
@@ -109,7 +116,11 @@
                 <textarea style="font-family: Verdana, Arial, Helvetica; font-size: 100%; width: 100%;" id="dfMot4" name="dfMot4" rows="4"></textarea>
             </td>
         </tr>
-    </table>
+    </table>*@
+
+
+
+
 
     <div class="form">
         <div class="panel-group" id="filtros" style="">
@@ -148,7 +159,8 @@
                             string escondeEstadoAndWf = Model.ReuniaoBrainstorm.Estado == null ? "hidden" : "visible";
                         }
                         @*<img onmouseover="this.src = '/images/wf5_.gif'" onmouseout="this.src = '/images/wf5.gif'" id="AterarR" src="/Images/wf5.gif" title="Alterar estado da reunião" class="pull-right img-responsive" />*@
-                        <img name="wf5" id="wf5" border="0" src="/Images/wf5.gif" alt="Alterar estado da reunião" title="Alterar estado da reunião" onmouseout="altEstadoReg(2)" onmouseover="altEstadoReg(1)" @*style="display: none "*@ class="pull-right img-responsive @escondeEstadoAndWf" />
+                        @*<img name="wf5" id="wf5" border="0" src="/Images/wf5.gif" alt="Alterar estado da reunião" title="Alterar estado da reunião" onmouseout="altEstadoReg(2)" onmouseover="altEstadoReg(1)" style="display: none " class="pull-right img-responsive @escondeEstadoAndWf" />*@
+                        <i id="wf5" title="Alterar estado da reunião" class="fa fa-sitemap fa-lg pull-right img-responsive tamanhoCor  @escondeEstadoAndWf"></i>
                         @*<img id="separador4" src="/Images/separador1.gif" class="pull-right img-responsive @escondeEstadoAndWf" />*@
                         @*<img onmouseover="this.src = '/images/wf_.gif'" onmouseout="this.src = '/images/wf.gif'" id="Workflow" src="/Images/wf.gif" title="Workflow" class="pull-right img-responsive @escondeEstadoAndWf" />*@
                         <i title="Workflow" class="fa fa-exchange fa-lg pull-right img-responsive tamanhoCor  @escondeEstadoAndWf"></i>
@@ -160,9 +172,7 @@
                         <i title="Limpar" class="fa fa-file-o fa-lg pull-right img-responsive tamanhoCor"></i>
                         @*<img id="separador2" src="/Images/separador1.gif" class="pull-right img-responsive" />*@
                         @*<img onmouseover="this.src = '/images/ToolFechar_.gif'" onmouseout="this.src = '/images/ToolFechar.gif'" id="voltar" src="/Images/ToolFechar.gif" title="Voltar" class="pull-right img-responsive" />*@
-                        <i title="Voltar" class="fa  fa-sign-out fa-rotate-180 fa-lg pull-right img-responsive tamanhoCor"></i>
-                        
-                        
+                        <i title="Voltar" class="fa  fa-sign-out fa-rotate-180 fa-lg pull-right img-responsive tamanhoCor"></i>                                       
                     </h4>
                 </div>
                 <div id="collapse1" class="panel-collapse collapse in">
@@ -299,6 +309,7 @@
                             </div>
                         </div>
                         @Html.HiddenFor(m => m.ReuniaoBrainstorm.Id)
+                        @*ver controller para estadoFlag*@
                         @Html.HiddenFor(m => m.ReuniaoBrainstorm.EstadoFlag, new { @class = "estadoFlag" })
                     </div>
 
