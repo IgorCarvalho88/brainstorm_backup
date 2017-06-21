@@ -58,6 +58,13 @@ textarea {
     border: 0 none;
 }
 
+.tamanhoCor:hover {
+    color:#57a3e8;
+    transform: scale(2);
+}
+
+
+
 /*Table*/
 .linhaHorizontal {
     height: 4px;

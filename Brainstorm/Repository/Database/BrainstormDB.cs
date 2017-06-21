@@ -46,7 +46,8 @@ namespace Brainstorm.Repository.Database
                 sqlComm.Parameters.AddWithValue("@brainstorm_interv2_descritivo", ((object)model.Intervenientes[1].Nome) ?? DBNull.Value);
                 sqlComm.Parameters.AddWithValue("@brainstorm_interv3_descritivo", ((object)model.Intervenientes[2].Nome) ?? DBNull.Value);
                 sqlComm.Parameters.AddWithValue("@brainstorm_interv4_descritivo", ((object)model.Intervenientes[3].Nome) ?? DBNull.Value);
-                sqlComm.Parameters.AddWithValue("@brainstorm_interv5_descritivo", ((object)model.Intervenientes[4].Nome) ?? DBNull.Value);                              
+                sqlComm.Parameters.AddWithValue("@brainstorm_interv5_descritivo", ((object)model.Intervenientes[4].Nome) ?? DBNull.Value);
+                sqlComm.Parameters.AddWithValue("@brainstorm_local", ((object)model.ReuniaoBrainstorm.Local) ?? DBNull.Value);
                 sqlComm.CommandType = CommandType.StoredProcedure;
                 SqlDataAdapter da = new SqlDataAdapter();
                 da.SelectCommand = sqlComm;
@@ -117,7 +118,7 @@ namespace Brainstorm.Repository.Database
                 sqlComm.Parameters.AddWithValue("@brainstorm_tema_brainstorm_id", id);
                 sqlComm.Parameters.AddWithValue("@brainstorm_tema_titulo", ((object)tema.Titulo)?? DBNull.Value);
                 sqlComm.Parameters.AddWithValue("@brainstorm_tema_descricao", ((object)tema.Descricao) ?? DBNull.Value);
-                sqlComm.Parameters.AddWithValue("@brainstorm_tema_importancia", ((object)tema.Importancia) ?? DBNull.Value);
+                //sqlComm.Parameters.AddWithValue("@brainstorm_tema_importancia", ((object)tema.Importancia) ?? DBNull.Value);
                 sqlComm.Parameters.AddWithValue("@brainstorm_tema_comentarios", ((object)tema.Comentarios) ?? DBNull.Value);
                 sqlComm.Parameters.AddWithValue("@brainstorm_tema_estado", ((object)tema.Estado) ?? DBNull.Value);
                 //sqlComm.Parameters.AddWithValue("@brainstorm_tema_estado", tema.Estado);
@@ -199,6 +200,7 @@ namespace Brainstorm.Repository.Database
                     reuniaoBrainstorm.Duracao = Convert.ToInt32(dt.Rows[0]["brainstorm_duracaoPrev"].ToString());
                     reuniaoBrainstorm.DuracaoReal = Convert.ToInt32(dt.Rows[0]["brainstorm_duracaoReal"].ToString());
                     reuniaoBrainstorm.Comentarios = dt.Rows[0]["brainstorm_comentarios"].ToString();
+                    reuniaoBrainstorm.Local = dt.Rows[0]["brainstorm_local"].ToString();
 
 
                     return reuniaoBrainstorm;
@@ -260,7 +262,7 @@ namespace Brainstorm.Repository.Database
                         tema.Id = Convert.ToInt32(row["brainstorm_tema_id"].ToString());
                         tema.Titulo = row["brainstorm_tema_titulo"].ToString();
                         tema.Descricao = row["brainstorm_tema_descricao"].ToString();
-                        tema.Importancia = row["brainstorm_tema_importancia"].ToString();
+                        //tema.Importancia = row["brainstorm_tema_importancia"].ToString();
                         tema.Comentarios = row["brainstorm_tema_comentarios"].ToString();
                         tema.Estado = row["brainstorm_tema_estado"].ToString();
                         tema.GestaoInov = Convert.ToInt32(dt.Rows[0]["brainstorm_tarefa_gestInov"].ToString());
@@ -313,6 +315,7 @@ namespace Brainstorm.Repository.Database
                 sqlComm.Parameters.AddWithValue("@brainstorm_duracaoPrev", model.ReuniaoBrainstorm.Duracao);
                 sqlComm.Parameters.AddWithValue("@brainstorm_duracaoReal", model.ReuniaoBrainstorm.DuracaoReal);
                 sqlComm.Parameters.AddWithValue("@brainstorm_comentarios", ((object)model.ReuniaoBrainstorm.Comentarios) ?? DBNull.Value);
+                sqlComm.Parameters.AddWithValue("@brainstorm_local", ((object)model.ReuniaoBrainstorm.Local) ?? DBNull.Value);
                 sqlComm.Parameters.AddWithValue("@brainstorm_interv1_codigo", model.Intervenientes[0].Codigo);
                 sqlComm.Parameters.AddWithValue("@brainstorm_interv2_codigo", ((object)model.Intervenientes[1].Codigo) ?? DBNull.Value);
                 sqlComm.Parameters.AddWithValue("@brainstorm_interv3_codigo", ((object)model.Intervenientes[2].Codigo) ?? DBNull.Value);
@@ -392,7 +395,7 @@ namespace Brainstorm.Repository.Database
                 sqlComm.Parameters.AddWithValue("@brainstorm_tema_brainstorm_id", id);
                 sqlComm.Parameters.AddWithValue("@brainstorm_tema_titulo", tema.Titulo);
                 sqlComm.Parameters.AddWithValue("@brainstorm_tema_descricao", tema.Descricao);
-                sqlComm.Parameters.AddWithValue("@brainstorm_tema_importancia", tema.Importancia);
+                //sqlComm.Parameters.AddWithValue("@brainstorm_tema_importancia", tema.Importancia);
                 sqlComm.Parameters.AddWithValue("@brainstorm_tema_comentarios", tema.Comentarios);
                 sqlComm.Parameters.AddWithValue("@brainstorm_tema_estado", tema.Estado);
                 sqlComm.Parameters.AddWithValue("@brainstorm_tarefa_gestInov", tema.GestaoInov);

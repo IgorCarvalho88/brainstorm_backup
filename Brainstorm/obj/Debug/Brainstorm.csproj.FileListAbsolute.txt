@@ -80,3 +80,7 @@ c:\users\igor.carvalho\documents\visual studio 2015\Projects\Brainstorm\Brainsto
 c:\users\igor.carvalho\documents\visual studio 2015\Projects\Brainstorm\Brainstorm\obj\Debug\Brainstorm.dll
 c:\users\igor.carvalho\documents\visual studio 2015\Projects\Brainstorm\Brainstorm\obj\Debug\Brainstorm.pdb
 C:\Users\igor.carvalho\documents\visual studio 2015\Projects\Brainstorm\Brainstorm\obj\Debug\Brainstorm.csprojResolveAssemblyReference.cache
+C:\Users\igor.carvalho\documents\visual studio 2015\Projects\Brainstorm\Brainstorm\bin\ExpressiveAnnotations.dll
+C:\Users\igor.carvalho\documents\visual studio 2015\Projects\Brainstorm\Brainstorm\bin\ExpressiveAnnotations.MvcUnobtrusive.dll
+C:\Users\igor.carvalho\documents\visual studio 2015\Projects\Brainstorm\Brainstorm\bin\ExpressiveAnnotations.xml
+C:\Users\igor.carvalho\documents\visual studio 2015\Projects\Brainstorm\Brainstorm\bin\ExpressiveAnnotations.MvcUnobtrusive.xml

@@ -2,13 +2,16 @@
     // collapse button change when hide panel1
     $('#collapse1').on('hide.bs.collapse',
         function() {
-            $('#min').attr('src', '/Images/Maximiza.gif');
+            //$('#min').attr('src', '/Images/Maximiza.gif');
+            $('#min').removeClass('fa-window-minimize');
+            $('#min').addClass('fa-window-maximize');
             $('#min').attr('title', 'Mostrar');
 
         });
     $('#collapse1').on('show.bs.collapse',
         function () {
-            $('#min').attr('src', '/Images/Min.gif');
+            $('#min').removeClass('fa-window-maximize');
+            $('#min').addClass('fa-window-minimize');
             $('#min').attr('title', 'Esconder');
 
         });
@@ -17,14 +20,16 @@
         function (e) {
             // if adicionado, uma vez que esta funcao era activada quando era feito o toggle de outros eventos
             if ($(this).is(e.target)) {
-                $('#min2').attr('src', '/Images/Maximiza.gif');
+                $('#min2').removeClass('fa-window-minimize');
+                $('#min2').addClass('fa-window-maximize');               
                 $('#min2').attr('title', 'Mostrar');
             }       
 
         });
     $('#collapse2').on('show.bs.collapse',
         function () {
-            $('#min2').attr('src', '/Images/Min.gif');
+            $('#min2').removeClass('fa-window-maximize');
+            $('#min2').addClass('fa-window-minimize');
             $('#min2').attr('title', 'Esconder');
 
         });
@@ -32,13 +37,15 @@
     // collapse button change when hide panel3
     $('#collapse3').on('hide.bs.collapse',
         function () {
-            $('#min3').attr('src', '/Images/Maximiza.gif');
+            $('#min3').removeClass('fa-window-minimize');
+            $('#min3').addClass('fa-window-maximize');
             $('#min3').attr('title', 'Mostrar');
 
         });
     $('#collapse3').on('show.bs.collapse',
         function () {
-            $('#min3').attr('src', '/Images/Min.gif');
+            $('#min3').removeClass('fa-window-maximize');
+            $('#min3').addClass('fa-window-minimize');
             $('#min3').attr('title', 'Esconder');
 
         });
@@ -102,6 +109,23 @@
             //$('#min3').attr('title', 'Esconder');
 
         });
+
+    // mudar a imagem ou icon para botao de cada tema
+    $('.teste1').each(function(index) {
+        $('#Foo' + (index)).on('show.bs.collapse',
+            function() {
+                $('#imagem' + (index)).attr('src', '/Images/menos.gif');
+
+            });
+    });
+
+    $('.teste1').each(function (index) {
+        $('#Foo' + (index)).on('hide.bs.collapse',
+            function () {
+                $('#imagem' + (index)).attr('src', '/Images/mais.gif');
+
+            });
+    });
 
 
     //function AltEstadoReg(tipo) {

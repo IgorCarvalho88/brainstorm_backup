@@ -118,22 +118,30 @@
                     <h4 class="panel-title">
                         <a data-toggle="collapse" href="#collapse1" class="minMax" style="text-align: left">Filtros</a>
                         <a data-toggle="collapse" href="#collapse1" class="minMax" style="text-align: right">
-                            <img @*onmouseover="this.src = '../images/min_.gif'" onmouseout="this.src = '/images/Min.gif'"*@ id="min" src="/Images/Min.gif" title="Esconder" class="pull-right img-responsive" />
+                            @*<img*@ @*onmouseover="this.src = '../images/min_.gif'" onmouseout="this.src = '/images/Min.gif'"*@ @*id="min" src="/Images/Min.gif" title="Esconder" class="pull-right img-responsive" />*@
+                            <i id="min" title="Últimas reuniões inseridas" class="fa fa-window-minimize fa-lg pull-right img-responsive"></i>
                         </a>
-                        <img id="separador8" src="/Images/separador1.gif" class="pull-right img-responsive" />
-                        <img onmouseover="this.src = '/images/history_.gif'" onmouseout=" this.src='/images/history.gif' " id="ReunioesIns" src="/Images/history.gif" title="Últimas reuniões inseridas" class="pull-right img-responsive" />
-                        <img id="separador7" src="/Images/separador1.gif" class="pull-right img-responsive" />
+                        @*<img id="separador8" src="/Images/separador1.gif" class="pull-right img-responsive" />*@
+                        @*<img onmouseover="this.src = '/images/history_.gif'" onmouseout=" this.src='/images/history.gif' " id="ReunioesIns" src="/Images/history.gif" title="Últimas reuniões inseridas" class="pull-right img-responsive" />*@
+                        <i title="Últimas reuniões inseridas" class="fa fa-history fa-lg pull-right img-responsive tamanhoCor"></i>
+                        @*<img id="separador7" src="/Images/separador1.gif" class="pull-right img-responsive" />*@
                         
                         @*esconde e mostra edit and attach consoante o estado*@
                         @{
                             string escondeEditAndAttach = Model.ReuniaoBrainstorm.Estado == null ? "hidden" : "visible";
                         }
-                        <img onmouseover="this.src = '/images/EditT_.gif'" onmouseout=" this.src='/images/EditT.gif' " id="VizualizarD" src="/Images/EditT.gif" title="Visualizar Documentação associada" class="pull-right img-responsive @escondeEditAndAttach" />
-                        <img id="separador6" src="/Images/separador1.gif" class="pull-right img-responsive  @escondeEditAndAttach" />
-                        <img onmouseover="this.src = '/images/attach_.gif'" onmouseout="this.src = '/images/attach.gif'" id="AnexarD" src="/Images/attach.gif" title="Anexar documentos" class="pull-right img-responsive  @escondeEditAndAttach" />
-                        <img id="separador5" src="/Images/separador1.gif" class="pull-right img-responsive  @escondeEditAndAttach" />
-                        <img onmouseover="this.src = '/images/colar_.gif'" onmouseout="this.src = '/images/colar.gif'" id="ColarR" src="/Images/colar.gif" title="Colar requesitos" class="pull-right img-responsive" />
-                        <img id="separador4" src="/Images/separador1.gif" class="pull-right img-responsive" />
+                        @*<img onmouseover="this.src = '/images/EditT_.gif'" onmouseout=" this.src='/images/EditT.gif' " id="VizualizarD" src="/Images/EditT.gif" title="Visualizar Documentação associada" class="pull-right img-responsive @escondeEditAndAttach" />*@
+                        <i title="Visualizar Documentação associada" class="fa fa-archive fa-lg pull-right img-responsive tamanhoCor"></i>
+                        @*<img id="separador6" src="/Images/separador1.gif" class="pull-right img-responsive  @escondeEditAndAttach" />*@
+                        @*<img onmouseover="this.src = '/images/attach_.gif'" onmouseout="this.src = '/images/attach.gif'" id="AnexarD" src="/Images/attach.gif" title="Anexar documentos" class="pull-right img-responsive  @escondeEditAndAttach" />*@
+                        <i title="Anexar documentos" class="fa fa-paperclip fa-lg pull-right img-responsive tamanhoCor"></i>
+                        @*<span class="fa-stack fa-lg pull-right img-responsive" title="Anexar documentos" @escondeEditAndAttach>
+                            <i class="fa fa-file-o fa-stack-2x"></i>
+                            <i class="fa fa-paperclip fa-stack-1x"></i>
+                        </span>*@
+                        @*<img id="separador5" src="/Images/separador1.gif" class="pull-right img-responsive  @escondeEditAndAttach" />*@
+                        @*<img onmouseover="this.src = '/images/colar_.gif'" onmouseout="this.src = '/images/colar.gif'" id="ColarR" src="/Images/colar.gif" title="Colar requesitos" class="pull-right img-responsive" />*@
+                        @*<img id="separador4" src="/Images/separador1.gif" class="pull-right img-responsive" />*@
                         
                         @*esconde e mostra edit and attach consoante o estado*@
                         @{
@@ -141,14 +149,19 @@
                         }
                         @*<img onmouseover="this.src = '/images/wf5_.gif'" onmouseout="this.src = '/images/wf5.gif'" id="AterarR" src="/Images/wf5.gif" title="Alterar estado da reunião" class="pull-right img-responsive" />*@
                         <img name="wf5" id="wf5" border="0" src="/Images/wf5.gif" alt="Alterar estado da reunião" title="Alterar estado da reunião" onmouseout="altEstadoReg(2)" onmouseover="altEstadoReg(1)" @*style="display: none "*@ class="pull-right img-responsive @escondeEstadoAndWf" />
-                        <img id="separador4" src="/Images/separador1.gif" class="pull-right img-responsive @escondeEstadoAndWf" />
-                        <img onmouseover="this.src = '/images/wf_.gif'" onmouseout="this.src = '/images/wf.gif'" id="Workflow" src="/Images/wf.gif" title="Workflow" class="pull-right img-responsive @escondeEstadoAndWf" />
-                        <img id="separador3" src="/Images/separador1.gif" class="pull-right img-responsive @escondeEstadoAndWf" />
-                        <img onmouseover="this.src = '/images/gravar_.gif'" onmouseout="this.src = '/images/gravar.gif'" id="gravar" src="/Images/gravar.gif" title="Gravar" class="pull-right img-responsive" />
-                        <img id="separador1" src="/Images/separador1.gif" class="pull-right img-responsive" />
-                        <img onmouseover="this.src = '/images/limpar_.gif'" onmouseout="this.src = '/images/limpar.gif'" id="limpar" src="/Images/limpar.gif" title="Limpar" class="pull-right img-responsive" />
-                        <img id="separador2" src="/Images/separador1.gif" class="pull-right img-responsive" />
-                        <img onmouseover="this.src = '/images/ToolFechar_.gif'" onmouseout="this.src = '/images/ToolFechar.gif'" id="voltar" src="/Images/ToolFechar.gif" title="Voltar" class="pull-right img-responsive" />
+                        @*<img id="separador4" src="/Images/separador1.gif" class="pull-right img-responsive @escondeEstadoAndWf" />*@
+                        @*<img onmouseover="this.src = '/images/wf_.gif'" onmouseout="this.src = '/images/wf.gif'" id="Workflow" src="/Images/wf.gif" title="Workflow" class="pull-right img-responsive @escondeEstadoAndWf" />*@
+                        <i title="Workflow" class="fa fa-exchange fa-lg pull-right img-responsive tamanhoCor  @escondeEstadoAndWf"></i>
+                        @*<img id="separador3" src="/Images/separador1.gif" class="pull-right img-responsive @escondeEstadoAndWf" />*@
+                        @*<img onmouseover="this.src = '/images/gravar_.gif'" onmouseout="this.src = '/images/gravar.gif'" id="gravar" src="/Images/gravar.gif" title="Gravar" class="pull-right img-responsive" />*@
+                        <i title="Gravar" class="fa fa-floppy-o fa-lg pull-right img-responsive tamanhoCor"></i>
+                        @*<img id="separador1" src="/Images/separador1.gif" class="pull-right img-responsive" />*@
+                        @*<img onmouseover="this.src = '/images/limpar_.gif'" onmouseout="this.src = '/images/limpar.gif'" id="limpar" src="/Images/limpar.gif" title="Limpar" class="pull-right img-responsive" />*@
+                        <i title="Limpar" class="fa fa-file-o fa-lg pull-right img-responsive tamanhoCor"></i>
+                        @*<img id="separador2" src="/Images/separador1.gif" class="pull-right img-responsive" />*@
+                        @*<img onmouseover="this.src = '/images/ToolFechar_.gif'" onmouseout="this.src = '/images/ToolFechar.gif'" id="voltar" src="/Images/ToolFechar.gif" title="Voltar" class="pull-right img-responsive" />*@
+                        <i title="Voltar" class="fa  fa-sign-out fa-rotate-180 fa-lg pull-right img-responsive tamanhoCor"></i>
+                        
                         
                     </h4>
                 </div>
@@ -273,6 +286,18 @@
                                 </div>
                             </div>
                         </div>
+                        
+                        <div class="row">
+                            <div class="col-sm-0half">
+                                <img id="separador3" src="/Images/Tool_nor.gif" title="Campo Opcional" />
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2">Local</label>
+                                <div class="col-md-6">
+                                    @Html.TextAreaFor(m => m.ReuniaoBrainstorm.Local, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
                         @Html.HiddenFor(m => m.ReuniaoBrainstorm.Id)
                         @Html.HiddenFor(m => m.ReuniaoBrainstorm.EstadoFlag, new { @class = "estadoFlag" })
                     </div>
@@ -289,7 +314,8 @@
                     <h4 class="panel-title">
                         <a data-toggle="collapse" href="#collapse2" class="minMax2" style="text-align: left">Temas</a>
                         <a data-toggle="collapse" href="#collapse2" class="minMax2" style="text-align: right">
-                            <img @*onmouseover="this.src = '../images/min_.gif'" onmouseout="this.src = '/images/Min.gif'"*@ id="min2" src="/Images/Min.gif" title="Esconder" class="pull-right img-responsive" />
+                            @*<img*@ @*onmouseover="this.src = '../images/min_.gif'" onmouseout="this.src = '/images/Min.gif'"*@ @*id="min2" src="/Images/Min.gif" title="Esconder" class="pull-right img-responsive" />*@
+                            <i id="min2" title="Últimas reuniões inseridas" class="fa fa-window-minimize fa-lg pull-right img-responsive"></i>
                         </a>
                     </h4>
                 </div>
@@ -302,10 +328,10 @@
                                 <thead style="color: white; background: #6699FF;">
                                     <tr>
                                         <td>Descrição</td>
-                                        <td>Importância</td>
+                                        @*<td>Importância</td>*@
                                         <td>Comentários</td>
                                         @*<td>Decisão</td>*@
-                                        <td>Título</td>
+                                        @*<td>Título</td>*@
                                         <td>Ok</td>
                                         <td>Teste</td>
                                     </tr>
@@ -318,33 +344,37 @@
                                        <tr>
                                            <td>
                                                @Html.TextAreaFor(m => m.Temas[i].Descricao, new {@class = "form-control" @*, @style = "font-size: 10px!important"*@})
+                                               @Html.ValidationMessageFor(m => m.Temas[i].Descricao)
                                            </td>
-                                           <td>
+                                           @*<td>
                                                @Html.TextAreaFor(m => m.Temas[i].Importancia, new {@class = "form-control"})
-                                           </td>
+                                               @Html.ValidationMessageFor(m => m.Temas[i].Importancia)
+                                           </td>*@
                                            <td>
                                                @Html.TextAreaFor(m => m.Temas[i].Comentarios, new {@class = "form-control"})
+                                               @Html.ValidationMessageFor(m => m.Temas[i].Comentarios)
                                            </td>
                                            @*<td>
                                                     @Html.TextBoxFor(m => m.Temas[i].Decisao, new { @class = "form-control" })
                                                 </td>*@
-                                           <td>
+                                           @*<td>
                                                @Html.TextAreaFor(m => m.Temas[i].Titulo, new {@class = "form-control"})
-                                           </td>
+                                               @Html.ValidationMessageFor(m => m.Temas[i].Titulo)
+                                           </td>*@
                                            <td>
                                                <button href="#Bar" class="btn btn-default" data-toggle="collapse">Toggle Bar</button>
                                            </td>
                                            <td>
-                                               <button id="botao" href="#Foo0" class="btn btn-default" data-toggle="collapse">
-                                                   <img id="imagem" src="/Images/mais.gif" width="10"/>
+                                               <button id="botao" href="@("#Foo" + i)" class="btn btn-default teste1" data-toggle="collapse">
+                                                   <img id="@("imagem" + i)" src="/Images/mais.gif" width="10"/>
                                                </button>
                                            </td>
                                        </tr>
                                         <tr class="noBorder collapse" id="@("Foo" + i)">
                                 @*<tr class="noBorder collapse" id="@("Foo"+i)">*@
                                             <td colspan="1"><label class="control-label">Titulo do registo</label></td>
-                                            <td colspan="3"> @Html.TextBoxFor(m => m.Temas[i].Titulo, new {@class = "form-control"}) </td>
-                                            <td colspan="2"> <label><input type="checkbox" value="">Gestão de inovação</label> </td>
+                                            <td colspan="2"> @Html.TextBoxFor(m => m.Temas[i].Titulo, new {@class = "form-control"}) </td>
+                                            <td colspan="1"> <label><input type="checkbox" value="">Gestão de inovação</label> </td>
                                         </tr>
                                        @Html.HiddenFor(m => m.Temas[i].Estado)
                                        @Html.HiddenFor(m => m.Temas[i].Id)
@@ -394,7 +424,8 @@
                     <h4 class="panel-title">
                         <a data-toggle="collapse" href="#collapse3" class="minMax3" style="text-align: left">Outros</a>
                         <a data-toggle="collapse" href="#collapse3" class="minMax3" style="text-align: right">
-                            <img @*onmouseover="this.src = '../images/min_.gif'" onmouseout="this.src = '/images/Min.gif'"*@ id="min3" src="/Images/Min.gif" title="Esconder" class="pull-right img-responsive" />
+                            @*<img*@ @*onmouseover="this.src = '../images/min_.gif'" onmouseout="this.src = '/images/Min.gif'"*@ @*id="min3" src="/Images/Min.gif" title="Esconder" class="pull-right img-responsive" />*@
+                            <i id="min3" title="Últimas reuniões inseridas" class="fa fa-window-minimize fa-lg pull-right img-responsive"></i>
                         </a>
                     </h4>
                 </div>

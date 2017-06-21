@@ -51,20 +51,7 @@ namespace Brainstorm.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Reuniao(BrainstormViewModel model)
         {
-
-            //for (var i = 0; i < model.Temas.Count; i++)
-            //{
-            //    if(model.Temas[i].Id==0)
-            //    model.Temas[i].Id = 999999;
-            //}
-
-            //foreach (var tema in model.Temas)
-            //{
-            //    ModelState.Remove(nameof(tema.Id));
-            //}
-
-           
-
+                    
             // ModelState.Remove(nameof(model.Temas.Id));
             // valida campos
             if (!ModelState.IsValid)
@@ -92,11 +79,6 @@ namespace Brainstorm.Controllers
                     model.ReuniaoBrainstorm.Estado = "X";
                 }
 
-                //for (var i = 0; i < model.Temas.Count; i++)
-                //{
-                //    if (model.Temas[i].Id == 999999)
-                //        model.Temas[i].Id = 0;
-                //}
 
                 return View("Reuniao", model);
             }
@@ -119,6 +101,8 @@ namespace Brainstorm.Controllers
                 // guardar temas consoante o numero de temas presentes no model
                 for (int i = 0; i < model.Temas.Count; i++)
                 {
+                    // estado pendente como default-- mudar a logica depois de falar com rui
+                    model.Temas[i].Estado = "P";
                     DataRow idTemaAux = brainRepo.guardarTema(model.Temas[i], idBrainstorm);
                     int idTema = int.Parse(idTemaAux[0].ToString());
                     model.Temas[i].Id = idTema;
