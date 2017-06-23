@@ -30,7 +30,7 @@ namespace Brainstorm.Models
 
         public string Estado { get; set; }
         public DateTime DataEstado { get; set; }
-        public string Comentarios { get; set; }
+        public string Observacoes { get; set; }
         public bool EstadoFlag { get; set; }
         public string Local { get; set; }
 

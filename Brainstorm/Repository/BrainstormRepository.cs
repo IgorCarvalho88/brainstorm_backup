@@ -21,6 +21,7 @@ namespace Brainstorm.Repository
 
         DataRow alterarReuniao(BrainstormViewModel mode, int id);
         DataRow alterarTema(Tema tema, int id);
-       // DataRow alterarEstado(string estado, int id);
+        DataRow guardarInterveniente(Interveniente interveniente, int idBrainstorm);
+        // DataRow alterarEstado(string estado, int id);
     }
 }

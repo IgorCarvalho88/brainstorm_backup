@@ -33,7 +33,7 @@ namespace Brainstorm.Controllers
             //    new Tema {Descricao = "Inovacao2", Importancia = "Alta", Comentarios = "teste2",  Titulo = "titulo2", Estado = "P", GestaoInov = 0 }
             //};
 
-             List<Tema> temas = new List<Tema>(new Tema[2]);
+             List<Tema> temas = new List<Tema>(new Tema[10]);
 
             var viewModel = new BrainstormViewModel
             {
@@ -91,12 +91,20 @@ namespace Brainstorm.Controllers
                 // inicializa estado para pendente
                 model.ReuniaoBrainstorm.Estado = "P";
                 // split do codigo e nome
-                model.Intervenientes = tratarInterv(model.Intervenientes);
+                model.Intervenientes = tratarInterv2(model.IntervenientesView);
 
                 // guardar dados recebidos pelo utilizador aquando da criação da reuniao com os dados preenchidos na form////////////
 
                 DataRow id = brainRepo.guardarReuniao(model);
                 int idBrainstorm = int.Parse(id[0].ToString());
+
+                // guardar intervenientes consoante o numero de intervenientes presentes no model
+                for (int i = 0; i < model.Intervenientes.Count; i++)
+                {
+                    DataRow idIntervenienteAux = brainRepo.guardarInterveniente(model.Intervenientes[i], idBrainstorm);
+                    int idInterveniente = int.Parse(idIntervenienteAux[0].ToString());
+                   
+                }
 
                 // guardar temas consoante o numero de temas presentes no model
                 for (int i = 0; i < model.Temas.Count; i++)
@@ -121,50 +129,22 @@ namespace Brainstorm.Controllers
                 // update reuniao
                
                 BrainstormRepository brainRepo = new BrainstormDB();
-                //if (model.ReuniaoBrainstorm.Estado == "Pendente")
-                //{
-                //    model.ReuniaoBrainstorm.Estado = "P";
-                //}
-                //else if (model.ReuniaoBrainstorm.Estado == "Aprovado")
-                //{
-                //    model.ReuniaoBrainstorm.Estado = "A";
-                //}
-                //else if (model.ReuniaoBrainstorm.Estado == "Encerrado")
-                //{
-                //    model.ReuniaoBrainstorm.Estado = "E";
-                //}
-
-                //else if (model.ReuniaoBrainstorm.Estado == "Anulada")
-                //{
-                //    model.ReuniaoBrainstorm.Estado = "X";
-                //}
-
-
-                //if (model.ReuniaoBrainstorm.Estado == "P")
-                //{
-                //    model.ReuniaoBrainstorm.Estado = "P";
-                //}
-                //else if (model.ReuniaoBrainstorm.Estado == "A")
-                //{
-                //    model.ReuniaoBrainstorm.Estado = "A";
-                //}
-                //else if (model.ReuniaoBrainstorm.Estado == "E")
-                //{
-                //    model.ReuniaoBrainstorm.Estado = "E";
-                //}
-
-                //else if (model.ReuniaoBrainstorm.Estado == "X")
-                //{
-                //    model.ReuniaoBrainstorm.Estado = "X";
-                //}
+                IIntervenientes repo = new IntervenientesDB();
+               
 
                 if (model.ReuniaoBrainstorm.Estado == "X")
                 {
-                    model.Intervenientes = tratarInterv(model.Intervenientes);
+                     model.Intervenientes = tratarInterv2(model.IntervenientesView);
 
                     brainRepo.alterarReuniao(model, model.ReuniaoBrainstorm.Id);
 
+                    repo.deleteIntervenientes(model.ReuniaoBrainstorm.Id);
+                    for (int i = 0; i < model.Intervenientes.Count; i++)
+                    {
+                        DataRow idIntervenienteAux = brainRepo.guardarInterveniente(model.Intervenientes[i], model.ReuniaoBrainstorm.Id);
+                        int idInterveniente = int.Parse(idIntervenienteAux[0].ToString());
 
+                    }
 
                     for (int i = 0; i < model.Temas.Count; i++)
                     {
@@ -178,11 +158,17 @@ namespace Brainstorm.Controllers
                 }
 
 
-                model.Intervenientes = tratarInterv(model.Intervenientes);
+                model.Intervenientes = tratarInterv2(model.IntervenientesView);
 
                 DataRow teste = brainRepo.alterarReuniao(model, model.ReuniaoBrainstorm.Id);
+                // adicionar funcao de fazer delete aos intervenientes associados ao id
+                repo.deleteIntervenientes(model.ReuniaoBrainstorm.Id);
+                for (int i = 0; i < model.Intervenientes.Count; i++)
+                {
+                    DataRow idIntervenienteAux = brainRepo.guardarInterveniente(model.Intervenientes[i], model.ReuniaoBrainstorm.Id);
+                    int idInterveniente = int.Parse(idIntervenienteAux[0].ToString());
 
-
+                }
 
                 for (int i = 0; i < model.Temas.Count; i++)
                 {
@@ -240,6 +226,11 @@ namespace Brainstorm.Controllers
             return View("Reuniao", viewModel);
         }
 
+        public ActionResult GestaoBrainstorm()
+        {
+            return View();
+        }
+
 
         public List<Interveniente> tratarInterv(List<Interveniente> intervs)
         {
@@ -254,6 +245,26 @@ namespace Brainstorm.Controllers
                     intervs[i].Nome = split[1];
                     intervs[i].Codigo = split[0];
                 }
+            }
+            return intervs;
+        }
+
+        public List<Interveniente> tratarInterv2(string[] intervsAux)
+        {
+            var intervs = new List<Interveniente>();
+            for (int i = 0; i < intervsAux.Length; i++)
+            {
+                string s = intervsAux[i];
+                Interveniente interveniente = new Interveniente();
+                if (!(String.IsNullOrWhiteSpace(s)))
+                {
+                    var split = s.Split(new[] { "   " }, StringSplitOptions.None);
+                    split[0] = split[0].Substring(1, split[0].Length - 2);
+                    interveniente.Nome = split[1];
+                    interveniente.Codigo = split[0];
+                }
+
+                intervs.Add(interveniente);
             }
             return intervs;
         }

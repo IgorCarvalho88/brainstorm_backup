@@ -96,19 +96,19 @@
         
     //});
 
-    $('#Foo').on('show.bs.collapse',
-        function () {
-            $('#imagem').attr('src', '/Images/menos.gif');
-            //$('#min3').attr('title', 'Esconder');
+    //$('#Foo').on('show.bs.collapse',
+    //    function () {
+    //        $('#imagem').attr('src', '/Images/menos.gif');
+    //        //$('#min3').attr('title', 'Esconder');
 
-        });
+    //    });
 
-    $('#Foo').on('hide.bs.collapse',
-        function () {
-            $('#imagem').attr('src', '/Images/mais.gif');
-            //$('#min3').attr('title', 'Esconder');
+    //$('#Foo').on('hide.bs.collapse',
+    //    function () {
+    //        $('#imagem').attr('src', '/Images/mais.gif');
+    //        //$('#min3').attr('title', 'Esconder');
 
-        });
+    //    });
 
     // mudar a imagem ou icon para botao de cada tema
     $('.teste1').each(function(index) {

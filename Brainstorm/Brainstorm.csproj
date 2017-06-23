@@ -469,6 +469,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Brainstorm\Reuniao.cshtml" />
     <Content Include="Views\Brainstorm\ReuniaoAnulada.cshtml" />
+    <Content Include="Views\Brainstorm\GestaoBrainstorm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

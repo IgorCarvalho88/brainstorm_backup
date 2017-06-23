@@ -14,5 +14,7 @@ namespace Brainstorm.Repository
 
         List<Interveniente> getUT();
         List<Interveniente> getBrainstormIntervenientes(int id);
+
+        void deleteIntervenientes(int id);
     }
 }

@@ -63,6 +63,10 @@ textarea {
     transform: scale(2);
 }
 
+/*textarea.form-control {
+    height: 100%;
+}*/
+
 
 
 /*Table*/
