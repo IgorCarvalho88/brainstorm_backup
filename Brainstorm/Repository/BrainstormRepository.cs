@@ -23,5 +23,11 @@ namespace Brainstorm.Repository
         DataRow alterarTema(Tema tema, int id);
         DataRow guardarInterveniente(Interveniente interveniente, int idBrainstorm);
         // DataRow alterarEstado(string estado, int id);
+
+        List<GestaoBrainstorm> getReunioesBrainstorm();
+
+        string getWorkflow(int id);
+
+        void eliminarBrainstorm(int id);
     }
 }

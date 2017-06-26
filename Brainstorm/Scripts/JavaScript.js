@@ -69,6 +69,12 @@
         $(teste).select2();
     });
     // submit the form when click on button
+
+    $('#gravar').on('click', function (event) {
+        event.preventDefault();       
+        $('#myForm').submit();
+    });
+
     $('#gravar1').on('click', function (event) {
         event.preventDefault();
         $('.estado').val('A');
@@ -111,7 +117,7 @@
     //    });
 
     // mudar a imagem ou icon para botao de cada tema
-    $('.teste1').each(function(index) {
+    $('.mostraGestInov').each(function (index) {
         $('#Foo' + (index)).on('show.bs.collapse',
             function() {
                 $('#imagem' + (index)).attr('src', '/Images/menos.gif');
@@ -119,7 +125,7 @@
             });
     });
 
-    $('.teste1').each(function (index) {
+    $('.mostraGestInov').each(function (index) {
         $('#Foo' + (index)).on('hide.bs.collapse',
             function () {
                 $('#imagem' + (index)).attr('src', '/Images/mais.gif');
@@ -144,6 +150,11 @@
 
     $("#wf5").click(function() {
         $("#myModal").modal('show');
+    })
+
+    $("#wf").click(function () {
+        //alert("entrei");
+        $("#modalWorkflow").modal('show');
     })
 
     //$(function () {

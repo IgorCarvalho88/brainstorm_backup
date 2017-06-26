@@ -541,5 +541,178 @@ namespace Brainstorm.Repository.Database
             return null;
 
         }
+
+        public List<GestaoBrainstorm> getReunioesBrainstorm()
+        {
+
+            SqlConnection con = null;
+            try
+            {
+                string strConnString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+
+                con = new SqlConnection(strConnString);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Impossível de momento ligar a base de dados, tente mais tarde", ex.InnerException);
+            }
+            try
+            {
+
+                SqlCommand sqlComm = new SqlCommand("select *, (select top 1 brainstorm_tema_descricao from brainstorm_tema where brainstorm_tema_brainstorm_id = brainstorm_id order by brainstorm_tema_id desc) as descricao from brainstorm", con);
+
+                //sqlComm.Parameters.AddWithValue("@brainstorm_id", id);
+
+
+                //sqlComm.CommandType = CommandType.StoredProcedure;
+                SqlDataAdapter da = new SqlDataAdapter();
+                da.SelectCommand = sqlComm;
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+
+                var reunioes = new List<GestaoBrainstorm>();
+
+
+                if (dt.Rows.Count == 0)
+                {
+                    return null;
+                }
+                else
+                {
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        GestaoBrainstorm reuniaoBrainstorm = new GestaoBrainstorm();
+
+                        reuniaoBrainstorm.Id = Convert.ToInt32(row["brainstorm_id"].ToString());
+                        // reuniaoBrainstorm.Titulo = row["brainstorm_est_codigo"].ToString();
+                        reuniaoBrainstorm.Data = ((DateTime)row["brainstorm_data"]).ToString("dd/MM/yyyy");
+                        reuniaoBrainstorm.Estado = row["brainstorm_est_codigo"].ToString();
+                        reuniaoBrainstorm.Duracao = Convert.ToInt32(row["brainstorm_duracaoPrev"].ToString());
+                        reuniaoBrainstorm.DuracaoReal = Convert.ToInt32(row["brainstorm_duracaoReal"].ToString());
+                        reuniaoBrainstorm.Observacoes = row["brainstorm_observacoes"].ToString();
+                        reuniaoBrainstorm.Local = row["brainstorm_local"].ToString();
+                        reuniaoBrainstorm.Descricao = row["descricao"].ToString();
+                        reunioes.Add(reuniaoBrainstorm);
+                    }
+                    return reunioes;
+                }
+           
+
+            }
+            catch (SqlException ex)
+            {
+                System.Console.WriteLine("EXCEPÇÃO  get periodos ultimas 8 horas: " + ex.Message);
+                return null;
+            }
+            finally
+            {
+                if (con.State == ConnectionState.Open)
+                    con.Close();
+            }
+
+            return null;
+
+        }
+
+        public void eliminarBrainstorm(int id)
+        {
+
+            SqlConnection con = null;
+            try
+            {
+                string strConnString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+
+                con = new SqlConnection(strConnString);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Impossível de momento ligar a base de dados, tente mais tarde", ex.InnerException);
+            }
+            try
+            {
+
+                SqlCommand sqlComm = new SqlCommand("[dbo].[eliminarBrainstorm]", con);
+
+                sqlComm.Parameters.AddWithValue("@brainstorm_id", id);
+
+
+                sqlComm.CommandType = CommandType.StoredProcedure;
+                SqlDataAdapter da = new SqlDataAdapter();
+                da.SelectCommand = sqlComm;
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+               
+            }
+            catch (SqlException ex)
+            {
+                System.Console.WriteLine("EXCEPÇÃO  get periodos ultimas 8 horas: " + ex.Message);
+                
+            }
+            finally
+            {
+                if (con.State == ConnectionState.Open)
+                    con.Close();
+            }           
+
+        }
+
+
+        public string getWorkflow(int id)
+        {
+
+            SqlConnection con = null;
+            try
+            {
+                string strConnString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+
+                con = new SqlConnection(strConnString);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Impossível de momento ligar a base de dados, tente mais tarde", ex.InnerException);
+            }
+            try
+            {
+
+                SqlCommand sqlComm = new SqlCommand("SELECT dbo.brainstormWorkflow(@brainstorm_id) AS Workflow", con);
+
+                sqlComm.Parameters.AddWithValue("@brainstorm_id", id);
+
+                //SqlParameter brainstorm_id = new SqlParameter("@brainstorm_id", SqlDbType.Int);
+                //brainstorm_id.Value = id;
+
+                // sqlComm.CommandType = CommandType.StoredProcedure;
+                SqlDataAdapter da = new SqlDataAdapter();
+                da.SelectCommand = sqlComm;
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                //string workflow;
+                //workflow = sqlComm.ExecuteScalar();
+                if (dt.Rows.Count == 0)
+                {
+                    return null;
+                }
+                else
+                {
+                    string workflow;
+                    workflow = dt.Rows[0]["Workflow"].ToString();
+
+                    return workflow;
+                }
+
+            }
+            catch (SqlException ex)
+            {
+                System.Console.WriteLine("EXCEPÇÃO  get periodos ultimas 8 horas: " + ex.Message);
+
+            }
+            finally
+            {
+                if (con.State == ConnectionState.Open)
+                    con.Close();
+            }
+            return null;
+
+        }
     }
 }

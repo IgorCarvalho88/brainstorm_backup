@@ -14,6 +14,8 @@ namespace Brainstorm.ViewModel
         public List<Tema> Temas { get; set; }
         public List<Interveniente> IntervenientesSelecionados { get; set; }
 
+        public List<WorkflowEstados> SequenciaEstados { get; set; }
+
         public string[] IntervenientesView { get; set; }
     }
 }

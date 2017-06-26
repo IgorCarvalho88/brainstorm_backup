@@ -1,4 +1,5 @@
-﻿
+﻿@using Brainstorm.Traducoes
+@model Brainstorm.ViewModel.GestaoBrainstormViewModel
 @{
     ViewBag.Title = "GestaoBrainstorm";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -6,25 +7,127 @@
 
 <h2>GestaoBrainstorm</h2>
 
-<table class="table table-bordered table-hover">
+<table class="table table-bordered table-hover" id="Reunioes">
     <thead style="color: white; background: #6699FF;">
     <tr>
-        <td>Titulo</td>
-        <td>Data</td>
-        <td>Estado</td>
-        <td>Descrição</td>
-        <td>Observacoes</td>
-        <td>Duração</td>
+        @*<td>Titulo</td>*@
+        <td class="select-filter">@Traducoes.Traduz("Data")</td>
+        <td class="select-filter">@Traducoes.Traduz("Estado")</td>
+        <td>@Traducoes.Traduz("Descrição")</td>
+        <td>@Traducoes.Traduz("Observações")</td>
+        <td class="select-filter">@Traducoes.Traduz("Duração Prevista")</td>
+        <td class="select-filter">@Traducoes.Traduz("Duração Real")</td>
+        <td class="select-filter">@Traducoes.Traduz("Local")</td>
+        <td></td>
     </tr>
     </thead>
-    <tbody>
+    <tfoot>
     <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
     </tr>
+    </tfoot>
+    <tbody>
+    @*<td></td>*@
+    @{
+        foreach (var reuniao in Model.Reunioes)
+        {
+            <tr>
+                <td>@reuniao.Data</td>
+                <td>@reuniao.Estado</td>
+                <td>@reuniao.Descricao</td>
+                <td>@reuniao.Observacoes</td>
+                <td>@reuniao.Duracao</td>
+                <td>@reuniao.DuracaoReal</td>
+                <td>@reuniao.Local</td>
+                <td align="right">
+                    <a id ="editar" href="#" title=@Traducoes.Traduz("Editar")> 
+                        <span><i class="fa fa-edit fa-2x"></i></span> 
+                    </a>
+                    <a id ="visualizar" href="@Url.Action("", "", new { id = "" })" title=@Traducoes.Traduz("Visualizar")> 
+                        <span><i class="fa fa-eye fa-2x"></i></span> 
+                    </a>
+                    <a data-reuniao-id="@reuniao.Id" id ="remover" href="" title=@Traducoes.Traduz("Eliminar")>
+                        <span><i class="fa fa-trash fa-2x"></i></span> 
+                    </a>
+                </td>
+            </tr>
+        }
+
+
+    }
+    
     </tbody>
-</table>           
+</table>
+
+<script>
+    $(document).ready(function() {
+        $('#Reunioes').DataTable({
+            dom: 'Bfrtip',
+            initComplete: function () {
+                this.api().columns('.select-filter').every(function () {
+                    var column = this;
+                    var selectTraduzido = '<select ><option value="">' + 'Todos' + '</option></select>'
+                    var select = $(selectTraduzido)
+                        .appendTo($(column.footer()).empty())
+                        .on('change', function () {
+                            var val = $.fn.dataTable.util.escapeRegex(
+                                $(this).val()
+                            );
+
+                            column
+                                .search(val ? '^' + val + '$' : '', true, false)
+                                .draw();
+                        });
+
+                    column.data().unique().sort().each(function (d, j) {
+                        select.append('<option value="' + d + '">' + d + '</option>')
+                    });
+                });
+            },
+            "language": {
+                "lengthMenu": "Display _MENU_ records per page",
+                "zeroRecords": 'Sem dados disponíveis',
+                "info": 'Página' + " _PAGE_ " + 'de' + " _PAGES_",
+                "infoEmpty": 'Sem dados disponíveis',
+                "search": 'Pesquisar',
+                "infoFiltered": "(" + 'Filtrados' + " _MAX_ " + 'resultados' + ")",
+                "paginate": {
+                    "first": 'Primeiro',
+                    "last": 'Último',
+                    "next": 'Seguinte',
+                    "previous": 'Anterior'
+                },
+                "buttons": {
+                    "copy": 'Copiar'
+                }
+            }
+        });
+
+
+
+
+
+
+
+        $("#remover").click(function() {
+            if (confirm("Tem a certeza?")) {
+                var teste = "/Brainstorm/GestaoBrainstorm/" + $(this).attr("data-reuniao-id");
+                alert(teste);
+                $.ajax({
+                    url: "/Brainstorm/GestaoBrainstorm/" + $(this).attr("data-reuniao-id"),
+                    method: "DELETE",
+                    sucess:function() {
+                        alert("fazer delete da linha");
+                    }
+                });
+            }
+        });
+    });
+</script>           

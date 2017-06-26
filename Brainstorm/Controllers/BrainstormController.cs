@@ -33,7 +33,7 @@ namespace Brainstorm.Controllers
             //    new Tema {Descricao = "Inovacao2", Importancia = "Alta", Comentarios = "teste2",  Titulo = "titulo2", Estado = "P", GestaoInov = 0 }
             //};
 
-             List<Tema> temas = new List<Tema>(new Tema[10]);
+             List<Tema> temas = new List<Tema>(new Tema[1]);
 
             var viewModel = new BrainstormViewModel
             {
@@ -201,20 +201,28 @@ namespace Brainstorm.Controllers
             var intervenientesSelecionados = new List<Interveniente>();
             var intervenientes = new List<Interveniente>();
             var temas = new List<Tema>();
+
+            string workflow;
             //var viewModel = new BrainstormViewModel();
 
             reuniaoBrainstorm = brainRepo.getReuniaoBrainstorm(id);
             reuniaoBrainstorm.Id = id;
             temas = brainRepo.getBrainstormTemas(id);
             intervenientesSelecionados = repo.getBrainstormIntervenientes(id);
-            intervenientes = repo.getUT();           
+            intervenientes = repo.getUT();
+
+            // tratar workflow
+            workflow = brainRepo.getWorkflow(reuniaoBrainstorm.Id);          
+            var workflows = new List<WorkflowEstados>();
+            workflows = tratarWorkflow(workflow);
 
             var viewModel = new BrainstormViewModel
             {
                 ReuniaoBrainstorm = reuniaoBrainstorm,
                 Intervenientes = intervenientes,
                 Temas = temas,
-                IntervenientesSelecionados = intervenientesSelecionados
+                IntervenientesSelecionados = intervenientesSelecionados,
+                SequenciaEstados = workflows
 
             };
 
@@ -228,7 +236,36 @@ namespace Brainstorm.Controllers
 
         public ActionResult GestaoBrainstorm()
         {
-            return View();
+            BrainstormRepository brainRepo = new BrainstormDB();
+
+
+            var reunioes = new List<GestaoBrainstorm>();
+            reunioes = brainRepo.getReunioesBrainstorm();
+
+            var viewModel = new GestaoBrainstormViewModel()
+            {
+               Reunioes = reunioes
+
+            };
+            return View(viewModel);
+        }
+
+        [HttpDelete]
+        [ValidateAntiForgeryToken]
+        public ActionResult GestaoBrainstorm(int id)
+        {
+            BrainstormRepository brainRepo = new BrainstormDB();
+            brainRepo.eliminarBrainstorm(id);
+
+            //var reunioes = new List<GestaoBrainstorm>();
+            //reunioes = brainRepo.getReunioesBrainstorm();
+
+            //var viewModel = new GestaoBrainstormViewModel()
+            //{
+            //    Reunioes = reunioes
+
+            //};
+            return null;
         }
 
 
@@ -268,5 +305,54 @@ namespace Brainstorm.Controllers
             }
             return intervs;
         }
+
+        public List<WorkflowEstados> tratarWorkflow(string workflow)
+        {
+            //var intervs = new List<Interveniente>();
+            Char delimiter = '|';
+            Char delimiter2 = ';';
+            var workflows = new List<WorkflowEstados>();
+           
+
+            String[] substrings = workflow.Split(delimiter);
+            int i = 1;
+            foreach (var substring in substrings)
+            {
+                // last element
+                WorkflowEstados workflowEstado = new WorkflowEstados();
+                int tamanho = substrings.Length;
+                if (i!=tamanho)
+                {
+                    String[] subsubstrings = substring.Split(delimiter2);
+                    Estado estado = (Estado)Enum.Parse(typeof(Estado), subsubstrings[0]);
+                    workflowEstado.estado = estado;
+                    workflowEstado.data = subsubstrings[1];
+                    workflowEstado.UtilizadorDescritivo = subsubstrings[2];
+                    workflows.Add(workflowEstado);
+
+                }
+               
+                i++;
+            }
+               
+
+            return workflows;
+        }
+            //for (int i = 0; i < intervsAux.Length; i++)
+            //{
+            //    string s = intervsAux[i];
+            //    Interveniente interveniente = new Interveniente();
+            //    if (!(String.IsNullOrWhiteSpace(s)))
+            //    {
+            //        var split = s.Split(new[] { "   " }, StringSplitOptions.None);
+            //        split[0] = split[0].Substring(1, split[0].Length - 2);
+            //        interveniente.Nome = split[1];
+            //        interveniente.Codigo = split[0];
+            //    }
+
+            //    intervs.Add(interveniente);
+            //}
+        //    return null;
+        //}
     }
 }
