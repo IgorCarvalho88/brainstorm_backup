@@ -1,0 +1,17 @@
+﻿body {
+}
+
+#Reunioes td{
+  /*max-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;*/
+}
+
+
+/*#Reunioes td{
+    width:200px;
+    overflow: Hidden;
+  word-break: break-all;
+word-wrap:break-word;
+}*/

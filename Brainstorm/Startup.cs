@@ -1,14 +1,17 @@
-﻿using Microsoft.Owin;
-using Owin;
+﻿using Owin;
+using Microsoft.Owin;
+using Microsoft.AspNet.SignalR;
 
-[assembly: OwinStartupAttribute(typeof(Brainstorm.Startup))]
-namespace Brainstorm
+[assembly: OwinStartup(typeof(SignalRChat.Startup))]
+namespace SignalRChat
 {
-    public partial class Startup
+    public class Startup
     {
         public void Configuration(IAppBuilder app)
         {
-            ConfigureAuth(app);
+            // Any connection or hub wire up and configuration should go here
+           
+            app.MapSignalR();
         }
     }
 }

@@ -1,0 +1,115 @@
+﻿@using Brainstorm.Traducoes
+@model Brainstorm.ViewModel.BrainstormViewModel
+
+
+@*modal VIEWUpload Files*@
+
+
+    <div class="modal-dialog">
+        <div class="modal-content" id="loading">
+            <div class="modal-header">
+                <h3>@Traducoes.Traduz("Anexos")</h3>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+
+                    <div class="col-xs-12">
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                @*@Traducoes.Traduz("Detalhes Ideia")*@
+                            </div>
+                            <div class="panel-body table-responsive" style="height:40vh;overflow-y: auto">
+
+                                <dl class="dl-horizontal">
+
+                                    @if (Model.Anexos != null && Model.Anexos.Count > 0)
+                                    {
+                                        <dt>
+                                            @Html.Label(@Traducoes.Traduz("Anexos"))
+                                        </dt>
+                                        <dd>
+                                            @{ var indiceExtensao = 1;}
+                                            @foreach (var anexo in Model.Anexos)
+                                            {
+                                                <a href="@Url.Action("getFileByID", "Brainstorm", new { id = anexo.AnexoID })" target="_blank" title="@anexo.FileName">
+
+                                                    @{ var extension = Path.GetExtension(anexo.Path);}
+                                                    @if (indiceExtensao != Model.Anexos.Count)
+                                                    {
+
+
+                                                        if (extension == ".jpg" || extension == ".png" || extension == ".jpeg" || extension == ".gif")
+                                                        {
+                                                            <span style="border-right: 1px solid #000000 !important;"><i class="fa fa-file-image-o">@anexo.FileName &nbsp;</i></span>
+                                                        }
+                                                        else if (extension == ".docx" || extension == ".doc" || extension == ".dotx")
+                                                        {
+                                                            <span style="border-right: 1px solid #000000 !important;"><i class="fa fa-file-word-o">@anexo.FileName &nbsp;</i></span>
+                                                        }
+                                                        else if (extension == ".xls" || extension == ".xlsb" || extension == ".xlsx" || extension == ".xltx")
+                                                        {
+                                                            <span style="border-right: 1px solid #000000 !important;"><i class="fa fa-file-excel-o">@anexo.FileName &nbsp;</i></span>
+                                                        }
+                                                        else if (extension == ".pdf")
+                                                        {
+                                                            <span style="border-right: 1px solid #000000 !important;"><i class="fa fa-file-image-o">@anexo.FileName &nbsp;</i></span>
+                                                        }
+                                                        else
+                                                        {
+                                                            <span style="border-right: 1px solid #000000 !important;"><i class="fa fa-file-archive-o">@anexo.FileName &nbsp;</i></span>
+                                                        }
+                                                    }
+                                                    else
+                                                    {
+                                                        if (extension == ".jpg" || extension == ".png" || extension == ".jpeg" || extension == ".gif")
+                                                        {
+                                                            <span><i class="fa fa-file-image-o">@anexo.FileName</i></span>
+                                                        }
+                                                        else if (extension == ".docx" || extension == ".doc" || extension == ".dotx")
+                                                        {
+                                                            <span><i class="fa fa-file-word-o">@anexo.FileName &nbsp;</i></span>
+                                                        }
+                                                        else if (extension == ".xls" || extension == ".xlsb" || extension == ".xlsx" || extension == ".xltx")
+                                                        {
+                                                            <span><i class="fa fa-file-excel-o">@anexo.FileName &nbsp;</i></span>
+                                                        }
+                                                        else if (extension == ".pdf")
+                                                        {
+                                                            <span><i class="fa fa-file-pdf-o">@anexo.FileName &nbsp;</i></span>
+                                                        }
+                                                        else
+                                                        {
+                                                            <span><i class="fa fa-file-archive-o">@anexo.FileName &nbsp;</i></span>
+                                                        }
+                                                    }
+
+                                                </a>
+                                                            indiceExtensao++;
+
+                                                        }
+                                        </dd>
+                                                        }
+                                                        @*<dt>
+                                                                @Traducoes.Traduz("Data Registo")
+                                                            </dt>
+
+                                                            <dd>
+                                                                @Html.DisplayFor(model => Model.dataRegisto)
+                                                            </dd>*@
+                                                    </dl>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer" style="text-align: center;">
+                                    <button type="button" class="btn btn-labeled btn-info" style="vertical-align: top;" data-dismiss="modal" onclick="$('#modalAnexos').removeClass('in'); $('#modalAnexos').css('display', '');">
+                                        <span class="btn-label"><i class="fa fa-remove" id="iconCancelar"></i></span>@Traducoes.Traduz("Fechar")
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    
+
+

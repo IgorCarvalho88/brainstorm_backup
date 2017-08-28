@@ -1,0 +1,115 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    @using Brainstorm.Traducoes
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+    <script src="~/Scripts/moment.js"></script>
+    <script src="~/Scripts/bootstrap-datetimepicker.min.js"></script>
+    <script src="~/Scripts/select2.js"></script>
+    <script src="~/Scripts/JavaScript.js"></script>
+    <script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+    <script src="~/Scripts/DataTables/dataTables.bootstrap.min.js"></script>
+    <script src="~/Scripts/dropzone/dropzone.min.js"></script>
+    <script src="~/Scripts/bootbox.min.js"></script>
+    <script src="~/Scripts/toastr.min.js"></script>
+    <script src="~/Scripts/jquery.signalR-2.2.2.min.js"></script>
+    <script src="~/signalr/hubs"></script>
+    <link href="~/Content/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+    <link href="~/Content/css/select2.min.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Scripts/dropzone/basic.min.css" rel="stylesheet" />
+    <link href="~/Scripts/dropzone/dropzone.min.css" rel="stylesheet" />
+    <link href="~/Content/DataTables/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/toastr.min.css" rel="stylesheet" />
+
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header pull-right" id="navBarRight">
+                @if (HttpContext.Current.Request.RequestContext.RouteData.Values["action"].ToString() == "Reuniao" || HttpContext.Current.Request.RequestContext.RouteData.Values["action"].ToString() == "EditarReuniao")
+                {
+                    <a href="@Url.Action("Reuniao", "Brainstorm")" title=@Traducoes.Traduz("Nova")>
+                        <span><i class="fa fa-plus navbar-toggle" style="color:#9d9d9d;text-shadow: 0 -1px 0 rgba(0,0,0,.25);"></i></span> @*<b>Home</b>*@
+                    </a>
+                    @*<a href="#" title=@Traducoes.Traduz("Retroceder")>
+                        <span><i class="fa fa-arrow-left navbar-toggle" style="color:#9d9d9d;text-shadow: 0 -1px 0 rgba(0,0,0,.25);"></i></span>
+                    </a>*@
+                    <a href="@Url.Action("GestaoBrainstorm", "Brainstorm")" title=@Traducoes.Traduz("Pesquisa")>
+                        <span><i class="fa fa-search navbar-toggle" style="color:#9d9d9d;text-shadow: 0 -1px 0 rgba(0,0,0,.25);"></i></span>
+                    </a>
+                }
+                 @if (HttpContext.Current.Request.RequestContext.RouteData.Values["action"].ToString() == "GestaoBrainstorm")
+                {
+                    <a href="@Url.Action("Reuniao", "Brainstorm")" title=@Traducoes.Traduz("Nova")>
+                        <span><i class="fa fa-plus navbar-toggle" style="color:#9d9d9d;text-shadow: 0 -1px 0 rgba(0,0,0,.25);"></i></span> @*<b>Home</b>*@
+                    </a>
+                    @*<a href="javascript:history.back()" title=@Traducoes.Traduz("Retroceder")>
+                        <span><i class="fa fa-arrow-left navbar-toggle" style="color:#9d9d9d;text-shadow: 0 -1px 0 rgba(0,0,0,.25);"></i></span>
+                    </a>*@
+                    @*<a href="#" title=@Traducoes.Traduz("Pesquisa")>
+                        <span><i class="fa fa-search navbar-toggle" style="color:#9d9d9d;text-shadow: 0 -1px 0 rgba(0,0,0,.25);"></i></span>
+                    </a>*@
+                }
+            </div>
+            <div class="navbar-header pull-left">
+                <a href="@Url.Action("Index", "Home")" title=@Traducoes.Traduz("Home")>
+                    <span><i class="fa fa-home navbar-toggle" style="color:#9d9d9d;text-shadow: 0 -1px 0 rgba(0,0,0,.25);"></i></span> @*<b>Home</b>*@
+                </a>
+            </div>
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    @*<li>@Html.ActionLink("Home", "Index", "Home")</li>
+                        <li>@Html.ActionLink("About", "About", "Home")</li>
+                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Sistrade Software Consulting, SA</p>
+        </footer>
+    </div>
+
+
+
+
+    @*<script>
+            @{
+                /*selecionados*/
+                if (Model.IntervenientesSelecionados != null)
+                {
+                    var j = 1;
+                    foreach (var interv in Model.IntervenientesSelecionados)
+                    {
+                        var id = "Interveniente" + j.ToString();
+                        @:$("@id").val("@interv.NomeAndCodigo").trigger("change");
+                        j++;
+                    }
+                }
+
+            }
+        </script>*@
+
+</body>
+
+</html>

@@ -9,11 +9,13 @@ namespace Brainstorm.Models
     public class Tema
     {
         public int? Id { get; set; }
-        //[RequiredIf(@"Descricao != null || Comentarios != null || Importancia != null", 
+        //[RequiredIf(@"Descricao != null || Comentarios != null",
         //    ErrorMessage = "Por favor, preencha todos os campos necessários dos requisitos")]
+        [RequiredIf(@"Descricao != null || Comentarios != null")]
         public string Titulo { get; set; }
-        //[RequiredIf(@"Titulo != null || Comentarios != null || Importancia != null",
+        //[RequiredIf(@"Titulo != null || Comentarios != null",
         //    ErrorMessage = "Por favor, preencha todos os campos necessários dos requisitos")]
+        [RequiredIf(@"Titulo != null || Comentarios != null")]
         public string Descricao { get; set; }
         //[RequiredIf(@"Descricao != null || Titulo != null || Importancia != null",
         //    ErrorMessage = "Por favor, preencha todos os campos necessários dos requisitos")]
@@ -24,8 +26,9 @@ namespace Brainstorm.Models
         //    ErrorMessage = "Por favor, preencha todos os campos necessários dos requisitos")]
         //public string Importancia { get; set; }
         public string Estado { get; set; }
-        public int GestaoInov { get; set; }
+        public bool GestaoInov { get; set; }
+        public bool Actividade { get; set; }
 
-        
+
     }
 }
