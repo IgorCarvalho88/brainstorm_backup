@@ -13,6 +13,10 @@
     padding-right: 1px;
 
 }
+/* Remove bold from label */
+label {
+    font-weight: normal !important;
+}
 
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
@@ -116,6 +120,7 @@ textarea {
 
 .estado {
     border: 0 none;
+    color:saddlebrown;
 }
 
 .tamanhoCor:hover {
@@ -956,4 +961,12 @@ img {
     font-size: 30px;
     height: 30px;
     vertical-align: middle;
+}
+
+/*.hidden {
+    display: none;
+}*/
+
+.corEstado{
+    color:saddlebrown;
 }

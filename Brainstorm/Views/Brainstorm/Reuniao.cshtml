@@ -9,7 +9,7 @@
 
 
 
-<h2 id = "flag" flagToastr ="0">Brainstorm</h2>
+<h2 id="flag" flagToastr="0">Brainstorming</h2>
 <div class="modal" id="modalAnexos" role="dialog" aria-labelledby="myModalLabel"> </div>
 @*@{ Session["FormatoData"] = "YYYYMMDD";}*@
 @*@{ Session["Idioma"] = "ENG";}*@
@@ -51,13 +51,13 @@
                     </div>
 
                     @*<div class="col-lg-5">
-                         The global file processing state 
-                        <span class="fileupload-process">
-                            <div id="total-progress" class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-                                <div class="progress-bar progress-bar-success" style="width:0%;" data-dz-uploadprogress></div>
-                            </div>
-                        </span>
-                    </div>*@
+                             The global file processing state
+                            <span class="fileupload-process">
+                                <div id="total-progress" class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                                    <div class="progress-bar progress-bar-success" style="width:0%;" data-dz-uploadprogress></div>
+                                </div>
+                            </span>
+                        </div>*@
 
                 </div>
 
@@ -117,37 +117,37 @@
 
 
 @*<div id="viewUpload" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-        <div class="modal-content" id="uploading">
-            <div class="modal-header">
-                <h3></h3>
-            </div>
-            <div class="modal-body">
+        <div class="modal-dialog">
+            <div class="modal-content" id="uploading">
+                <div class="modal-header">
+                    <h3></h3>
+                </div>
+                <div class="modal-body">
 
-                <div class="jumbotron">
-                    <form action="~/Brainstorm/SaveUploadedFile" method="post" enctype="multipart/form-data" class="dropzone" id="dropzoneForm" style="width: 50px; background: none; border: none;">
-                        <div class="fallback">
-                            <input name="file" type="file" multiple />
-                            <input type="submit" value="Upload" />
-                             
-                        </div>
-                    </form>
-                    <button class="btn btn-primary start">
-                        <i class="glyphicon glyphicon-upload"></i>
-                        <span>Start</span>
+                    <div class="jumbotron">
+                        <form action="~/Brainstorm/SaveUploadedFile" method="post" enctype="multipart/form-data" class="dropzone" id="dropzoneForm" style="width: 50px; background: none; border: none;">
+                            <div class="fallback">
+                                <input name="file" type="file" multiple />
+                                <input type="submit" value="Upload" />
+
+                            </div>
+                        </form>
+                        <button class="btn btn-primary start">
+                            <i class="glyphicon glyphicon-upload"></i>
+                            <span>Start</span>
+                        </button>
+                    </div>
+
+
+                </div>
+                <div class="modal-footer" style="text-align: center;">
+                    <button type="button" class="btn btn-labeled btn-info" style="vertical-align: top;" data-dismiss="modal" onclick="$('#modal').removeClass('in');$('#modal').css('display','');">
+                        <span class="btn-label"><i class="fa fa-remove" id="iconCancelar"></i></span>@Traducoes.Traduz("Fechar")
                     </button>
                 </div>
-
-             
-            </div>
-            <div class="modal-footer" style="text-align: center;">            
-                <button type="button" class="btn btn-labeled btn-info" style="vertical-align: top;" data-dismiss="modal" onclick="$('#modal').removeClass('in');$('#modal').css('display','');">
-                    <span class="btn-label"><i class="fa fa-remove" id="iconCancelar"></i></span>@Traducoes.Traduz("Fechar")
-                </button>
             </div>
         </div>
-    </div>
-</div>*@
+    </div>*@
 
 
 
@@ -244,316 +244,328 @@
     </div>
 
 
-        <div class="form">
-            <div class="panel-group" id="filtros" style="">
-                <div class="panel panel-info">
-                    <div class="panel-heading ">
-                        <h4 class="panel-title">
-                            <a data-toggle="collapse" href="#collapse1" class="minMax" style="text-align: left">@Traducoes.Traduz("Filtros")</a>
-                            <a data-toggle="collapse" href="#collapse1" class="minMax" style="text-align: right">
-                                @*<img*@ @*onmouseover="this.src = '../images/min_.gif'" onmouseout="this.src = '/images/Min.gif'"*@ @*id="min" src="/Images/Min.gif" title="Esconder" class="pull-right img-responsive" />*@
-                                <i id="min" title=@Traducoes.Traduz("Esconder") class="fa fa-window-minimize fa-lg pull-right img-responsive"></i>
-                            </a>
-                            @*<i title=@Traducoes.Traduz("Últimas reuniões inseridas") class="fa fa-history fa-lg pull-right img-responsive tamanhoCor"></i>*@
+    <div class="form">
+        <div class="panel-group" id="filtros" style="">
+            <div class="panel panel-info">
+                <div class="panel-heading ">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#collapse1" class="minMax" style="text-align: left">@Traducoes.Traduz("Filtros")</a>
+                        <a data-toggle="collapse" href="#collapse1" class="minMax" style="text-align: right">
+                            @*<img*@ @*onmouseover="this.src = '../images/min_.gif'" onmouseout="this.src = '/images/Min.gif'"*@ @*id="min" src="/Images/Min.gif" title="Esconder" class="pull-right img-responsive" />*@
+                            <i id="min" title=@Traducoes.Traduz("Esconder") class="fa fa-window-minimize fa-lg pull-right img-responsive"></i>
+                        </a>
+                        @*<i title=@Traducoes.Traduz("Últimas reuniões inseridas") class="fa fa-history fa-lg pull-right img-responsive tamanhoCor"></i>*@
 
-                            @{
-                                string escondeEditAndAttach = Model.ReuniaoBrainstorm.Estado == null ? "hidden" : "visible";
-                            }
-                            <i id="visualizarAnexos" title="@Traducoes.Traduz("Visualizar Documentação associada")" class="fa fa-archive fa-lg pull-right img-responsive tamanhoCor @escondeEditAndAttach" style="cursor: pointer"></i>
-                            <i id="anexos" title="@Traducoes.Traduz("Anexar documentos")" class="fa fa-paperclip fa-lg pull-right img-responsive tamanhoCor @escondeEditAndAttach"></i>
+                        @{
+                            string escondeEditAndAttach = Model.ReuniaoBrainstorm.Estado == null ? "hidden" : "visible";
+                        }
+                        <i id="visualizarAnexos" title="@Traducoes.Traduz("Visualizar Documentação associada")" class="fa fa-archive fa-lg pull-right img-responsive tamanhoCor @escondeEditAndAttach" style="cursor: pointer"></i>
+                        <i id="anexos" title="@Traducoes.Traduz("Anexar documentos")" class="fa fa-paperclip fa-lg pull-right img-responsive tamanhoCor @escondeEditAndAttach"></i>
 
-                            @{
-                                string escondeEstadoAndWf = Model.ReuniaoBrainstorm.Estado == null ? "hidden" : "visible";
-                            }
-                            <i id="wf5" title="@Traducoes.Traduz("Alterar estado da reunião")" class="fa fa-sitemap fa-lg pull-right img-responsive tamanhoCor  @escondeEstadoAndWf" style="cursor: pointer"></i>
-                            <i id="wf" title=@Traducoes.Traduz("Workflow") class="fa fa-exchange fa-lg pull-right img-responsive tamanhoCor  @escondeEstadoAndWf" style="cursor: pointer"></i>
-                            <i id="gravar" title=@Traducoes.Traduz("Gravar") class="fa fa-floppy-o fa-lg pull-right img-responsive tamanhoCor" style="cursor: pointer"></i>
-                            @*<i title=@Traducoes.Traduz("Limpar") class="fa fa-file-o fa-lg pull-right img-responsive tamanhoCor"></i>*@
-                            <i title=@Traducoes.Traduz("Voltar") class="fa  fa-sign-out fa-rotate-180 fa-lg pull-right img-responsive tamanhoCor" style="cursor: pointer"></i>
-                        </h4>
-                    </div>
-                    <div id="collapse1" class="panel-collapse collapse in">
-                        <div class="panel-body">
-                            <div class="row">
-                                <div class="col-sm-0half">
-                                    <img id="separador3" src="/Images/Tool_Obr.gif" title="@Traducoes.Traduz("Campo Obrigatório")" />
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label col-md-2">@Traducoes.Traduz("Data")</label>
-                                    <div class="col-md-2">
-                                        @Html.TextBoxFor(model => model.ReuniaoBrainstorm.Data, htmlAttributes: new { @id = "Data", @class = "form-control" })
-                                        @Html.ValidationMessageFor(model => model.ReuniaoBrainstorm.Data, @Traducoes.Traduz("Data é obrigatório"))
-                                    </div>
+                        @{
+                            string escondeEstadoAndWf = Model.ReuniaoBrainstorm.Estado == null ? "hidden" : "visible";
+                        }
+                        <i id="wf5" title="@Traducoes.Traduz("Alterar estado da reunião")" class="fa fa-sitemap fa-lg pull-right img-responsive tamanhoCor  @escondeEstadoAndWf" style="cursor: pointer"></i>
+                        <i id="wf" title=@Traducoes.Traduz("Workflow") class="fa fa-exchange fa-lg pull-right img-responsive tamanhoCor  @escondeEstadoAndWf" style="cursor: pointer"></i>
+                        <i id="gravar" title=@Traducoes.Traduz("Gravar") class="fa fa-floppy-o fa-lg pull-right img-responsive tamanhoCor" style="cursor: pointer"></i>
+                        @*<i title=@Traducoes.Traduz("Limpar") class="fa fa-file-o fa-lg pull-right img-responsive tamanhoCor"></i>*@
+                        <i title=@Traducoes.Traduz("Voltar") class="fa  fa-sign-out fa-rotate-180 fa-lg pull-right img-responsive tamanhoCor" style="cursor: pointer"></i>
+                    </h4>
+                </div>
+                <div id="collapse1" class="panel-collapse collapse in">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-sm-0half">
+                                <img id="separador3" src="/Images/Tool_Obr.gif" title="@Traducoes.Traduz("Campo Obrigatório")" />
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2">@Traducoes.Traduz("Data")</label>
+                                <div class="col-md-2">
+                                    @Html.TextBoxFor(model => model.ReuniaoBrainstorm.Data, htmlAttributes: new { @id = "Data", @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.ReuniaoBrainstorm.Data, @Traducoes.Traduz("Data é obrigatório"))
                                 </div>
                             </div>
-                            @{
-                                string cssClass = Model.ReuniaoBrainstorm.Estado == null ? "hidden" : "visible";
-                            }
-                            <div class="row @cssClass">
-                                <div class="col-sm-0half">
-                                    <img id="separador3" src="/Images/Tool_Obr.gif" title="@Traducoes.Traduz("Campo Obrigatório")" />
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label col-md-2">@Traducoes.Traduz("Estado")</label>
-                                    <div class="col-md-2">
-                                        @{
-                                            if (Model.ReuniaoBrainstorm.Estado == "P")
-                                            {
-                                                @Html.TextBoxFor(model => model.ReuniaoBrainstorm.Estado, htmlAttributes: new { @class = "estado", @id = "Estado1", @readonly = "readonly", @Value = @Traducoes.Traduz("Pendente") })
-                                            }
-                                            else if (Model.ReuniaoBrainstorm.Estado == "A")
-                                            {
-                                                @Html.TextBoxFor(model => model.ReuniaoBrainstorm.Estado, htmlAttributes: new { @class = "estado", @id = "Estado2", @readonly = "readonly", @Value = @Traducoes.Traduz("Aprovado") })
-                                            }
-                                            else if (Model.ReuniaoBrainstorm.Estado == "E")
-                                            {
-                                                @Html.TextBoxFor(model => model.ReuniaoBrainstorm.Estado, htmlAttributes: new { @class = "estado", @id = "Estado3", @readonly = "readonly", @Value = @Traducoes.Traduz("Encerrado") })
-                                            }
-                                            else if (Model.ReuniaoBrainstorm.Estado == "X")
-                                            {
-                                                @Html.TextBoxFor(model => model.ReuniaoBrainstorm.Estado, htmlAttributes: new { @class = "estado", @id = "Estado4", @readonly = "readonly", @Value = @Traducoes.Traduz("Anulada") })
-                                            }
+                        </div>
+                        @{
+                            string cssClass = Model.ReuniaoBrainstorm.Estado == null ? "hidden" : "visible";
+                        }
+                        <div class="row @cssClass">
+                            <div class="col-sm-0half">
+                                <img id="separador3" src="/Images/Tool_Obr.gif" title="@Traducoes.Traduz("Campo Obrigatório")" />
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2">@Traducoes.Traduz("Estado")</label>
+                                <div class="col-md-2">
+                                    @{
+                                        if (Model.ReuniaoBrainstorm.Estado == "P")
+                                        {
+                                            @Html.TextBoxFor(model => model.ReuniaoBrainstorm.Estado, htmlAttributes: new { @class = "estado", @id = "Estado1", @readonly = "readonly", @Value = @Traducoes.Traduz("Pendente") })
                                         }
-                                    </div>
+                                        else if (Model.ReuniaoBrainstorm.Estado == "A")
+                                        {
+                                            @Html.TextBoxFor(model => model.ReuniaoBrainstorm.Estado, htmlAttributes: new { @class = "estado", @id = "Estado2", @readonly = "readonly", @Value = @Traducoes.Traduz("Aprovado") })
+                                        }
+                                        else if (Model.ReuniaoBrainstorm.Estado == "E")
+                                        {
+                                            @Html.TextBoxFor(model => model.ReuniaoBrainstorm.Estado, htmlAttributes: new { @class = "estado", @id = "Estado3", @readonly = "readonly", @Value = @Traducoes.Traduz("Encerrado") })
+                                        }
+                                        else if (Model.ReuniaoBrainstorm.Estado == "X")
+                                        {
+                                            @Html.TextBoxFor(model => model.ReuniaoBrainstorm.Estado, htmlAttributes: new { @class = "estado", @id = "Estado4", @readonly = "readonly", @Value = @Traducoes.Traduz("Anulada") })
+                                        }
+                                    }
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-sm-0half">
-                                    <img id="separador3" src="/Images/Tool_Obr.gif" title="@Traducoes.Traduz("Campo Obrigatório")" />
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-0half">
+                                <img id="separador3" src="/Images/Tool_Obr.gif" title="@Traducoes.Traduz("Campo Obrigatório")" />
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2">@Traducoes.Traduz("Duração Prevista(Min)") </label>
+                                <div class="col-md-2">
+                                    @Html.TextBoxFor(model => model.ReuniaoBrainstorm.Duracao, htmlAttributes: new
+                               {
+                                   @id = "Duracao",
+                                   @class = "form-control"@*, @data_val_number = "Supply an integer, dude!"*@ })
+                                    @Html.ValidationMessageFor(model => model.ReuniaoBrainstorm.Duracao, @Traducoes.Traduz("Duração é obrigatório"))
                                 </div>
-                                <div class="form-group">
-                                    <label class="control-label col-md-2">@Traducoes.Traduz("Duração(Min)") </label>
-                                    <div class="col-md-2">
-                                        @Html.TextBoxFor(model => model.ReuniaoBrainstorm.Duracao, htmlAttributes: new { @id = "Duracao", @class = "form-control"@*, @data_val_number = "Supply an integer, dude!"*@ })
-                                        @Html.ValidationMessageFor(model => model.ReuniaoBrainstorm.Duracao, @Traducoes.Traduz("Duração é obrigatório"))
-                                    </div>
-                                    <label class="control-label col-md-2">@Traducoes.Traduz("Duração Real(Min)")</label>
-                                    <div class="col-md-2">
-                                        @Html.TextBoxFor(model => model.ReuniaoBrainstorm.DuracaoReal, htmlAttributes: new { @id = "DuracaoReal", @class = "form-control" })
-                                        @Html.ValidationMessageFor(model => model.ReuniaoBrainstorm.DuracaoReal, @Traducoes.Traduz("Duração real é obrigatório"))
-                                    </div>
+                                <label class="control-label col-md-2">@Traducoes.Traduz("Duração Real(Min)")</label>
+                                <div class="col-md-2">
+                                    @Html.TextBoxFor(model => model.ReuniaoBrainstorm.DuracaoReal, htmlAttributes: new { @id = "DuracaoReal", @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.ReuniaoBrainstorm.DuracaoReal, @Traducoes.Traduz("Duração real é obrigatório"))
                                 </div>
                             </div>
-                            <div class="row">
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-0half">
+                                <img id="separador3" src="/Images/Tool_nor.gif" title="@Traducoes.Traduz("Campo Opcional")" />
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2">@Traducoes.Traduz("Intervenientes")</label>
+                                <div class="col-md-6">
+                                    @Html.DropDownListFor(model => model.IntervenientesView, new SelectList(Model.Intervenientes, "NomeAndCodigo", "NomeAndCodigo"), "Selecionar interveniente", htmlAttributes: new { @class = "form-control selectInterveniente1", @style = "width: 100%;!important", @id = "Interveniente1", @multiple = "multiple" })
+                                </div>
+                            </div>
+                        </div>
+
+                        @*<div class="row">
                                 <div class="col-sm-0half">
-                                    <img id="separador3" src="/Images/Tool_nor.gif"  title="@Traducoes.Traduz("Campo Opcional")" />
+                                    <img id="separador3" src="/Images/Tool_nor.gif" title="Campo Opcional" />
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-md-2">@Traducoes.Traduz("Intervenientes")</label>
+                                    <label class="control-label col-md-2">Interveniente 2</label>
                                     <div class="col-md-6">
-                                        @Html.DropDownListFor(model => model.IntervenientesView, new SelectList(Model.Intervenientes, "NomeAndCodigo", "NomeAndCodigo"), "Selecionar interveniente", htmlAttributes: new { @class = "form-control selectInterveniente1", @style = "width: 100%;!important", @id = "Interveniente1", @multiple = "multiple" })
+                                        @Html.DropDownListFor(model => model.Intervenientes[1].NomeAndCodigo, new SelectList(Model.Intervenientes, "NomeAndCodigo", "NomeAndCodigo"), "Selecionar interveniente", htmlAttributes: new { @class = "form-control selectInterveniente2", @style = "width: 100%;!important", @id = "Interveniente2" })
                                     </div>
                                 </div>
                             </div>
 
-                            @*<div class="row">
-                                    <div class="col-sm-0half">
-                                        <img id="separador3" src="/Images/Tool_nor.gif" title="Campo Opcional" />
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="control-label col-md-2">Interveniente 2</label>
-                                        <div class="col-md-6">
-                                            @Html.DropDownListFor(model => model.Intervenientes[1].NomeAndCodigo, new SelectList(Model.Intervenientes, "NomeAndCodigo", "NomeAndCodigo"), "Selecionar interveniente", htmlAttributes: new { @class = "form-control selectInterveniente2", @style = "width: 100%;!important", @id = "Interveniente2" })
-                                        </div>
+                            <div class="row">
+                                <div class="col-sm-0half">
+                                    <img id="separador3" src="/Images/Tool_nor.gif" title="Campo Opcional" />
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-2">Interveniente 3</label>
+                                    <div class="col-md-6">
+                                        @Html.DropDownListFor(model => model.Intervenientes[2].NomeAndCodigo, new SelectList(Model.Intervenientes, "NomeAndCodigo", "NomeAndCodigo"), "Selecionar interveniente", htmlAttributes: new { @class = "form-control selectInterveniente3", @style = "width: 100%;!important", @id = "Interveniente3" })
                                     </div>
                                 </div>
+                            </div>
 
-                                <div class="row">
-                                    <div class="col-sm-0half">
-                                        <img id="separador3" src="/Images/Tool_nor.gif" title="Campo Opcional" />
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="control-label col-md-2">Interveniente 3</label>
-                                        <div class="col-md-6">
-                                            @Html.DropDownListFor(model => model.Intervenientes[2].NomeAndCodigo, new SelectList(Model.Intervenientes, "NomeAndCodigo", "NomeAndCodigo"), "Selecionar interveniente", htmlAttributes: new { @class = "form-control selectInterveniente3", @style = "width: 100%;!important", @id = "Interveniente3" })
-                                        </div>
+                            <div class="row">
+                                <div class="col-sm-0half">
+                                    <img id="separador3" src="/Images/Tool_nor.gif" title="Campo Opcional" />
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-2">Interveniente 4</label>
+                                    <div class="col-md-6">
+                                        @Html.DropDownListFor(model => model.Intervenientes[3].NomeAndCodigo, new SelectList(Model.Intervenientes, "NomeAndCodigo", "NomeAndCodigo"), "Selecionar interveniente", htmlAttributes: new { @class = "form-control selectInterveniente4", @style = "width: 100%;!important", @id = "Interveniente4" })
                                     </div>
                                 </div>
+                            </div>
 
-                                <div class="row">
-                                    <div class="col-sm-0half">
-                                        <img id="separador3" src="/Images/Tool_nor.gif" title="Campo Opcional" />
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="control-label col-md-2">Interveniente 4</label>
-                                        <div class="col-md-6">
-                                            @Html.DropDownListFor(model => model.Intervenientes[3].NomeAndCodigo, new SelectList(Model.Intervenientes, "NomeAndCodigo", "NomeAndCodigo"), "Selecionar interveniente", htmlAttributes: new { @class = "form-control selectInterveniente4", @style = "width: 100%;!important", @id = "Interveniente4" })
-                                        </div>
+                            <div class="row">
+                                <div class="col-sm-0half">
+                                    <img id="separador3" src="/Images/Tool_nor.gif" title="Campo Opcional" />
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-2">Interveniente 5</label>
+                                    <div class="col-md-6">
+                                        @Html.DropDownListFor(model => model.Intervenientes[4].NomeAndCodigo, new SelectList(Model.Intervenientes, "NomeAndCodigo", "NomeAndCodigo"), "Selecionar interveniente", htmlAttributes: new { @class = "form-control selectInterveniente5", @style = "width: 100%;!important", @id = "Interveniente5" })
                                     </div>
                                 </div>
+                            </div>*@
 
-                                <div class="row">
-                                    <div class="col-sm-0half">
-                                        <img id="separador3" src="/Images/Tool_nor.gif" title="Campo Opcional" />
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="control-label col-md-2">Interveniente 5</label>
-                                        <div class="col-md-6">
-                                            @Html.DropDownListFor(model => model.Intervenientes[4].NomeAndCodigo, new SelectList(Model.Intervenientes, "NomeAndCodigo", "NomeAndCodigo"), "Selecionar interveniente", htmlAttributes: new { @class = "form-control selectInterveniente5", @style = "width: 100%;!important", @id = "Interveniente5" })
-                                        </div>
-                                    </div>
-                                </div>*@
+                        <div class="row">
+                            <div class="col-sm-0half">
+                                <img id="separador3" src="/Images/Tool_nor.gif" title="@Traducoes.Traduz("Campo Opcional")" />
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2">@Traducoes.Traduz("Local")</label>
+                                <div class="col-md-6">
+                                    @Html.TextAreaFor(m => m.ReuniaoBrainstorm.Local, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                        @Html.HiddenFor(m => m.ReuniaoBrainstorm.Id)
+                        @Html.HiddenFor(m => m.ReuniaoBrainstorm.Utilizador_ins)
+                        @Html.HiddenFor(m => m.ReuniaoBrainstorm.Utilizador_alt)
+                        @Html.HiddenFor(m => m.ReuniaoBrainstorm.Data_ins)
+                        @Html.HiddenFor(m => m.ReuniaoBrainstorm.Data_alt)
+                        @*ver controller para estadoFlag*@
+                        @Html.HiddenFor(m => m.ReuniaoBrainstorm.EstadoFlag, new { @class = "estadoFlag" })
+                    </div>
 
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="panel-group" id="detalhes" style="">
+            <div class="panel panel-info">
+                <div class="panel-heading ">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#collapse2" class="minMax2" style="text-align: left">@Traducoes.Traduz("Temas")</a>
+                        <a data-toggle="collapse" href="#collapse2" class="minMax2" style="text-align: right">
+                            @*<img*@ @*onmouseover="this.src = '../images/min_.gif'" onmouseout="this.src = '/images/Min.gif'"*@ @*id="min2" src="/Images/Min.gif" title="Esconder" class="pull-right img-responsive" />*@
+                            <i id="min2" title=@Traducoes.Traduz("Esconder") class="fa fa-window-minimize fa-lg pull-right img-responsive"></i>
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapse2" class="panel-collapse collapse in">
+                    <div class="panel-body">
+                        <div class="form-group">
+                            @*@using (Html.BeginForm("Reuniao", "Brainstorm", FormMethod.Post, new {@class = "form-horizontal", role = "form"}))
+                                {*@
+                            <table class="table table-bordered table-hover">
+                                <thead style="color: white; background: #6699FF;">
+                                    <tr>
+                                        <td style="width:3%; text-align:center">#</td>
+                                        <td style="width:40%; text-align:center">@Traducoes.Traduz("Descrição")</td>
+                                        <td style="width:40%; text-align:center">@Traducoes.Traduz("Comentários")</td>
+                                        <td style="width:17%; text-align:center">@Traducoes.Traduz("Resultado")</td>
+                                        @*<td>@Traducoes.Traduz("Título")</td>
+                                            <td>@Traducoes.Traduz("Inov")</td>
+                                            <td>@Traducoes.Traduz("Act")</td>*@
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @{
+                                        //int tamanho = 10;
+                                        for (var i = 0; i < Model.Temas.Count; i++)
+                                        {
+                                            <tr>
+                                                <td style="text-align:center">
+                                                    @(i + 1)
+                                                    <br /> <br /> <br />
+                                                    @{ var tema_id = 0;
+                                                        if (Model.Temas[i] != null && Model.Temas[i].Id != null && Model.Temas[i].Id != 0)
+                                                        {
+                                                            tema_id = (int)(@Model.Temas[i].Id);
+                                                        }
+                                                    }
+                                                    @{
+                                                        string cssClass2 = (Model.ReuniaoBrainstorm.Estado != null) && (Model.Temas[i] != null) ? "visible" : "hidden";
+                                                    }
+                                                    <i id=@("imgChat" + tema_id) class="fa fa-commenting-o fa-2x comment tamanhoCorChat @cssClass2" idTema="@tema_id" style="cursor: pointer" aria-hidden="true" onclick="abrirChatTema(@tema_id); connectToChat(@tema_id)"></i>
+                                                </td>
+                                                <td>
+                                                    @Html.TextAreaFor(m => m.Temas[i].Descricao, 5, 40, htmlAttributes: new
+                                               {
+                                                   @class = "form-control",
+                                                   @id = "descricao" + tema_id,
+                                                   style = "" @*, @style = "width: 500px; height: 150px;"*@ })
+                                                    @Html.ValidationMessageFor(m => m.Temas[i].Descricao)
+                                                </td>
+                                                <td>
+                                                    @Html.TextAreaFor(m => m.Temas[i].Comentarios, 5, 40, htmlAttributes: new
+                                               {
+                                                   @class = "form-control",
+                                                   style = "" @*, @style = "width: 500px; height: 150px;"*@ })
+                                                    @Html.ValidationMessageFor(m => m.Temas[i].Comentarios, @Traducoes.Traduz("Por favor, preencha todos os campos necessários dos requisitos"))
+                                                </td>
+                                                <td>
+                                                    @*<button id="botao" href="@("#Foo" + i)" class="btn btn-default mostraGestInov" data-toggle="collapse">
+                                                            <img id="@("imagem" + i)" src="/Images/mais.gif" width="10"/>
+                                                        </button>*@
+
+                                                    @*Descomentar*@
+
+                                                    @*<td> @Html.TextBoxFor(m => m.Temas[i].Titulo, new { @class = "form-control" }) </td>
+                                                        <td>@Html.CheckBoxFor(m => m.Temas[i].GestaoInov) </td>
+                                                           <td> @Html.CheckBoxFor(m => m.Temas[i].Actividade)</td>*@
+
+                                                    @*@Html.Label(@Traducoes.Traduz("Ideia"))*@
+                                                    <label for=@("cbGestInov" + i)>
+                                                        <i id=@("ideia" + i) class="fa fa-lightbulb-o fa-2x comment tamanhoCorChat" idIdeia="@tema_id" style="cursor: pointer" aria-hidden="true" @*onclick="changeAtrIdeia(@tema_id)"*@ title="@Traducoes.Traduz("Ideia")"></i>
+                                                    </label>
+                                                    @Html.CheckBoxFor(m => m.Temas[i].GestaoInov, new { @style = "display:none", @id = "cbGestInov" + i, @class = "cbGestInov" + i, @onchange = "cbChangeInov(" + i + ")" }) @*<br />*@
+                                                    @*@Html.Label(@Traducoes.Traduz("Actividade"))*@
+                                                    <label for=@("cbAct" + i)>
+                                                        <i id=@("actividade" + i) class="fa fa-gavel fa-2x comment tamanhoCorChat" idActividade="@tema_id" style="cursor: pointer" aria-hidden="true" onclick="" title="@Traducoes.Traduz("Actividade")"></i>
+                                                    </label>
+                                                    @Html.CheckBoxFor(m => m.Temas[i].Actividade, new { @style = "display:none", @id = "cbAct" + i, @class = "cbAct" + i, @onchange = "cbChangeAct(" + i + ")" })
+
+                                                    <i id=@("semEfeito" + i) class="fa fa-ban fa-2x comment tamanhoCorChat" data-semEfeito="false" style="cursor: pointer" aria-hidden="true" onclick="changeSEColor(@i)" title="@Traducoes.Traduz("Sem efeito")"></i>  <br />
+                                                    @*@Html.DropDownListFor(model => model.IntervenientesView, new SelectList(Model.Intervenientes, "NomeAndCodigo", "NomeAndCodigo"), "Selecionar interveniente", htmlAttributes: new { @class = "form-control selectInterveniente1", @id = "Recursos" + i, @multiple = "multiple" })*@
+                                                </td>
+                                            </tr>
+                                            <tr class="noBorder collapse in" id="@("Foo" + i)">
+                                                @*<tr class="noBorder collapse" id="@("Foo"+i)">*@
+                                                <td colspan="4"><label class="control-label">@Traducoes.Traduz("Titulo do registo")</label> @Html.TextBoxFor(m => m.Temas[i].Titulo, new { @class = "form-control" }) @Html.ValidationMessageFor(m => m.Temas[i].Titulo, @Traducoes.Traduz("Por favor, preencha todos os campos necessários dos requisitos"))</td>
+                                                @*<td > @Html.TextBoxFor(m => m.Temas[i].Titulo, new { @class = "form-control" }) </td>*@
+
+
+                                            </tr>
+                                                @Html.HiddenFor(m => m.Temas[i].Estado)
+                                                        @Html.HiddenFor(m => m.Temas[i].Id)
+                                                        }
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @*@for(var i = 0; i < Model.Intervenientes.Count; i++)
+            {
+                <span>
+            @Html.HiddenFor(x => x.Intervenientes[0].Abrev)
+                    @Html.HiddenFor(x => x.Intervenientes.ElementAt((i)).Name)
+
+                </span>
+            }*@
+        @*@Html.HiddenFor(m => m.Temas[0])*@
+
+        <div class="panel-group" id="detalhes" style="">
+            <div class="panel panel-info">
+                <div class="panel-heading ">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#collapse3" class="minMax3" style="text-align: left">@Traducoes.Traduz("Outros")</a>
+                        <a data-toggle="collapse" href="#collapse3" class="minMax3" style="text-align: right">
+                            @*<img*@ @*onmouseover="this.src = '../images/min_.gif'" onmouseout="this.src = '/images/Min.gif'"*@ @*id="min3" src="/Images/Min.gif" title="Esconder" class="pull-right img-responsive" />*@
+                            <i id="min3" title=@Traducoes.Traduz("Esconder") class="fa fa-window-minimize fa-lg pull-right img-responsive"></i>
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapse3" class="panel-collapse collapse in">
+                    <div class="panel-body">
+                        <div class="form-group">
                             <div class="row">
                                 <div class="col-sm-0half">
                                     <img id="separador3" src="/Images/Tool_nor.gif" title="@Traducoes.Traduz("Campo Opcional")" />
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-md-2">@Traducoes.Traduz("Local")</label>
-                                    <div class="col-md-6">
-                                        @Html.TextAreaFor(m => m.ReuniaoBrainstorm.Local, new { @class = "form-control" })
+                                    <label class="control-label col-lg-1 col-md-2">@Traducoes.Traduz("Observações")</label>
+                                    <div class="col-md-8 col-lg-10">
+                                        @Html.TextAreaFor(m => m.ReuniaoBrainstorm.Observacoes, new { @class = "form-control" })
                                     </div>
                                 </div>
                             </div>
-                            @Html.HiddenFor(m => m.ReuniaoBrainstorm.Id)
-                            @Html.HiddenFor(m => m.ReuniaoBrainstorm.Utilizador_ins)
-                            @Html.HiddenFor(m => m.ReuniaoBrainstorm.Utilizador_alt)
-                            @Html.HiddenFor(m => m.ReuniaoBrainstorm.Data_ins)
-                            @Html.HiddenFor(m => m.ReuniaoBrainstorm.Data_alt)
-                            @*ver controller para estadoFlag*@
-                            @Html.HiddenFor(m => m.ReuniaoBrainstorm.EstadoFlag, new { @class = "estadoFlag" })
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-
-
-
-            <div class="panel-group" id="detalhes" style="">
-                <div class="panel panel-info">
-                    <div class="panel-heading ">
-                        <h4 class="panel-title">
-                            <a data-toggle="collapse" href="#collapse2" class="minMax2" style="text-align: left">@Traducoes.Traduz("Temas")</a>
-                            <a data-toggle="collapse" href="#collapse2" class="minMax2" style="text-align: right">
-                                @*<img*@ @*onmouseover="this.src = '../images/min_.gif'" onmouseout="this.src = '/images/Min.gif'"*@ @*id="min2" src="/Images/Min.gif" title="Esconder" class="pull-right img-responsive" />*@
-                                <i id="min2" title=@Traducoes.Traduz("Esconder") class="fa fa-window-minimize fa-lg pull-right img-responsive"></i>
-                            </a>
-                        </h4>
-                    </div>
-                    <div id="collapse2" class="panel-collapse collapse in">
-                        <div class="panel-body">
-                            <div class="form-group">
-                                @*@using (Html.BeginForm("Reuniao", "Brainstorm", FormMethod.Post, new {@class = "form-horizontal", role = "form"}))
-                                    {*@
-                                <table class="table table-bordered table-hover">
-                                    <thead style="color: white; background: #6699FF;">
-                                        <tr>
-                                            <td style="width:3%; text-align:center">#</td>
-                                            <td style="width:40%; text-align:center">@Traducoes.Traduz("Descrição")</td>
-                                            <td style="width:40%; text-align:center">@Traducoes.Traduz("Comentários")</td>
-                                            <td style="width:17%; text-align:center">@Traducoes.Traduz("Gestão Inovação/Actividade")</td>
-                                            @*<td>@Traducoes.Traduz("Título")</td>
-                                                <td>@Traducoes.Traduz("Inov")</td>
-                                                <td>@Traducoes.Traduz("Act")</td>*@
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @{
-                                            //int tamanho = 10;
-                                            for (var i = 0; i < Model.Temas.Count; i++)
-                                            {
-                                                <tr>
-                                                    <td style="text-align:center">
-                                                        @(i+1)
-                                                        <br /> <br /> <br />
-                                                        @{ var tema_id = 0;
-                                                            if (Model.Temas[i] != null && Model.Temas[i].Id != null && Model.Temas[i].Id != 0)
-                                                            {
-                                                                tema_id = (int)(@Model.Temas[i].Id);
-                                                            }
-                                                        }
-                                                        @{
-                                                            string cssClass2 = (Model.ReuniaoBrainstorm.Estado != null) && (Model.Temas[i] != null) ? "visible" : "hidden";
-                                                        }
-                                                        <i id=@("imgChat" + tema_id) class="fa fa-commenting-o fa-2x comment tamanhoCorChat @cssClass2" idTema="@tema_id" style="cursor: pointer" aria-hidden="true" onclick="abrirChatTema(@tema_id); connectToChat(@tema_id)"></i>
-                                                </td>
-                                                    <td>
-                                                        @Html.TextAreaFor(m => m.Temas[i].Descricao, 5, 40, htmlAttributes: new
-                                                   {
-                                                       @class = "form-control",
-                                                       @id = "descricao" + tema_id,
-                                                       style = "" @*, @style = "width: 500px; height: 150px;"*@ })
-                                                        @Html.ValidationMessageFor(m => m.Temas[i].Descricao)
-                                                    </td>
-                                                    <td>
-                                                        @Html.TextAreaFor(m => m.Temas[i].Comentarios, 5, 40, htmlAttributes: new
-                                                   {
-                                                       @class = "form-control",
-                                                       style = "" @*, @style = "width: 500px; height: 150px;"*@ })
-                                                        @Html.ValidationMessageFor(m => m.Temas[i].Comentarios, @Traducoes.Traduz("Por favor, preencha todos os campos necessários dos requisitos"))
-                                                    </td>
-                                                    <td>
-                                                        @*<button id="botao" href="@("#Foo" + i)" class="btn btn-default mostraGestInov" data-toggle="collapse">
-                                                                <img id="@("imagem" + i)" src="/Images/mais.gif" width="10"/>
-                                                            </button>*@
-
-                                                        @*Descomentar*@
-                                                       
-                                                        @*<td> @Html.TextBoxFor(m => m.Temas[i].Titulo, new { @class = "form-control" }) </td>
-                                                            <td>@Html.CheckBoxFor(m => m.Temas[i].GestaoInov) </td>
-                                                               <td> @Html.CheckBoxFor(m => m.Temas[i].Actividade)</td>*@
-
-                                                        @Html.Label(@Traducoes.Traduz("Ideia"))
-                                                        @Html.CheckBoxFor(m => m.Temas[i].GestaoInov, new { @id = "cbGestInov" + i, @class = "cbGestInov" + i, @onchange = "cbChangeInov(" + i + ")" }) <br />
-                                                        @Html.Label(@Traducoes.Traduz("Actividade"))
-                                                        @Html.CheckBoxFor(m => m.Temas[i].Actividade, new { @id = "cbAct" + i, @class = "cbAct" + i, @onchange = "cbChangeAct(" + i + ")" })
-                                                    </td>
-                                                </tr>
-                                                <tr class="noBorder collapse in" id="@("Foo" + i)">
-                                                    @*<tr class="noBorder collapse" id="@("Foo"+i)">*@
-                                                    <td colspan="4"><label class="control-label">@Traducoes.Traduz("Titulo do registo")</label> @Html.TextBoxFor(m => m.Temas[i].Titulo, new { @class = "form-control" }) @Html.ValidationMessageFor(m => m.Temas[i].Titulo, @Traducoes.Traduz("Por favor, preencha todos os campos necessários dos requisitos"))</td>
-                                                    @*<td > @Html.TextBoxFor(m => m.Temas[i].Titulo, new { @class = "form-control" }) </td>*@
-                                                    
-                                                   
-                                                </tr>
-                                                @Html.HiddenFor(m => m.Temas[i].Estado)
-                                                @Html.HiddenFor(m => m.Temas[i].Id)
-                                            }
-                                        }
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            @*@for(var i = 0; i < Model.Intervenientes.Count; i++)
-                {
-                    <span>
-                @Html.HiddenFor(x => x.Intervenientes[0].Abrev)
-                        @Html.HiddenFor(x => x.Intervenientes.ElementAt((i)).Name)
-
-                    </span>
-                }*@
-            @*@Html.HiddenFor(m => m.Temas[0])*@
-
-            <div class="panel-group" id="detalhes" style="">
-                <div class="panel panel-info">
-                    <div class="panel-heading ">
-                        <h4 class="panel-title">
-                            <a data-toggle="collapse" href="#collapse3" class="minMax3" style="text-align: left">@Traducoes.Traduz("Outros")</a>
-                            <a data-toggle="collapse" href="#collapse3" class="minMax3" style="text-align: right">
-                                @*<img*@ @*onmouseover="this.src = '../images/min_.gif'" onmouseout="this.src = '/images/Min.gif'"*@ @*id="min3" src="/Images/Min.gif" title="Esconder" class="pull-right img-responsive" />*@
-                                <i id="min3" title=@Traducoes.Traduz("Esconder") class="fa fa-window-minimize fa-lg pull-right img-responsive"></i>
-                            </a>
-                        </h4>
-                    </div>
-                    <div id="collapse3" class="panel-collapse collapse in">
-                        <div class="panel-body">
-                            <div class="form-group">
-                                <div class="row">
-                                    <div class="col-sm-0half">
-                                        <img id="separador3" src="/Images/Tool_nor.gif" title = "@Traducoes.Traduz("Campo Opcional")" />
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="control-label col-lg-1 col-md-2">@Traducoes.Traduz("Observações")</label>
-                                        <div class="col-md-8 col-lg-10" >
-                                            @Html.TextAreaFor(m => m.ReuniaoBrainstorm.Observacoes, new { @class = "form-control"})
-                                        </div>
-                                    </div>
-                                </div>
-                                @*<div class="row">
+                            @*<div class="row">
                                     <h2>Chat</h2>
                                     <div class="container">
                                         <input type="text" id="message" />
@@ -562,75 +574,76 @@
                                         <ul id="discussion"></ul>
                                     </div>
                                 </div>*@
-                                @*<input type="submit" value="Guardar" class="btn btn-default" id="Enviar"/>*@
-                                @*}*@                             
-                            </div>
+                            @*<input type="submit" value="Guardar" class="btn btn-default" id="Enviar"/>*@
+                            @*}*@
                         </div>
                     </div>
                 </div>
             </div>
-
-
-
-
         </div>
-                                            }
+
+
+
+
+    </div>
+                                                        }
 <div class="container">
     <div id="ChatTemas" style="">
 
-    @for (int i = 0; i < Model.Temas.Count; i++)
-    {
-        { var tema_id = 0;
-            if (Model.Temas[i] != null && Model.Temas[i].Id != null && Model.Temas[i].Id != 0)
+        @for (int i = 0; i < Model.Temas.Count; i++)
+        {
             {
-                tema_id = (int)(@Model.Temas[i].Id);
+                var tema_id = 0;
+                if (Model.Temas[i] != null && Model.Temas[i].Id != null && Model.Temas[i].Id != 0)
+                {
+                    tema_id = (int)(@Model.Temas[i].Id);
 
 
-     
-        <div id="@("chatTema" + tema_id)" class="col-xs-5 col-md-3 container bootstrap snippet downcorner" style="display: none;background-color: white">
-            <div class="row" id="@("linha" + tema_id)" style="position: fixed; bottom: 0px;">
-                <div class="chat">
-                    <div class="portlet portlet-default" style="background-color: white">
-                        <div class="portlet-heading">
-                            <div class="portlet-title">
-                                <div>
-                                    <h4 id=@("tituloChat" + tema_id)>@Traducoes.Traduz("Tema") @i</h4>
-                                </div>
-                            </div>
-                            <div class="pull-right" style="text-align: right; margin-top: 10px;">
-                                <a href="#"><span id= @("minimizarChat" + tema_id) style="padding-right: 5px;" class="glyphicon glyphicon-minus icon_minim " onclick="minimizarChat(@tema_id);return false;"></span></a>
-                                <a href="#"><span id= @("fecharChat" + tema_id) class="glyphicon glyphicon-remove icon_close " style="margin-right: 1px;" onclick="fecharChat(@tema_id);return false;"></span></a>
-                            </div>
-                            <div class="clearfix"></div>
-                        </div>
-                        <div class="panel-collapse collapse in" id= @("minMax" + tema_id)>
-                            <div class="descricaoTema" style="background-color: white; height: 20px; margin: 4px">
-                                <p id=@("descriTema" + tema_id) style="padding-top: 4px; font-size:8.0pt"></p>
-                            </div>
-                            <hr />
-                
-                            <div id=@("chat" + "Brainstorm_" + Model.ReuniaoBrainstorm.Id + "_" + tema_id) class="portlet-body chat-widget divMensagens">
-                                <input type="hidden" id="displayname" />
-                            </div>
-                            <div class="portlet-footer">
-                                <div class="form-group">
-                                    <textarea id=@("mensagemTema" + tema_id) class="campo2 form-control" type="text" placeholder="@Traducoes.Traduz("inserir mensagem")"></textarea>
-                                </div>
-                                <div class="form-group">
-                                    <button id=@("enviarTema" + tema_id) type="button" class="btn btn-default pull-right" style="width: 55px; height: 25px; text-align: center; font-size: 10px" onclick="botaoEnviarMensagem(@tema_id);"> @Traducoes.Traduz("Enviar")</button>
-                                    <div class="clearfix"></div>
+
+                    <div id="@("chatTema" + tema_id)" class="col-xs-5 col-md-3 container bootstrap snippet downcorner" style="display: none;background-color: white">
+                        <div class="row" id="@("linha" + tema_id)" style="position: fixed; bottom: 0px;">
+                            <div class="chat">
+                                <div class="portlet portlet-default" style="background-color: white">
+                                    <div class="portlet-heading">
+                                        <div class="portlet-title">
+                                            <div>
+                                                <h4 id=@("tituloChat" + tema_id)>@Traducoes.Traduz("Tema") @i</h4>
+                                            </div>
+                                        </div>
+                                        <div class="pull-right" style="text-align: right; margin-top: 10px;">
+                                            <a href="#"><span id=@("minimizarChat" + tema_id) style="padding-right: 5px;" class="glyphicon glyphicon-minus icon_minim " onclick="minimizarChat(@tema_id);return false;"></span></a>
+                                            <a href="#"><span id=@("fecharChat" + tema_id) class="glyphicon glyphicon-remove icon_close " style="margin-right: 1px;" onclick="fecharChat(@tema_id);return false;"></span></a>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="panel-collapse collapse in" id=@("minMax" + tema_id)>
+                                        <div class="descricaoTema" style="background-color: white; height: 20px; margin: 4px">
+                                            <p id=@("descriTema" + tema_id) style="padding-top: 4px; font-size:8.0pt"></p>
+                                        </div>
+                                        <hr />
+
+                                        <div id=@("chat" + "Brainstorm_" + Model.ReuniaoBrainstorm.Id + "_" + tema_id) class="portlet-body chat-widget divMensagens">
+                                            <input type="hidden" id="displayname" />
+                                        </div>
+                                        <div class="portlet-footer">
+                                            <div class="form-group">
+                                                <textarea id=@("mensagemTema" + tema_id) class="campo2 form-control" type="text" placeholder="@Traducoes.Traduz("inserir mensagem")"></textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <button id=@("enviarTema" + tema_id) type="button" class="btn btn-default pull-right" style="width: 55px; height: 25px; text-align: center; font-size: 10px" onclick="botaoEnviarMensagem(@tema_id);"> @Traducoes.Traduz("Enviar")</button>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    
+
                 }
             }
         }
-        </div>
+    </div>
 </div>
 
 
@@ -653,43 +666,43 @@
 
 
 @*<script type="text/javascript">
-    function botaoEnviarMensagem(nrTema) {
+        function botaoEnviarMensagem(nrTema) {
 
 
-            // Reference the auto-generated proxy for the hub.
-        var ut = "@Model.ReuniaoBrainstorm.Utilizador_alt";
-        //alert(ut);
-            var chat = $.connection.chatHub;
-            // Create a function that the hub can call back to display messages.
-            chat.client.addNewMessageToPage = function (name, message) {
-                // Add the message to the page.
+                // Reference the auto-generated proxy for the hub.
+            var ut = "@Model.ReuniaoBrainstorm.Utilizador_alt";
+            //alert(ut);
+                var chat = $.connection.chatHub;
+                // Create a function that the hub can call back to display messages.
+                chat.client.addNewMessageToPage = function (name, message) {
+                    // Add the message to the page.
 
-                $('#chat'+nrTema).append('<div class="row" id="Tema' + nrTema + 'comentario0"></div>')
-                $('#Tema'+nrTema+'comentario0').append('<div class="col-lg-12"><div class="media"><div><h6 style="background-color:#3366CC; color:white;" class="media-heading">' + htmlEncode(name) + ' <span class="small pull-right"><div style="font-size:11px; color:white">' + "teste" + '</div></span></h4><p>' + htmlEncode(message) + '</p></div></div></div><hr/>');
-                var objDiv = document.getElementById("chat0");
-                objDiv.scrollTop = objDiv.scrollHeight;
+                    $('#chat'+nrTema).append('<div class="row" id="Tema' + nrTema + 'comentario0"></div>')
+                    $('#Tema'+nrTema+'comentario0').append('<div class="col-lg-12"><div class="media"><div><h6 style="background-color:#3366CC; color:white;" class="media-heading">' + htmlEncode(name) + ' <span class="small pull-right"><div style="font-size:11px; color:white">' + "teste" + '</div></span></h4><p>' + htmlEncode(message) + '</p></div></div></div><hr/>');
+                    var objDiv = document.getElementById("chat0");
+                    objDiv.scrollTop = objDiv.scrollHeight;
 
+                };
+                // Get the user name and store it to prepend to messages.
+                //$('#displayname').val(prompt('Enter your name:', ''));
+                // Set initial focus to message input box.
+                $('#mensagemTema' +nrTema).focus();
+                // Start the connection.
+                $.connection.hub.start().done(function () {
+                    //$('#enviarTema' + nrTema).click(function () {
+                        // Call the Send method on the hub.
+                        chat.server.send(ut, $('#mensagemTema'+nrTema).val());
+                        // Clear text box and reset focus for next comment.
+                        $('#mensagemTema'+nrTema).val('').focus();
+                    //});
+                });
             };
-            // Get the user name and store it to prepend to messages.
-            //$('#displayname').val(prompt('Enter your name:', ''));
-            // Set initial focus to message input box.
-            $('#mensagemTema' +nrTema).focus();
-            // Start the connection.
-            $.connection.hub.start().done(function () {
-                //$('#enviarTema' + nrTema).click(function () {
-                    // Call the Send method on the hub.
-                    chat.server.send(ut, $('#mensagemTema'+nrTema).val());
-                    // Clear text box and reset focus for next comment.
-                    $('#mensagemTema'+nrTema).val('').focus();
-                //});
-            });
-        };
-        // This optional function html-encodes messages for display in the page.
-        function htmlEncode(value) {
-            var encodedValue = $('<div />').text(value).html();
-            return encodedValue;
-        }
-</script>*@
+            // This optional function html-encodes messages for display in the page.
+            function htmlEncode(value) {
+                var encodedValue = $('<div />').text(value).html();
+                return encodedValue;
+            }
+    </script>*@
 
 
 <script>
@@ -703,11 +716,11 @@
         ChatProxy = SignalrConnection.createHubProxy('hub');
 
         ChatProxy.on("addNewMessageToPage",function (name, message, groupName, data) {
-           // alert("dasd");
-            var mensagemTratada=getMensagemTratada(message);          
+            // alert("dasd");
+            var mensagemTratada=getMensagemTratada(message);
             $('#Tema'+groupName+'comentario0').append('<div class="col-lg-12"><div class="media"><div><h6 style="background-color:#3366CC; color:white;" class="media-heading">' + htmlEncode(name) + ' <span class="small pull-right"><div style="font-size:11px; color:white">' + data + '</div></span></h4><p>' + mensagemTratada + '</p></div></div></div><hr/>');
             //var objDiv = document.getElementById("chat0");
-            var objDiv = document.getElementById("chat" + groupName);         
+            var objDiv = document.getElementById("chat" + groupName);
             objDiv.scrollTop = objDiv.scrollHeight;
         });
         var idReuniao = "@Model.ReuniaoBrainstorm.Id";
@@ -715,8 +728,8 @@
 
         SignalrConnection.start({ jsonp: true}).done(function() {
             iniciarGrupo();
-             }).fail(function () {
-                })
+        }).fail(function () {
+        })
 
         @*@for (int i = 0; i < Model.Temas.Count; i++)
         {
@@ -757,22 +770,23 @@
 
 
             @: nomeGrupo = "Brainstorm_" + idReuniao + "_"+"@tema_id";
-            @:ChatProxy.invoke('conectarGrupo', nomeGrupo);
+                            @:ChatProxy.invoke('conectarGrupo', nomeGrupo);
 
 
 
             @:$("#mensagemTema" + @tema_id).keyup(function(event){
-                @:if (event.keyCode == 13){
-                        @: $('#enviarTema' + @tema_id).click();
-                        @:}
-                @:});
-                   }
+                                        @:if (event.keyCode == 13){
+                                                        @: $('#enviarTema' + @tema_id).click();
+                                                        @:}
+                                        @:});
+                                   }
         }
     }
-        }
+    }
 
     function botaoEnviarMensagem(idTema){
-        var ut = "@Model.ReuniaoBrainstorm.Utilizador_alt";
+        @*var ut = "@Model.ReuniaoBrainstorm.Utilizador_alt";*@
+        var ut =  "@Session["utilizador_codigo"]";
         var idReuniao = "@Model.ReuniaoBrainstorm.Id";
         var idTema= document.getElementById("imgChat" + idTema).getAttribute("idTema");
         var data = new Date().today() + " " + new Date().timeNow();
@@ -793,11 +807,12 @@
 
 <script type="text/javascript">
     function connectToChat(idTema) {
-        var ut = "@Model.ReuniaoBrainstorm.Utilizador_alt";
+        @*var ut = "@Model.ReuniaoBrainstorm.Utilizador_alt";*@
+        var ut =  "@Session["utilizador_codigo"]";
         var idReuniao = "@Model.ReuniaoBrainstorm.Id";
         var descricaoTema = document.getElementById("descricao" + idTema).value;
 
-        var nomeGrupo = new String();  
+        var nomeGrupo = new String();
         nomeGrupo = nomeGrupo + "Brainstorm_" + idReuniao + "_"+idTema;
         // se nao existe a div Tema... adiciona uma nova
         if($('#Tema'+nomeGrupo +'comentario0').length <= 0) {
@@ -813,14 +828,14 @@
         document.getElementById("descriTema" + idTema).textContent = traduz("Descrição") + ": " + descricaoTema;
         document.getElementById("descriTema" + idTema).title = document.getElementById("descricao" + idTema).value;
 
-       
+
         var idTema= document.getElementById("imgChat" + idTema).getAttribute("idTema");
         var data = new Date().today() + " " + new Date().timeNow();
         var ids =  new Array();
 
         ids.push(idReuniao);
         ids.push(idTema);
-        
+
         $('#Tema'+nomeGrupo +'comentario0').empty();
         $.ajax({
             url: "http://localhost:64073/MessagingHub.asmx/getMensagensMessaging",
@@ -834,17 +849,17 @@
                 if (vetor != null) {
                     for (var k = 0; k < vetor.length; k++) {
                         var mensagemTratada=getMensagemTratada(vetor[k].brainstorm_chat_mensagem);
-                       // $('#chat'+nrTema).append('<div class="col-lg-12"><div class="media"><div><h6 style="background-color:#3366CC; color:white;" class="media-heading">' + htmlEncode(vetor[k].brainstorm_chat_ut) + ' <span class="small pull-right"><div style="font-size:11px; color:white">' + vetor[k].brainstorm_chat_data + '</div></span></h4><p style="font-size:11px">' + mensagemTratada + '</p></div></div></div><br/>&nbsp');
+                        // $('#chat'+nrTema).append('<div class="col-lg-12"><div class="media"><div><h6 style="background-color:#3366CC; color:white;" class="media-heading">' + htmlEncode(vetor[k].brainstorm_chat_ut) + ' <span class="small pull-right"><div style="font-size:11px; color:white">' + vetor[k].brainstorm_chat_data + '</div></span></h4><p style="font-size:11px">' + mensagemTratada + '</p></div></div></div><br/>&nbsp');
                         $('#Tema'+nomeGrupo+'comentario0').append('<div class="col-lg-12"><div class="media"><div><h6 style="background-color:#3366CC; color:white;" class="media-heading">' + htmlEncode(vetor[k].brainstorm_chat_ut) + ' <span class="small pull-right"><div style="font-size:11px; color:white">' + vetor[k].brainstorm_chat_data + '</div></span></h4><p>' + mensagemTratada + '</p></div></div></div><hr/>');
                     }
                 }
             }
-        });       
+        });
 
-        var objDiv = document.getElementById("chat" + nomeGrupo);         
+        var objDiv = document.getElementById("chat" + nomeGrupo);
         objDiv.scrollTop = objDiv.scrollHeight;
         $('#mensagemTema' +idTema).focus();
-             
+
     };
     function htmlEncode(value) {
         var encodedValue = $('<div />').text(value).html();
@@ -853,7 +868,7 @@
 
     function getMensagemTratada(mensagem){
         var mensagemOriginal = mensagem;
-       
+
         var palavras = mensagem.split(" ");
         var mensagemTemp = "";
 
@@ -901,41 +916,41 @@
 </script>
 
 @*<script>
-    $(function () {
-            // Reference the auto-generated proxy for the hub.
-        var ut = "@Model.ReuniaoBrainstorm.Utilizador_alt";
-        //alert(ut);
-            var chat = $.connection.chatHub;
-            // Create a function that the hub can call back to display messages.
-            chat.client.addNewMessageToPage = function (name, message) {
-                // Add the message to the page.
+        $(function () {
+                // Reference the auto-generated proxy for the hub.
+            var ut = "@Model.ReuniaoBrainstorm.Utilizador_alt";
+            //alert(ut);
+                var chat = $.connection.chatHub;
+                // Create a function that the hub can call back to display messages.
+                chat.client.addNewMessageToPage = function (name, message) {
+                    // Add the message to the page.
 
-                $('#chat0').append('<div class="row" id="Tema0comentario0"></div>')
-                $('#Tema0comentario0').append('<div class="col-lg-12"><div class="media"><div><h6 style="background-color:#3366CC; color:white;" class="media-heading">' + htmlEncode(name) + ' <span class="small pull-right"><div style="font-size:11px; color:white">' + "teste" + '</div></span></h4><p>' + htmlEncode(message) + '</p></div></div></div><hr/>');
-                var objDiv = document.getElementById("chat0");
-                objDiv.scrollTop = objDiv.scrollHeight;
+                    $('#chat0').append('<div class="row" id="Tema0comentario0"></div>')
+                    $('#Tema0comentario0').append('<div class="col-lg-12"><div class="media"><div><h6 style="background-color:#3366CC; color:white;" class="media-heading">' + htmlEncode(name) + ' <span class="small pull-right"><div style="font-size:11px; color:white">' + "teste" + '</div></span></h4><p>' + htmlEncode(message) + '</p></div></div></div><hr/>');
+                    var objDiv = document.getElementById("chat0");
+                    objDiv.scrollTop = objDiv.scrollHeight;
 
-            };
-            // Get the user name and store it to prepend to messages.
-            //$('#displayname').val(prompt('Enter your name:', ''));
-            // Set initial focus to message input box.
-            $('#mensagemTema0').focus();
-            // Start the connection.
-            $.connection.hub.start().done(function () {
-                $('#enviarTema0').click(function () {
-                    // Call the Send method on the hub.
-                    chat.server.send(ut, $('#mensagemTema0').val());
-                    // Clear text box and reset focus for next comment.
-                    $('#mensagemTema0').val('').focus();
+                };
+                // Get the user name and store it to prepend to messages.
+                //$('#displayname').val(prompt('Enter your name:', ''));
+                // Set initial focus to message input box.
+                $('#mensagemTema0').focus();
+                // Start the connection.
+                $.connection.hub.start().done(function () {
+                    $('#enviarTema0').click(function () {
+                        // Call the Send method on the hub.
+                        chat.server.send(ut, $('#mensagemTema0').val());
+                        // Clear text box and reset focus for next comment.
+                        $('#mensagemTema0').val('').focus();
+                    });
                 });
-            });
-    });
-        // This optional function html-encodes messages for display in the page.
-    function htmlEncode(value) {
-        var encodedValue = $('<div />').text(value).html();
-        return encodedValue;
-    }
-</script>*@
+        });
+            // This optional function html-encodes messages for display in the page.
+        function htmlEncode(value) {
+            var encodedValue = $('<div />').text(value).html();
+            return encodedValue;
+        }
+    </script>*@
 
 
 <script>
@@ -958,18 +973,38 @@
             {
 
                 @:var selecionados = new Array();
-                                @:var v = 0;
-                                foreach (var interv in Model.IntervenientesSelecionados)
+                                                @:var v = 0;
+                                                foreach (var interv in Model.IntervenientesSelecionados)
                 {
 
                     @:selecionados[v] = htmlDecode("@interv.NomeAndCodigo");
-                                    @:v++;
-                                }
+                                                    @:v++;
+                                                }
 
                 @:$(".selectInterveniente1").val(selecionados).trigger('change.select2');
 
 
 
+            }
+
+            for(int i = 0; i<Model.Temas.Count(); i++)
+            {
+                if (Model.Temas[i] != null && Model.Temas[i].Id != null && Model.Temas[i].Id != 0)
+                {
+                    if (Model.Temas[i].Actividade)
+                    {
+                     @: Actividade = document.getElementById("actividade" + @i);
+                     @:$(Actividade).css('color', 'gold');
+                    }
+
+                     if (Model.Temas[i].GestaoInov)
+                    {
+                     @: Ideia = document.getElementById("ideia" + @i);
+                     @:$(Ideia).css('color', 'gold');
+                    }
+                }
+
+               
             }
 
         }
@@ -1006,19 +1041,20 @@
 
         // Update the total progress bar
         myDropzone.on("totaluploadprogress", function (progress) {
-            document.querySelector("#total-progress .progress-bar").style.width = progress + "%";
+            //document.querySelector("#total-progress .progress-bar").style.width = progress + "%";
+            document.querySelector(".progress-bar").style.width = progress + "%";
         });
 
         myDropzone.on("sending", function (file) {
             // Show the total progress bar when upload starts
-            document.querySelector("#total-progress").style.opacity = "1";
+            //document.querySelector("#total-progress").style.opacity = "1";
             // And disable the start button
             file.previewElement.querySelector(".start").setAttribute("disabled", "disabled");
         });
 
         // Hide the total progress bar when nothing's uploading anymore
         myDropzone.on("queuecomplete", function (progress) {
-            document.querySelector("#total-progress").style.opacity = "0";
+            //document.querySelector("#total-progress").style.opacity = "0";
         });
 
         // Setup the buttons for all transfers
@@ -1059,10 +1095,10 @@
             @if(Model.ReuniaoBrainstorm.Estado != null)
                 {
                  @:url = "/Brainstorm/Brainstorm/GetAnexos?tipo=1"
-                }else
+                                        }else
                      {
                         @:url = "/Brainstorm/Brainstorm/GetAnexos?tipo=0"
-                     }
+                                             }
 
             $.getJSON(url).done(function (data) {
                 if (data.Data != '') {
@@ -1076,7 +1112,7 @@
 
                         // Call the default addedfile event handler
                         thisDropzone.emit("addedfile", mockFile);
-                        
+
 
                         // And optionally show the thumbnail of the file:
                         thisDropzone.emit("thumbnail", mockFile, item.Path);
@@ -1099,8 +1135,27 @@
 
 <script type="text/javascript">
     $('#gravar').on('click', function (event) {
-        event.preventDefault();       
-        $('#myForm').submit();
+        bootbox.confirm({
+            title: traduz("Alterar Estado"),
+            message: traduz("Deseja realmente guardar a reunião?"),
+            size:'small',
+            buttons: {
+                cancel: {
+                    label: '<i class="fa fa-times"></i>' + traduz('Cancelar')
+                },
+                confirm: {
+                    label: '<i class="fa fa-check"></i>' + traduz('Confirmar')
+                }
+            },
+            callback: function (result) {
+                if(result)
+                {
+                    event.preventDefault();
+                    $('#myForm').submit();
+                }
+            }
+        });
+
     });
     // estado pendente para aprovada
     $('#gravar1').on('click', function (event) {
@@ -1122,16 +1177,16 @@
                 {
                     event.preventDefault();
                     $('.estado').val('A');
-                    $('.estadoFlag').val(true);                  
+                    $('.estadoFlag').val(true);
                     $('#myForm').submit();
                     //$('#flag').attr('flagToastr',1);
                     toastr.options.timeOut = 5000;
                     toastr.success("Reunião aprovada");
-                }               
+                }
             }
         });
-        
-       
+
+
     });
     // estado aprovada para encerrada
     $('#gravar2').on('click', function (event) {
@@ -1155,10 +1210,10 @@
                     $('.estado').val('E');
                     $('.estadoFlag').val(true);
                     $('#myForm').submit();
-                }               
+                }
             }
         });
-       
+
     });
     // estado anulada
     $('#gravar3').on('click', function (event) {
@@ -1181,10 +1236,10 @@
                     $('.estado').val('X');
                     $('.estadoFlag').val(true);
                     $('#myForm').submit();
-                }               
+                }
             }
         });
-        
+
     });
 
 
@@ -1192,23 +1247,88 @@
         //var cbs = document.getElementsByClassName("cb");
         cbGestInov = document.getElementById("cbGestInov" + i);
         cbAct = document.getElementById("cbAct" + i);
-        if(cbAct.checked)
+        Actividade = document.getElementById("actividade" + i);
+        Ideia = document.getElementById("ideia" + i);
+
+        //muda cor
+        if(cbGestInov.checked == true)
+        {
+            $(Ideia).css('color', 'gold');
+        }
+        else
+        {
+            $(Ideia).css('color', "");
+        }
+
+        if(cbAct.checked == true)
+        {
             cbAct.checked = false;
+            $(Actividade).css('color', "");
+        }
     }
 
     function cbChangeAct(i) {
         //var cbs = document.getElementsByClassName("cb");
         cbGestInov = document.getElementById("cbGestInov" + i);
         cbAct = document.getElementById("cbAct" + i);
+        Actividade = document.getElementById("actividade" + i);
+        Ideia = document.getElementById("ideia" + i);
+        //muda cor
+        if(cbAct.checked == true)
+        {
+            $(Actividade).css('color', 'gold');
+        }
+        else
+        {
+            $(Actividade).css('color', "");
+        }
+
         if(cbGestInov.checked == true)
+        {
             cbGestInov.checked = false;
+            $(Ideia).css('color', "");
+        }
+
     }
-  
+
+    function changeSEColor(i) {
+        //var gold = $('semEfeito' + i).css('color');
+        //$(this).attr('data-state') === 'true';
+        cbGestInov = document.getElementById("cbGestInov" + i);
+        cbAct = document.getElementById("cbAct" + i);
+        Actividade = document.getElementById("actividade" + i);
+        Ideia = document.getElementById("ideia" + i);
+        SemEfeito = document.getElementById("semEfeito" + i);
+
+        var theData = document.getElementById("semEfeito" + i).getAttribute('data-semEfeito');
+
+        if(theData == 'true')
+        {
+            $(SemEfeito).css('color', "");
+            document.getElementById("semEfeito" + i).setAttribute('data-semEfeito', 'false')
+
+        }
+        else
+        {
+            $(SemEfeito).css('color', 'gold');
+            document.getElementById("semEfeito" + i).setAttribute('data-semEfeito', 'true')
+        }
+
+        if(cbAct.checked == true || cbGestInov.checked == true)
+        {
+            cbGestInov.checked = false;
+            $(Ideia).css('color', "");
+
+            cbAct.checked = false;
+            $(Actividade).css('color', "");
+        }
+    }
+
     //$('#Foo0').attr('collapse','collapse in')
 
     $( "#Foo0" ).collapse('show');
 
-   
+
     //$('#myModal').on('hidden.bs.modal', function () {
     //    alert("entrei");
     //    if($('#flag').attr("flagToastr") == 1)
@@ -1227,7 +1347,13 @@
     //    }
     //});
 
-   
+    //function changeAtrIdeia(i) {
+
+    //    Ideia = document.getElementById("ideia" + i);
+    //    $(Ideia).css('color', 'gold');
+
+    //}
+
 </script>
 
 
@@ -1244,7 +1370,7 @@
                     if (Model.Temas[i] != null)
                     {
                          @:$("#Foo" + @i).collapse('show');
-                            }
+                                            }
                 }
 
             }
@@ -1257,7 +1383,7 @@
         @if(ViewBag.Chat != null)
         {
             @:$('#imgChat' + @ViewBag.Chat).click();
-        }
+                        }
 
 
         $("#visualizarAnexos").click(function () {
@@ -1274,7 +1400,7 @@
 
     function traduz(termo) {
         var data={
-           termo:termo
+            termo:termo
         };
 
         var termoTraduzido;
@@ -1318,28 +1444,28 @@
 }
 
 
-@*<iframe src="http://localhost:30682/chat.aspx" frameborder="0" zindex="9" style="position: fixed;bottom: 0px;width:250px" id="iframeChat">
-    <p>Your browser does not support iframes.</p>
-</iframe>
+    @*<iframe src="http://localhost:30682/chat.aspx" frameborder="0" zindex="9" style="position: fixed;bottom: 0px;width:250px" id="iframeChat">
+            <p>Your browser does not support iframes.</p>
+        </iframe>
 
 
-<script type="text/javascript">
+        <script type="text/javascript">
 
-    $(window).resize(function (){
-    
-        posicionaChat();
-    });
+            $(window).resize(function (){
+
+                posicionaChat();
+            });
 
 
-    function posicionaChat(){
-        
-        var largChat=$("#iframeChat").width();
-        var largWindow=$(window).width();
-        document.getElementById("iframeChat").style.left=largWindow-largChat-15 +"px";
-    }
+            function posicionaChat(){
 
-    posicionaChat();
+                var largChat=$("#iframeChat").width();
+                var largWindow=$(window).width();
+                document.getElementById("iframeChat").style.left=largWindow-largChat-15 +"px";
+            }
 
-</script>*@
+            posicionaChat();
+
+        </script>*@
 
 

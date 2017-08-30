@@ -9,7 +9,7 @@
 
 
 
-<h2 id="flag" flagToastr="0">Brainstorm</h2>
+<h2 id="flag" flagToastr="0">Brainstorming</h2>
 <div class="modal" id="modalAnexos" role="dialog" aria-labelledby="myModalLabel"> </div>
 @*@{ Session["FormatoData"] = "YYYYMMDD";}*@
 @*@{ Session["Idioma"] = "ENG";}*@
@@ -233,8 +233,8 @@
                             string mostraSeAprovada = Model.ReuniaoBrainstorm.Estado == "A" ? "visible" : "hidden";
                         }
                         <label id="gravar2" class="element-animation2 btn btn-lg btn-primary btn-block @mostraSeAprovada"><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span> <input type="radio" name="q_answer" value="E">@Traducoes.Traduz("Encerrada")</label>
-                       @{
-                            string naoMostraSeAnulada = Model.ReuniaoBrainstorm.Estado == "X" ? "hidden" : "visible";
+                         @{
+                             string naoMostraSeAnulada = (Model.ReuniaoBrainstorm.Estado == "X") || (Model.ReuniaoBrainstorm.Estado == "E") ? "hidden" : "visible";
                         }
                         <label id="gravar3" class="element-animation3 btn btn-lg btn-primary btn-block  @naoMostraSeAnulada"><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span> <input type="radio" name="q_answer" value="X">@Traducoes.Traduz("Anulada")</label>
                     </div>
@@ -325,7 +325,7 @@
                                 <img id="separador3" src="/Images/Tool_Obr.gif" title="@Traducoes.Traduz("Campo Obrigatório")" />
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-2">@Traducoes.Traduz("Duração(Min)") </label>
+                                <label class="control-label col-md-2">@Traducoes.Traduz("Duração Prevista(Min)") </label>
                                 <div class="col-md-2">
                                     @Html.TextBoxFor(model => model.ReuniaoBrainstorm.Duracao, htmlAttributes: new
                                    {
@@ -448,7 +448,7 @@
                                         <td style="width:3%; text-align:center">#</td>
                                         <td style="width:40%; text-align:center">@Traducoes.Traduz("Descrição")</td>
                                         <td style="width:40%; text-align:center">@Traducoes.Traduz("Comentários")</td>
-                                        <td style="width:17%; text-align:center">@Traducoes.Traduz("Gestão Inovação/Actividade")</td>
+                                        <td style="width:17%; text-align:center">@Traducoes.Traduz("Resultado")</td>
                                         @*<td>@Traducoes.Traduz("Título")</td>
                                             <td>@Traducoes.Traduz("Inov")</td>
                                             <td>@Traducoes.Traduz("Act")</td>*@
@@ -500,10 +500,19 @@
                                                         <td>@Html.CheckBoxFor(m => m.Temas[i].GestaoInov) </td>
                                                            <td> @Html.CheckBoxFor(m => m.Temas[i].Actividade)</td>*@
 
-                                                    @Html.Label(@Traducoes.Traduz("Ideia"))
-                                                    @Html.CheckBoxFor(m => m.Temas[i].GestaoInov, new { @id = "cbGestInov" + i, @class = "cbGestInov" + i, @onchange = "cbChangeInov(" + i + ")" }) <br />
-                                                    @Html.Label(@Traducoes.Traduz("Actividade"))
-                                                    @Html.CheckBoxFor(m => m.Temas[i].Actividade, new { @id = "cbAct" + i, @class = "cbAct" + i, @onchange = "cbChangeAct(" + i + ")" })
+                                                    @*@Html.Label(@Traducoes.Traduz("Ideia"))*@
+                                                    <label for=@("cbGestInov" + i)>
+                                                        <i id=@("ideia" + i) class="fa fa-lightbulb-o fa-2x comment tamanhoCorChat" idIdeia="@tema_id" style="cursor: pointer" aria-hidden="true" @*onclick="changeAtrIdeia(@tema_id)"*@ title="@Traducoes.Traduz("Ideia")"></i>
+                                                    </label>
+                                                    @Html.CheckBoxFor(m => m.Temas[i].GestaoInov, new { @style = "display:none", @id = "cbGestInov" + i, @class = "cbGestInov" + i, @onchange = "cbChangeInov(" + i + ")" }) @*<br />*@
+                                                    @*@Html.Label(@Traducoes.Traduz("Actividade"))*@
+                                                    <label for=@("cbAct" + i)>
+                                                        <i id=@("actividade" + i) class="fa fa-gavel fa-2x comment tamanhoCorChat" idActividade="@tema_id" style="cursor: pointer" aria-hidden="true" onclick="" title="@Traducoes.Traduz("Actividade")"></i>
+                                                    </label>
+                                                    @Html.CheckBoxFor(m => m.Temas[i].Actividade, new { @style = "display:none", @id = "cbAct" + i, @class = "cbAct" + i, @onchange = "cbChangeAct(" + i + ")" })
+
+                                                    <i id=@("semEfeito" + i) class="fa fa-ban fa-2x comment tamanhoCorChat" data-semEfeito="false" style="cursor: pointer" aria-hidden="true" onclick="changeSEColor(@i)" title="@Traducoes.Traduz("Sem efeito")"></i>  <br />
+                                                    @*@Html.DropDownListFor(model => model.IntervenientesView, new SelectList(Model.Intervenientes, "NomeAndCodigo", "NomeAndCodigo"), "Selecionar interveniente", htmlAttributes: new { @class = "form-control selectInterveniente1", @id = "Recursos" + i, @multiple = "multiple" })*@
                                                 </td>
                                             </tr>
                                                 <tr class="noBorder collapse in" id="@("Foo" + i)">
@@ -779,7 +788,8 @@
         }
 
     function botaoEnviarMensagem(idTema){
-        var ut = "@Model.ReuniaoBrainstorm.Utilizador_alt";
+        @*var ut = "@Model.ReuniaoBrainstorm.Utilizador_alt";*@
+        var ut =  "@Session["utilizador_codigo"]";
         var idReuniao = "@Model.ReuniaoBrainstorm.Id";
         var idTema= document.getElementById("imgChat" + idTema).getAttribute("idTema");
         var data = new Date().today() + " " + new Date().timeNow();
@@ -800,7 +810,8 @@
 
 <script type="text/javascript">
     function connectToChat(idTema) {
-        var ut = "@Model.ReuniaoBrainstorm.Utilizador_alt";
+        @*var ut = "@Model.ReuniaoBrainstorm.Utilizador_alt";*@
+        var ut =  "@Session["utilizador_codigo"]";
         var idReuniao = "@Model.ReuniaoBrainstorm.Id";
         var descricaoTema = document.getElementById("descricao" + idTema).value;
 
@@ -1017,19 +1028,20 @@
 
         // Update the total progress bar
         myDropzone.on("totaluploadprogress", function (progress) {
-            document.querySelector("#total-progress .progress-bar").style.width = progress + "%";
+            //document.querySelector("#total-progress .progress-bar").style.width = progress + "%";
+            document.querySelector(".progress-bar").style.width = progress + "%";
         });
 
         myDropzone.on("sending", function (file) {
             // Show the total progress bar when upload starts
-            document.querySelector("#total-progress").style.opacity = "1";
+            //document.querySelector("#total-progress").style.opacity = "1";
             // And disable the start button
             file.previewElement.querySelector(".start").setAttribute("disabled", "disabled");
         });
 
         // Hide the total progress bar when nothing's uploading anymore
         myDropzone.on("queuecomplete", function (progress) {
-            document.querySelector("#total-progress").style.opacity = "0";
+            //document.querySelector("#total-progress").style.opacity = "0";
         });
 
         // Setup the buttons for all transfers
@@ -1110,8 +1122,27 @@
 
 <script type="text/javascript">
     $('#gravar').on('click', function (event) {
-        event.preventDefault();
-        $('#myForm').submit();
+        bootbox.confirm({
+            title: traduz("Alterar Estado"),
+            message: traduz("Deseja realmente guardar a reunião?"),
+            size:'small',
+            buttons: {
+                cancel: {
+                    label: '<i class="fa fa-times"></i>' + traduz('Cancelar')
+                },
+                confirm: {
+                    label: '<i class="fa fa-check"></i>' + traduz('Confirmar')
+                }
+            },
+            callback: function (result) {
+                if(result)
+                {
+                    event.preventDefault();
+                    $('#myForm').submit();
+                }
+            }
+        });
+
     });
     // estado pendente para aprovada
     $('#gravar1').on('click', function (event) {
@@ -1203,16 +1234,81 @@
         //var cbs = document.getElementsByClassName("cb");
         cbGestInov = document.getElementById("cbGestInov" + i);
         cbAct = document.getElementById("cbAct" + i);
-        if(cbAct.checked)
+        Actividade = document.getElementById("actividade" + i);
+        Ideia = document.getElementById("ideia" + i);
+
+        //muda cor
+        if(cbGestInov.checked == true)
+        {
+            $(Ideia).css('color', 'gold');
+        }
+        else
+        {
+            $(Ideia).css('color', "");
+        }
+
+        if(cbAct.checked == true)
+        {
             cbAct.checked = false;
+            $(Actividade).css('color', "");
+        }
     }
 
     function cbChangeAct(i) {
         //var cbs = document.getElementsByClassName("cb");
         cbGestInov = document.getElementById("cbGestInov" + i);
         cbAct = document.getElementById("cbAct" + i);
+        Actividade = document.getElementById("actividade" + i);
+        Ideia = document.getElementById("ideia" + i);
+        //muda cor
+        if(cbAct.checked == true)
+        {
+            $(Actividade).css('color', 'gold');
+        }
+        else
+        {
+            $(Actividade).css('color', "");
+        }
+
         if(cbGestInov.checked == true)
+        {
             cbGestInov.checked = false;
+            $(Ideia).css('color', "");
+        }
+
+    }
+
+    function changeSEColor(i) {
+        //var gold = $('semEfeito' + i).css('color');
+        //$(this).attr('data-state') === 'true';
+        cbGestInov = document.getElementById("cbGestInov" + i);
+        cbAct = document.getElementById("cbAct" + i);
+        Actividade = document.getElementById("actividade" + i);
+        Ideia = document.getElementById("ideia" + i);
+        SemEfeito = document.getElementById("semEfeito" + i);
+
+        var theData = document.getElementById("semEfeito" + i).getAttribute('data-semEfeito');
+
+        if(theData == 'true')
+        {
+            $(SemEfeito).css('color', "");
+            document.getElementById("semEfeito" + i).setAttribute('data-semEfeito', 'false')
+
+        }
+        else
+        {
+            $(SemEfeito).css('color', 'gold');
+            document.getElementById("semEfeito" + i).setAttribute('data-semEfeito', 'true')
+        }
+
+        if(cbAct.checked == true || cbGestInov.checked == true)
+        {
+            cbGestInov.checked = false;
+            $(Ideia).css('color', "");
+
+            cbAct.checked = false;
+            $(Actividade).css('color', "");
+        }
     }
 
     //$('#Foo0').attr('collapse','collapse in')
@@ -1238,6 +1334,12 @@
     //    }
     //});
 
+    //function changeAtrIdeia(i) {
+
+    //    Ideia = document.getElementById("ideia" + i);
+    //    $(Ideia).css('color', 'gold');
+
+    //}
 
 </script>
 
