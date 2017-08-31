@@ -17,6 +17,15 @@
 label {
     font-weight: normal !important;
 }
+/*change space between headers*/
+.space{
+    margin-bottom: 2px;
+}
+/*change border color from intervenientes*/
+.select2-selection
+{
+    border:1px solid #ccc !important;
+}
 
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 

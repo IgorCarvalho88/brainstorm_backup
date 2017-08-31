@@ -280,7 +280,7 @@
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-2">@Traducoes.Traduz("Data")</label>
-                                <div class="col-md-2">
+                                <div class="col-md-2 space">
                                     @Html.TextBoxFor(model => model.ReuniaoBrainstorm.Data, htmlAttributes: new { @id = "Data", @class = "form-control" })
                                     @Html.ValidationMessageFor(model => model.ReuniaoBrainstorm.Data, @Traducoes.Traduz("Data é obrigatório"))
                                 </div>
@@ -291,7 +291,7 @@
                         }
                         <div class="row @cssClass">
                             <div class="col-sm-0half">
-                                <img id="separador3" src="/Images/Tool_Obr.gif" title="@Traducoes.Traduz("Campo Obrigatório")" />
+                                <img id="separador3" src="/Images/Tool_Inf.gif" title="@Traducoes.Traduz("Campo Obrigatório")" />
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-2">@Traducoes.Traduz("Estado")</label>
@@ -323,11 +323,8 @@
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-2">@Traducoes.Traduz("Duração Prevista(Min)") </label>
-                                <div class="col-md-2">
-                                    @Html.TextBoxFor(model => model.ReuniaoBrainstorm.Duracao, htmlAttributes: new
-                               {
-                                   @id = "Duracao",
-                                   @class = "form-control"@*, @data_val_number = "Supply an integer, dude!"*@ })
+                                <div class="col-md-2 space">
+                                    @Html.TextBoxFor(model => model.ReuniaoBrainstorm.Duracao, htmlAttributes: new{@id = "Duracao",@class = "form-control"@*, @data_val_number = "Supply an integer, dude!"*@ })
                                     @Html.ValidationMessageFor(model => model.ReuniaoBrainstorm.Duracao, @Traducoes.Traduz("Duração é obrigatório"))
                                 </div>
                                 <label class="control-label col-md-2">@Traducoes.Traduz("Duração Real(Min)")</label>
@@ -339,12 +336,13 @@
                         </div>
                         <div class="row">
                             <div class="col-sm-0half">
-                                <img id="separador3" src="/Images/Tool_nor.gif" title="@Traducoes.Traduz("Campo Opcional")" />
+                                <img id="separador3" src="/Images/Tool_Obr.gif" title="@Traducoes.Traduz("Campo Obrigatório")" />
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-2">@Traducoes.Traduz("Intervenientes")</label>
-                                <div class="col-md-6">
+                                <div class="col-md-6 space">
                                     @Html.DropDownListFor(model => model.IntervenientesView, new SelectList(Model.Intervenientes, "NomeAndCodigo", "NomeAndCodigo"), "Selecionar interveniente", htmlAttributes: new { @class = "form-control selectInterveniente1", @style = "width: 100%;!important", @id = "Interveniente1", @multiple = "multiple" })
+                                    @Html.ValidationMessageFor(model => model.IntervenientesView, @Traducoes.Traduz("Interveniente é obrigatório"))
                                 </div>
                             </div>
                         </div>
@@ -399,12 +397,13 @@
 
                         <div class="row">
                             <div class="col-sm-0half">
-                                <img id="separador3" src="/Images/Tool_nor.gif" title="@Traducoes.Traduz("Campo Opcional")" />
+                                <img id="separador3" src="/Images/Tool_Obr.gif" title="@Traducoes.Traduz("Campo Obrigatório")" />
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-2">@Traducoes.Traduz("Local")</label>
                                 <div class="col-md-6">
                                     @Html.TextAreaFor(m => m.ReuniaoBrainstorm.Local, new { @class = "form-control" })
+                                     @Html.ValidationMessageFor(model => model.ReuniaoBrainstorm.Local, @Traducoes.Traduz("Local é obrigatório"))
                                 </div>
                             </div>
                         </div>
@@ -488,14 +487,14 @@
                                                 </td>
                                                 <td>
                                                     @*<button id="botao" href="@("#Foo" + i)" class="btn btn-default mostraGestInov" data-toggle="collapse">
-                                                            <img id="@("imagem" + i)" src="/Images/mais.gif" width="10"/>
-                                                        </button>*@
+                <img id="@("imagem" + i)" src="/Images/mais.gif" width="10"/>
+            </button>*@
 
                                                     @*Descomentar*@
 
                                                     @*<td> @Html.TextBoxFor(m => m.Temas[i].Titulo, new { @class = "form-control" }) </td>
-                                                        <td>@Html.CheckBoxFor(m => m.Temas[i].GestaoInov) </td>
-                                                           <td> @Html.CheckBoxFor(m => m.Temas[i].Actividade)</td>*@
+            <td>@Html.CheckBoxFor(m => m.Temas[i].GestaoInov) </td>
+               <td> @Html.CheckBoxFor(m => m.Temas[i].Actividade)</td>*@
 
                                                     @*@Html.Label(@Traducoes.Traduz("Ideia"))*@
                                                     <label for=@("cbGestInov" + i)>
@@ -507,8 +506,10 @@
                                                         <i id=@("actividade" + i) class="fa fa-gavel fa-2x comment tamanhoCorChat" idActividade="@tema_id" style="cursor: pointer" aria-hidden="true" onclick="" title="@Traducoes.Traduz("Actividade")"></i>
                                                     </label>
                                                     @Html.CheckBoxFor(m => m.Temas[i].Actividade, new { @style = "display:none", @id = "cbAct" + i, @class = "cbAct" + i, @onchange = "cbChangeAct(" + i + ")" })
-
-                                                    <i id=@("semEfeito" + i) class="fa fa-ban fa-2x comment tamanhoCorChat" data-semEfeito="false" style="cursor: pointer" aria-hidden="true" onclick="changeSEColor(@i)" title="@Traducoes.Traduz("Sem efeito")"></i>  <br />
+                                                    <label for=@("cbSE" + i)>
+                                                        <i id=@("semEfeito" + i) class="fa fa-ban fa-2x comment tamanhoCorChat" data-semEfeito="false" style="cursor: pointer" aria-hidden="true" onclick="changeSEColor(@i)" title="@Traducoes.Traduz("Sem efeito")"></i>
+                                                    </label>
+                                                     @Html.CheckBoxFor(m => m.Temas[i].SemEfeito, new { @style = "display:none", @id = "cbSE" + i, @class = "cbSE" + i@*, @onchange = "cbChangeAct(" + i + ")" *@})  <br />
                                                     @*@Html.DropDownListFor(model => model.IntervenientesView, new SelectList(Model.Intervenientes, "NomeAndCodigo", "NomeAndCodigo"), "Selecionar interveniente", htmlAttributes: new { @class = "form-control selectInterveniente1", @id = "Recursos" + i, @multiple = "multiple" })*@
                                                 </td>
                                             </tr>
@@ -1002,6 +1003,12 @@
                      @: Ideia = document.getElementById("ideia" + @i);
                      @:$(Ideia).css('color', 'gold');
                     }
+
+                    if (Model.Temas[i].SemEfeito)
+                    {
+                     @: SemEfeito = document.getElementById("semEfeito" + @i);
+                     @:$(SemEfeito).css('color', 'gold');
+                    }
                 }
 
                
@@ -1180,8 +1187,8 @@
                     $('.estadoFlag').val(true);
                     $('#myForm').submit();
                     //$('#flag').attr('flagToastr',1);
-                    toastr.options.timeOut = 5000;
-                    toastr.success("Reunião aprovada");
+                    //toastr.options.timeOut = 5000;
+                    //toastr.success("Reunião aprovada");
                 }
             }
         });
@@ -1291,38 +1298,38 @@
 
     }
 
-    function changeSEColor(i) {
-        //var gold = $('semEfeito' + i).css('color');
-        //$(this).attr('data-state') === 'true';
-        cbGestInov = document.getElementById("cbGestInov" + i);
-        cbAct = document.getElementById("cbAct" + i);
-        Actividade = document.getElementById("actividade" + i);
-        Ideia = document.getElementById("ideia" + i);
-        SemEfeito = document.getElementById("semEfeito" + i);
+    //function changeSEColor(i) {
+    //    //var gold = $('semEfeito' + i).css('color');
+    //    //$(this).attr('data-state') === 'true';
+    //    cbGestInov = document.getElementById("cbGestInov" + i);
+    //    cbAct = document.getElementById("cbAct" + i);
+    //    Actividade = document.getElementById("actividade" + i);
+    //    Ideia = document.getElementById("ideia" + i);
+    //    SemEfeito = document.getElementById("semEfeito" + i);
 
-        var theData = document.getElementById("semEfeito" + i).getAttribute('data-semEfeito');
+    //    var theData = document.getElementById("semEfeito" + i).getAttribute('data-semEfeito');
 
-        if(theData == 'true')
-        {
-            $(SemEfeito).css('color', "");
-            document.getElementById("semEfeito" + i).setAttribute('data-semEfeito', 'false')
+    //    if(theData == 'true')
+    //    {
+    //        $(SemEfeito).css('color', "");
+    //        document.getElementById("semEfeito" + i).setAttribute('data-semEfeito', 'false')
 
-        }
-        else
-        {
-            $(SemEfeito).css('color', 'gold');
-            document.getElementById("semEfeito" + i).setAttribute('data-semEfeito', 'true')
-        }
+    //    }
+    //    else
+    //    {
+    //        $(SemEfeito).css('color', 'gold');
+    //        document.getElementById("semEfeito" + i).setAttribute('data-semEfeito', 'true')
+    //    }
 
-        if(cbAct.checked == true || cbGestInov.checked == true)
-        {
-            cbGestInov.checked = false;
-            $(Ideia).css('color', "");
+    //    if(cbAct.checked == true || cbGestInov.checked == true)
+    //    {
+    //        cbGestInov.checked = false;
+    //        $(Ideia).css('color', "");
 
-            cbAct.checked = false;
-            $(Actividade).css('color', "");
-        }
-    }
+    //        cbAct.checked = false;
+    //        $(Actividade).css('color', "");
+    //    }
+    //}
 
     //$('#Foo0').attr('collapse','collapse in')
 
@@ -1441,6 +1448,14 @@
         alert(traduz("Preencha todos os campos necessários") + ".");
     </script>
     TempData["Erro"] = null;
+}
+
+@if (TempData["EmptyTema"] != null)
+{
+    <script>
+        alert(traduz("Por favor preencha pelo menos um Tema") + ".");
+    </script>
+    TempData["EmptyTema"] = null;
 }
 
 

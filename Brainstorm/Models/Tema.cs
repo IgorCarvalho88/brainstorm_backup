@@ -29,6 +29,8 @@ namespace Brainstorm.Models
         public bool GestaoInov { get; set; }
         public bool Actividade { get; set; }
 
+        public bool SemEfeito { get; set; }
+
 
     }
 }

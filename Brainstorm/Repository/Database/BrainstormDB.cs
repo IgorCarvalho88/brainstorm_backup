@@ -35,7 +35,7 @@ namespace Brainstorm.Repository.Database
                 sqlComm.Parameters.AddWithValue("@brainstorm_data", model.ReuniaoBrainstorm.Data);              
                 sqlComm.Parameters.AddWithValue("@brainstorm_est_codigo", model.ReuniaoBrainstorm.Estado);
                 sqlComm.Parameters.AddWithValue("@brainstorm_duracaoPrev", model.ReuniaoBrainstorm.Duracao);
-                sqlComm.Parameters.AddWithValue("@brainstorm_duracaoReal", model.ReuniaoBrainstorm.DuracaoReal);
+                sqlComm.Parameters.AddWithValue("@brainstorm_duracaoReal", ((object)model.ReuniaoBrainstorm.DuracaoReal) ?? DBNull.Value);
                 sqlComm.Parameters.AddWithValue("@brainstorm_observacoes", ((object)model.ReuniaoBrainstorm.Observacoes) ?? DBNull.Value);
                 sqlComm.Parameters.AddWithValue("@brainstorm_ut_ins", ((object)model.ReuniaoBrainstorm.Utilizador_ins) ?? DBNull.Value);
                 sqlComm.Parameters.AddWithValue("@brainstorm_ut_alt", ((object)model.ReuniaoBrainstorm.Utilizador_alt) ?? DBNull.Value);
@@ -254,7 +254,15 @@ namespace Brainstorm.Repository.Database
                     reuniaoBrainstorm.Data = ((DateTime)dt.Rows[0]["brainstorm_data"]).ToString("dd/MM/yyyy");
                     reuniaoBrainstorm.Estado = dt.Rows[0]["brainstorm_est_codigo"].ToString();
                     reuniaoBrainstorm.Duracao = Convert.ToInt32(dt.Rows[0]["brainstorm_duracaoPrev"].ToString());
-                    reuniaoBrainstorm.DuracaoReal = Convert.ToInt32(dt.Rows[0]["brainstorm_duracaoReal"].ToString());
+                    if(dt.Rows[0]["brainstorm_duracaoReal"].Equals(DBNull.Value))
+                    {
+                        reuniaoBrainstorm.DuracaoReal = null;
+                    }
+                    else
+                    {
+                        reuniaoBrainstorm.DuracaoReal = Convert.ToInt32(dt.Rows[0]["brainstorm_duracaoReal"].ToString());
+                    }
+                   // reuniaoBrainstorm.DuracaoReal = Convert.ToInt32(dt.Rows[0]["brainstorm_duracaoReal"].ToString());
                     reuniaoBrainstorm.Observacoes = dt.Rows[0]["brainstorm_observacoes"].ToString();
                     reuniaoBrainstorm.Local = dt.Rows[0]["brainstorm_local"].ToString();
                     reuniaoBrainstorm.Utilizador_ins = dt.Rows[0]["brainstorm_ut_ins"].ToString();
@@ -385,7 +393,8 @@ namespace Brainstorm.Repository.Database
                 sqlComm.Parameters.AddWithValue("@brainstorm_data", model.ReuniaoBrainstorm.Data);
                 sqlComm.Parameters.AddWithValue("@brainstorm_est_codigo", model.ReuniaoBrainstorm.Estado);
                 sqlComm.Parameters.AddWithValue("@brainstorm_duracaoPrev", model.ReuniaoBrainstorm.Duracao);
-                sqlComm.Parameters.AddWithValue("@brainstorm_duracaoReal", model.ReuniaoBrainstorm.DuracaoReal);
+                sqlComm.Parameters.AddWithValue("@brainstorm_duracaoReal", ((object)model.ReuniaoBrainstorm.DuracaoReal) ?? DBNull.Value);
+               // sqlComm.Parameters.AddWithValue("@brainstorm_duracaoReal", model.ReuniaoBrainstorm.DuracaoReal);
                 sqlComm.Parameters.AddWithValue("@brainstorm_observacoes", ((object)model.ReuniaoBrainstorm.Observacoes) ?? DBNull.Value);
                 sqlComm.Parameters.AddWithValue("@brainstorm_local", ((object)model.ReuniaoBrainstorm.Local) ?? DBNull.Value);
                 //sqlComm.Parameters.AddWithValue("@brainstorm_ut_ins", ((object)model.ReuniaoBrainstorm.Utilizador_ins) ?? DBNull.Value);

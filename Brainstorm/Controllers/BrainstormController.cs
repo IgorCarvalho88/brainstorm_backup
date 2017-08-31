@@ -64,44 +64,64 @@ namespace Brainstorm.Controllers
         public async Task<ActionResult> Reuniao(BrainstormViewModel model)
         {
             Sessoes();
-          
-            // valida campos
-            if (!ModelState.IsValid)
+            if(model.Temas[0].Id == null && model.ReuniaoBrainstorm.Estado == "A")
             {
-                IIntervenientes repo = new IntervenientesDB();
+                //IIntervenientes repo = new IntervenientesDB();
                 var intervenientes = new List<Interveniente>();
                 intervenientes = repo.getUT();
                 model.Intervenientes = intervenientes;
 
-                //if (ModelState["DuracaoReal"].Errors.Count > 0)
-                //{
-                //    ModelState["DuracaoReal"].Errors.Clear();
-                //    ModelState["DuracaoReal"].Errors.Add("The Age is wrong");
-                //}
-
-                if (model.ReuniaoBrainstorm.Estado == "Pendente")
-                {
+                if(model.ReuniaoBrainstorm.Estado == "A")
                     model.ReuniaoBrainstorm.Estado = "P";
-                }
-                else if (model.ReuniaoBrainstorm.Estado == "Aprovado")
-                {
-                    model.ReuniaoBrainstorm.Estado = "A";
-                }
-                else if (model.ReuniaoBrainstorm.Estado == "Encerrado")
-                {
-                    model.ReuniaoBrainstorm.Estado = "E";
-                }
+                //TempData["Erro"] = "Erro";
 
-                else if (model.ReuniaoBrainstorm.Estado == "Anulada")
-                {
-                    model.ReuniaoBrainstorm.Estado = "X";
-                }
 
-                TempData["Erro"] = "Erro";
+                TempData["EmptyTema"] = "EmptyTema";
+               
 
                 return View("Reuniao", model);
             }
+            // valida campos
+            if (!ModelState.IsValid)
+                    {
+                        //IIntervenientes repo = new IntervenientesDB();
+                        var intervenientes = new List<Interveniente>();
+                        intervenientes = repo.getUT();
+                        model.Intervenientes = intervenientes;
 
+                        if (model.ReuniaoBrainstorm.Estado == "Pendente")
+                        {
+                            model.ReuniaoBrainstorm.Estado = "P";
+                        }
+                        else if (model.ReuniaoBrainstorm.Estado == "Aprovado")
+                        {
+                            model.ReuniaoBrainstorm.Estado = "A";
+                        }
+                        else if (model.ReuniaoBrainstorm.Estado == "Encerrado")
+                        {
+                            model.ReuniaoBrainstorm.Estado = "E";
+                        }
+
+                        else if (model.ReuniaoBrainstorm.Estado == "Anulada")
+                        {
+                            model.ReuniaoBrainstorm.Estado = "X";
+                        }
+                        if (model.ReuniaoBrainstorm.Estado == "A")
+                           model.ReuniaoBrainstorm.Estado = "P";
+
+                        if (model.ReuniaoBrainstorm.Estado == "E")
+                            model.ReuniaoBrainstorm.Estado = "A";
+
+                        TempData["Erro"] = "Erro";
+
+                        //if(model.Temas == null)
+                        //{
+                        //    TempData["EmptyTema"] = "EmptyTema";
+                        //}
+
+                        return View("Reuniao", model);
+                    }
+          
             // nova reuniao
             if (model.ReuniaoBrainstorm.Id == 0)
             {
@@ -156,10 +176,11 @@ namespace Brainstorm.Controllers
             else
             {
                 // update reuniao
-                             
-                BrainstormRepository brainRepo = new BrainstormDB();
+                 BrainstormRepository brainRepo = new BrainstormDB();
                 IIntervenientes repo = new IntervenientesDB();
                 var ut = Session["utilizador_codigo"].ToString();
+                             
+               
 
                 //if (model.ReuniaoBrainstorm.Estado == "E")
                 //{
@@ -279,8 +300,6 @@ namespace Brainstorm.Controllers
                     
                 }
 
-                
-
                 //for (int i = 0; i < model.Temas.Count; i++)
                 //{
                 //    DataRow teste2 = brainRepo.alterarTema(model.Temas[i], model.ReuniaoBrainstorm.Id);
@@ -353,10 +372,32 @@ namespace Brainstorm.Controllers
 
             // temas
             temas = brainRepo.getBrainstormTemas(id);
-            int tamanhoLista = 10;
-            tamanhoLista = tamanhoLista - temas.Count;
-            List<Tema> temasAux = new List<Tema>(new Tema[tamanhoLista]);
-            temas = temas.Concat(temasAux).ToList();
+            // se temas nao é null, pois da primeira vez que e registada uma reuniao, poderá nao haver temas
+            if(temas != null)
+            {
+                // adicionar sem efeito se actividade ou ideia estao a 0
+                for (int i = 0; i < temas.Count; i++)
+                {
+                    if (temas[i].GestaoInov == false && temas[i].Actividade == false)
+                    {
+                        temas[i].SemEfeito = true;
+                    }
+                }
+
+                int tamanhoLista = 10;
+                tamanhoLista = tamanhoLista - temas.Count;
+                List<Tema> temasAux = new List<Tema>(new Tema[tamanhoLista]);
+                temas = temas.Concat(temasAux).ToList();
+            }
+
+            else
+            {
+                temas = new List<Tema>(new Tema[10]);
+            }
+           
+           
+
+           
 
             //intervenientes
             intervenientesSelecionados = repo.getBrainstormIntervenientes(id);
@@ -412,10 +453,28 @@ namespace Brainstorm.Controllers
 
             // temas
             temas = brainRepo.getBrainstormTemas(id);
-            int tamanhoLista = 10;
-            tamanhoLista = tamanhoLista - temas.Count;
-            List<Tema> temasAux = new List<Tema>(new Tema[tamanhoLista]);
-            temas = temas.Concat(temasAux).ToList();
+            // se temas nao é null, pois da primeira vez que e registada uma reuniao, poderá nao haver temas
+            if (temas != null)
+            {
+                // adicionar sem efeito se actividade ou ideia estao a 0
+                for (int i = 0; i < temas.Count; i++)
+                {
+                    if (temas[i].GestaoInov == false && temas[i].Actividade == false)
+                    {
+                        temas[i].SemEfeito = true;
+                    }
+                }
+
+                int tamanhoLista = 10;
+                tamanhoLista = tamanhoLista - temas.Count;
+                List<Tema> temasAux = new List<Tema>(new Tema[tamanhoLista]);
+                temas = temas.Concat(temasAux).ToList();
+            }
+
+            else
+            {
+                temas = new List<Tema>(new Tema[10]);
+            }
 
             //intervenientes
             intervenientesSelecionados = repo.getBrainstormIntervenientes(id);

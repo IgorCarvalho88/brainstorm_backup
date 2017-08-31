@@ -454,6 +454,7 @@
     <Content Include="Images\separador1.gif" />
     <Content Include="Images\ToolFechar.gif" />
     <Content Include="Images\ToolFechar_.gif" />
+    <Content Include="Images\Tool_Inf.gif" />
     <Content Include="Images\Tool_nor.gif" />
     <Content Include="Images\Tool_Obr.gif" />
     <Content Include="Images\wf.gif" />

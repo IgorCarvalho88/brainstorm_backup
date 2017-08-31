@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using System.Web.ModelBinding;
+using ExpressiveAnnotations.Attributes;
 
 namespace Brainstorm.Models
 {
@@ -28,13 +29,14 @@ namespace Brainstorm.Models
         public int? Duracao { get; set; }
 
         //[Required(ErrorMessage = "Duração real é obrigatório")]
-        [Required]
+        [RequiredIf(@"Estado == 'E'")]
         public int? DuracaoReal { get; set; }
 
         public string Estado { get; set; }
         public DateTime DataEstado { get; set; }
         public string Observacoes { get; set; }
         public bool EstadoFlag { get; set; }
+        [Required]
         public string Local { get; set; }
 
         // campos adicionados para gravação de utilizador que modifica reuniao(sessoes)

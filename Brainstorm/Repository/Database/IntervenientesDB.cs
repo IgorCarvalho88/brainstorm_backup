@@ -28,7 +28,7 @@ namespace Brainstorm.Repository.Database
             }
             try
             {
-                SqlCommand sqlComm = new SqlCommand("SELECT * FROM ut", con);
+                SqlCommand sqlComm = new SqlCommand("SELECT * FROM ut where ut_estado = 'activo'", con);
                 SqlDataAdapter da = new SqlDataAdapter();
                 da.SelectCommand = sqlComm;
                 DataTable dt = new DataTable();
